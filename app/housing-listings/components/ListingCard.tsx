@@ -1,0 +1,40 @@
+import Image from 'next/image'
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+interface Listing {
+  id: number
+  title: string
+  images: string[]
+  price: number
+  location: string
+  applicationStatus: string
+}
+
+export function ListingCard({ listing }: { listing: Listing }) {
+  return (
+    <Card className="overflow-hidden">
+      <Image
+        src={listing.images[0]}
+        alt={listing.title}
+        width={300}
+        height={200}
+        className="w-full h-48 object-cover"
+      />
+      <CardContent className="p-4">
+        <h4 className="font-semibold text-lg mb-2">{listing.title}</h4>
+        <p className="text-gray-600 mb-2">{listing.location}</p>
+        <p className="font-bold text-lg mb-2">${listing.price}/month</p>
+        <Badge variant={listing.applicationStatus === 'Open Now' ? 'default' : 'secondary'}>
+          {listing.applicationStatus}
+        </Badge>
+      </CardContent>
+      <CardFooter className="bg-gray-50 p-4">
+        <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors">
+          View Details
+        </button>
+      </CardFooter>
+    </Card>
+  )
+}
+
