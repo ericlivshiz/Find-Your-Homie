@@ -45,7 +45,7 @@ export default function LandingPage() {
             </div>
             <div className="md:w-1/2">
               <Image
-                src="/assets/uc-santa-barbara.jpg"
+                src="/assets/sb-ai-pic.jpg"
                 alt="App Interface Mockup"
                 width={400}
                 height={400}
