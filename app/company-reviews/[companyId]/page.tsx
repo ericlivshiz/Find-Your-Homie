@@ -6,6 +6,7 @@ import { StarRating } from '../../../components/StarRating'
 import { ReviewList } from './components/ReviewList'
 import { ReviewForm } from './components/ReviewForm'
 import { Button } from "@/components/ui/button"
+import BlueHeader from '@/components/BlueHeader'
 
 // Mock API function to fetch company data
 const fetchCompanyData = async (id: string) => {
@@ -80,12 +81,7 @@ export default function CompanyReviewPage() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-blue-600 text-white py-4">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold">Find Your Homie</h1>
-        </div>
-      </header>
-
+      <BlueHeader />
       <main className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <h2 className="text-3xl font-semibold mb-4">{companyData.name}</h2>

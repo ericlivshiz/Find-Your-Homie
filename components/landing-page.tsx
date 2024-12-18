@@ -8,8 +8,16 @@ import { useRouter } from 'next/navigation'
 export default function LandingPage() {
   const router = useRouter(); 
 
-  const navigateToListings = () => {
+  const navigateToHousingListings = () => {
     router.push('/housing-listings');
+  };
+
+  const navigateToSubleaseListings = () => {
+    router.push('/sublease-listings');
+  };
+
+  const navigateToRoommateMatching = () => {
+    router.push('/roommate-matching');
   };
 
   return (
@@ -27,10 +35,10 @@ export default function LandingPage() {
                 Browse listings, post subleases, and connect with roommates in one place.
               </p>
               <div className="space-x-4">
-                <Button variant="secondary" size="lg" onClick={navigateToListings}>
+                <Button variant="secondary" size="lg" onClick={navigateToHousingListings}>
                   Browse Listings
                 </Button>
-                <Button variant="outline" size="lg" className="text-blue-600">
+                <Button variant="outline" size="lg" className="text-blue-600" onClick={navigateToSubleaseListings}>
                   Post a Listing
                 </Button>
               </div>
@@ -56,17 +64,19 @@ export default function LandingPage() {
                 title="Find Housing Quickly"
                 description="Browse through a wide range of listings tailored for UCSB students."
                 icon="🏠"
-                onClick={navigateToListings}
+                onClick={navigateToHousingListings}
               />
               <BenefitCard
                 title="Post Subleases Easily"
                 description="List your space in minutes and reach thousands of potential tenants."
                 icon="📝"
+                onClick={navigateToSubleaseListings}
               />
               <BenefitCard
                 title="Connect with Roommates"
                 description="Find compatible roommates based on your preferences and lifestyle."
                 icon="🤝"
+                onClick={navigateToRoommateMatching}
               />
             </div>
           </div>
