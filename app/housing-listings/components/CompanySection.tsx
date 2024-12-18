@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { ListingCard } from './ListingCard'
 import { StarRating } from './StarRating'
 
@@ -8,6 +9,7 @@ interface Company {
   logo: string
   rating: number
   listings: Listing[]
+  website: string
 }
 
 interface Listing {
@@ -28,9 +30,11 @@ export function CompanySection({ company }: { company: Company }) {
           alt={`${company.name} logo`}
           width={50}
           height={50}
-          className="rounded-full mr-4"
+          className=" mr-4"
         />
-        <h3 className="text-xl font-semibold">{company.name}</h3>
+        <Link href={`/company-reviews/${company.id}`} className="text-xl font-semibold hover:underline">
+          {company.name}
+        </Link>
         <div className="ml-4">
           <StarRating rating={company.rating} />
         </div>
@@ -39,6 +43,16 @@ export function CompanySection({ company }: { company: Company }) {
         {company.listings.map((listing) => (
           <ListingCard key={listing.id} listing={listing} />
         ))}
+      </div>
+      <div className="mt-4 text-center">
+        <a
+          href={company.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+        >
+          See More
+        </a>
       </div>
     </section>
   )

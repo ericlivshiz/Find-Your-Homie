@@ -9,6 +9,7 @@ const mockCompanies = [
     name: 'IV Properties',
     logo: '/assets/iv-properties-logo.png',
     rating: 4.5,
+    website: 'https://www.ivproperties.com/',
     listings: [
       {
         id: 101,
@@ -41,6 +42,7 @@ const mockCompanies = [
     name: 'Wolfe & Associates',
     logo: '/assets/wolfe-logo.png',
     rating: 4.2,
+    website: 'https://www.rlwa.com/isla-vista-listings',
     listings: [
       {
         id: 201,
@@ -50,8 +52,57 @@ const mockCompanies = [
         location: '6674 Trigo Road, #01, Goleta, CA 93117',
         applicationStatus: 'Available 06/25/2025',
       },
+      {
+        id: 202,
+        title: '2 Bedroom/ 1 Bath/ 5 Occupants',
+        images: ['/assets/wolfe-property-2.png'],
+        price: 3900,
+        location: '6514 Sabado Tarde Road, #01, Goleta, CA 93117',
+        applicationStatus: 'Available 06/25/2025',
+      },
+      {
+        id: 203,
+        title: '2 Bedroom/ 1 Bath/ 5 Occupants',
+        images: ['/assets/wolfe-property-3.png'],
+        price: 4300,
+        location: '6688 Del Playa Drive, #A, Goleta, CA 93117',
+        applicationStatus: 'Available 06/25/2025',
+      }
     ],
   },
+  {
+    id: 3,
+    name: 'Playa Life I.V.',
+    logo: '/assets/playa-life-logo.png',
+    rating: 4.0,
+    website: 'https://www.playalifeiv.com/vacancies',
+    listings: [
+      {
+        id: 301,
+        title: '3 Bedroom/ 2 Bathroom (Gas/Water covered)',
+        images: ['/assets/playa-property-1.png'],
+        price: 10250,
+        location: '6653 Del PLaya,5, Goleta, CA 93117',
+        applicationStatus: 'Available 07/15/2025',
+      },
+      {
+        id: 302,
+        title: '4 Bedroom/ 2 Bathroom (2 refrigerators)',
+        images: ['/assets/playa-property-2.png'],
+        price: 12000,
+        location: '6777 Del PLaya, 4, Goleta, CA 93117',
+        applicationStatus: 'Available 07/17/2025',
+      },
+      {
+        id: 303,
+        title: '3 Bedroom/ 2.5 Bathroom (Hot Tub)',
+        images: ['/assets/playa-property-3.png'],
+        price: 14000,
+        location: '6533 El Nido, Goleta, CA 93117',
+        applicationStatus: 'Available 07/14/2025',
+      }
+    ]
+  }
 ]
 
 export default function HousingListingsPage() {
@@ -66,9 +117,9 @@ export default function HousingListingsPage() {
           <SearchBar />
         </div>
 
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <Filters />
-        </div>
+        </div> */}
 
         <div className="space-y-12">
           {mockCompanies.map((company) => (
