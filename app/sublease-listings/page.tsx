@@ -11,13 +11,13 @@ type SubleaseType = {
   id: number;
   title: string;
   address: string;
-  unitNumber: string;
+  unit: string;
   rent: number;
-  moveInDate: string;
-  moveOutDate: string;
+  move_in: string;
+  move_out: string;
   location: string;
   description: string;
-  contactInfo: string;
+  contact_info: string;
   image_url: string;
 };
 

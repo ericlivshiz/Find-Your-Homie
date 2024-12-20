@@ -38,34 +38,50 @@ import { useState, useEffect } from 'react';
   // Add more dummy listings as needed
 ] */
 
+// Define a type for your roommate data
+type RoommateType = {
+  id: number;
+  name: string;
+  gender: string;
+  bio: string;
+  budget: string;
+  sleeping_habits: string;
+  smoking: boolean;
+  drinking: boolean;
+  pets: boolean;
+  move_in: string;
+  contact_info: string;
+  image_url: string;
+};
+
 // Define a type for your state
 type FormDataType = {
   name: string;
   gender: string;
   bio: string;
   budget: string;
-  sleepingHabits: string;
+  sleeping_habits: string;
   smoking: boolean;
   drinking: boolean;
   pets: boolean;
-  moveInDate: string;
-  contactInfo: string;
+  move_in: string;
+  contact_info: string;
   image: File | null;
 };
 
 export default function RoommateListingsPage() {
-  const [people, setPeople] = useState<any[]>([]);
+  const [people, setPeople] = useState<RoommateType[]>([]);
   const [formData, setFormData] = useState<FormDataType>({
     name: '',
     gender: '',
     bio: '',
     budget: '',
-    sleepingHabits: '',
+    sleeping_habits: '',
     smoking: false,
     drinking: false,
     pets: false,
-    moveInDate: '',
-    contactInfo: '',
+    move_in: '',
+    contact_info: '',
     image: null,
   });
 
