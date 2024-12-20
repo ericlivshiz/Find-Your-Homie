@@ -10,14 +10,14 @@ interface Sublease {
   id: number
   title: string
   rent: number
-  moveInDate: string
-  moveOutDate: string
+  move_in: string
+  move_out: string
   location: string
   image_url: string
   description?: string
-  contactInfo?: string
+  contact_info?: string
   address?: string
-  unitNumber?: string
+  unit?: string
 }
 
 export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
@@ -42,7 +42,7 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
             <CardContent>
               <p className="text-2xl font-bold mb-2">${sublease.rent}/month</p>
               <p className="text-sm text-muted-foreground mb-1">
-                {new Date(sublease.moveInDate).toLocaleDateString()} - {new Date(sublease.moveOutDate).toLocaleDateString()}
+                {new Date(sublease.move_in).toLocaleDateString()} - {new Date(sublease.move_out).toLocaleDateString()}
               </p>
               <p className="text-sm text-muted-foreground">{sublease.location}</p>
             </CardContent>
@@ -61,13 +61,13 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
               className="rounded-lg"
             />
             <p><strong>Rent:</strong> ${sublease.rent}/month</p>
-            <p><strong>Move-in Date:</strong> {new Date(sublease.moveInDate).toLocaleDateString()}</p>
-            <p><strong>Move-out Date:</strong> {new Date(sublease.moveOutDate).toLocaleDateString()}</p>
+            <p><strong>Move-in Date:</strong> {new Date(sublease.move_in).toLocaleDateString()}</p>
+            <p><strong>Move-out Date:</strong> {new Date(sublease.move_out).toLocaleDateString()}</p>
             <p><strong>Location:</strong> {sublease.location}</p>
             {sublease.address && <p><strong>Address:</strong> {sublease.address}</p>}
-            {sublease.unitNumber && <p><strong>Unit Number:</strong> {sublease.unitNumber}</p>}
+            {sublease.unit && <p><strong>Unit Number:</strong> {sublease.unit}</p>}
             {sublease.description && <p><strong>Description:</strong> {sublease.description}</p>}
-            {sublease.contactInfo && <p><strong>Contact Info:</strong> {sublease.contactInfo}</p>}
+            {sublease.contact_info && <p><strong>Email:</strong> {sublease.contact_info}</p>}
           </div>
           <Button onClick={() => setIsOpen(false)}>Close</Button>
         </DialogContent>

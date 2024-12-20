@@ -38,8 +38,36 @@ import { useState, useEffect } from 'react';
   // Add more dummy listings as needed
 ] */
 
+// Define a type for your state
+type FormDataType = {
+  name: string;
+  gender: string;
+  bio: string;
+  budget: string;
+  sleepingHabits: string;
+  smoking: boolean;
+  drinking: boolean;
+  pets: boolean;
+  moveInDate: string;
+  contactInfo: string;
+  image: File | null;
+};
+
 export default function RoommateListingsPage() {
   const [people, setPeople] = useState<any[]>([]);
+  const [formData, setFormData] = useState<FormDataType>({
+    name: '',
+    gender: '',
+    bio: '',
+    budget: '',
+    sleepingHabits: '',
+    smoking: false,
+    drinking: false,
+    pets: false,
+    moveInDate: '',
+    contactInfo: '',
+    image: null,
+  });
 
   useEffect(() => {
     const loadPersonData = async () => {

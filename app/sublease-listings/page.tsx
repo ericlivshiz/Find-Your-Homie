@@ -6,8 +6,23 @@ import SubleaseCard from "./components/SubleaseCard";
 import PostSubleaseButton from "./components/PostSubleaseButton";
 import { fetchSubleaseData } from "@/lib/supabaseSubleaseQuery";
 
+// Define a type for your sublease data
+type SubleaseType = {
+  id: number;
+  title: string;
+  address: string;
+  unitNumber: string;
+  rent: number;
+  moveInDate: string;
+  moveOutDate: string;
+  location: string;
+  description: string;
+  contactInfo: string;
+  image_url: string;
+};
+
 export default function SubleaseListingsPage() {
-  const [subleases, setSubleases] = useState<any[]>([]);
+  const [subleases, setSubleases] = useState<SubleaseType[]>([]);
 
   useEffect(() => {
     const loadSubleaseData = async () => {

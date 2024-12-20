@@ -53,11 +53,13 @@ export default function RoommateCard({
           <li><strong>Drinking:</strong> {drinking ? 'Yes' : 'No'}</li>
           <li><strong>Pets:</strong> {pets ? 'Yes' : 'No'}</li>
           {move_in && <li><strong>Move-in Date:</strong> {new Date(move_in).toLocaleDateString()}</li>}
-          <li><strong>Contact Info:</strong> {contact_info}</li>
+          <li><strong>Email:</strong> {contact_info}</li>
         </ul>
       </CardContent>
       <CardFooter className="mt-auto">
-        <Button className="w-full">Contact</Button>
+        <a href={`mailto:${contact_info}`} className="w-full">
+          <Button className="w-full">Contact</Button>
+        </a>
       </CardFooter>
     </Card>
   )
