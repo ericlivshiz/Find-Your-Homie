@@ -7,14 +7,29 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
+import { supabase } from '@/lib/supabaseClient'
 
 interface PostProfileFormProps {
   isOpen: boolean
   onClose: () => void
 }
 
+type FormDataType = {
+  name: string;
+  gender: string;
+  bio: string;
+  budget: string;
+  sleepingHabits: string;
+  smoking: boolean;
+  drinking: boolean;
+  pets: boolean;
+  moveInDate: string;
+  contactInfo: string;
+  image: File | null;
+};
+
 export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     name: '',
     gender: '',
     bio: '',
@@ -25,20 +40,80 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
     pets: false,
     moveInDate: '',
     contactInfo: '',
-    image: ''
-  })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here (e.g., send data to API)
-    console.log(formData)
-    onClose()
-  }
+    image: null,
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFormData(prev => ({ ...prev, image: e.target.files[0] }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.image) {
+      console.error("No image selected.");
+      return;
+    }
+
+    // Generate a unique filename for the image
+    const fileName = `${Date.now()}_${formData.image.name}`;
+
+    try {
+      // Upload the image to the "Person-Images" bucket
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('Person-Images')
+        .upload(fileName, formData.image);
+
+      if (uploadError) {
+        console.error("Error uploading image:", uploadError);
+        return;
+      }
+
+      // Get the public URL of the uploaded image
+      const { data: publicUrlData } = supabase.storage
+        .from('Person-Images')
+        .getPublicUrl(uploadData.path);
+
+      const imageUrl = publicUrlData?.publicUrl;
+      if (!imageUrl) {
+        console.error("Failed to retrieve public URL for the uploaded image.");
+        return;
+      }
+
+      // Insert profile data including the image URL into the "Person" table
+      const { error } = await supabase
+        .from('Person')
+        .insert([{
+          name: formData.name,
+          gender: formData.gender,
+          bio: formData.bio,
+          budget: formData.budget,
+          sleeping_habits: formData.sleepingHabits,
+          smoking: formData.smoking,
+          drinking: formData.drinking,
+          pets: formData.pets,
+          move_in: formData.moveInDate,
+          contact_info: formData.contactInfo,
+          image_url: imageUrl, // Save the image URL
+        }]);
+
+      if (error) {
+        console.error('Error inserting profile data:', error);
+      } else {
+        console.log('Profile data inserted successfully');
+        onClose();
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+    }
+  };
 
   const handleSwitchChange = (name: string) => {
     setFormData(prev => ({ ...prev, [name]: !prev[name as keyof typeof prev] }))
@@ -92,10 +167,10 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
             <Input id="contactInfo" name="contactInfo" value={formData.contactInfo} onChange={handleInputChange} required placeholder="Email or Phone" />
           </div>
           <div>
-            <Label htmlFor="image">Profile Picture URL</Label>
-            <Input id="image" name="image" value={formData.image} onChange={handleInputChange} placeholder="Image URL" />
+            <Label htmlFor="image">Upload Image</Label>
+            <Input id="image" name="image" type="file" accept="image/*" onChange={handleImageChange} />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Submit Profile</Button>
         </form>
       </DialogContent>
     </Dialog>

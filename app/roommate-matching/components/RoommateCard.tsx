@@ -7,13 +7,13 @@ interface RoommateCardProps {
   gender?: string
   bio: string
   budget: string
-  sleepingHabits?: string
+  sleeping_habits?: string
   smoking: boolean
   drinking: boolean
   pets: boolean
-  moveInDate?: string
-  contactInfo: string
-  image?: string
+  move_in?: string
+  contact_info: string
+  image_url?: string
 }
 
 export default function RoommateCard({
@@ -21,21 +21,21 @@ export default function RoommateCard({
   gender,
   bio,
   budget,
-  sleepingHabits,
+  sleeping_habits,
   smoking,
   drinking,
   pets,
-  moveInDate,
-  contactInfo,
-  image
+  move_in,
+  contact_info,
+  image_url
 }: RoommateCardProps) {
   return (
     <Card className="flex flex-col h-full">
       <CardContent className="pt-6">
         <div className="flex items-center space-x-4 mb-4">
-          {image && (
+          {image_url && (
             <Image
-              src={image}
+              src={image_url}
               alt={`${name}'s profile picture`}
               width={50}
               height={50}
@@ -48,12 +48,12 @@ export default function RoommateCard({
         <p className="text-sm text-gray-600 mb-4">{bio}</p>
         <ul className="space-y-2 text-sm">
           <li><strong>Budget:</strong> ${budget}</li>
-          {sleepingHabits && <li><strong>Sleeping Habits:</strong> {sleepingHabits}</li>}
+          {sleeping_habits && <li><strong>Sleeping Habits:</strong> {sleeping_habits}</li>}
           <li><strong>Smoking:</strong> {smoking ? 'Yes' : 'No'}</li>
           <li><strong>Drinking:</strong> {drinking ? 'Yes' : 'No'}</li>
           <li><strong>Pets:</strong> {pets ? 'Yes' : 'No'}</li>
-          {moveInDate && <li><strong>Move-in Date:</strong> {new Date(moveInDate).toLocaleDateString()}</li>}
-          <li><strong>Contact Info:</strong> {contactInfo}</li>
+          {move_in && <li><strong>Move-in Date:</strong> {new Date(move_in).toLocaleDateString()}</li>}
+          <li><strong>Contact Info:</strong> {contact_info}</li>
         </ul>
       </CardContent>
       <CardFooter className="mt-auto">

@@ -3,13 +3,23 @@ import { SearchBar } from './components/SearchBar'
 import { Filters } from './components/Filters'
 import { CompanySection } from './components/CompanySection'
 
+interface Listing {
+  id: number;
+  title: string;
+  images: string[];
+  price: number;
+  location: string;
+  applicationStatus: string;
+  websiteUrl: string;
+}
+
 const mockCompanies = [
   {
     id: 1,
     name: 'IV Properties',
     logo: '/assets/iv-properties-logo.png',
     rating: 4.5,
-    website: 'https://www.ivproperties.com/',
+    website: 'https://www.ivproperties.com/properties/isla-vista-properties/',
     listings: [
       {
         id: 101,
@@ -18,6 +28,7 @@ const mockCompanies = [
         price: 1250,
         location: '6850 Del Playa Dr, Isla Vista, CA',
         applicationStatus: 'Open Now',
+        websiteUrl: 'https://www.ivproperties.com/properties/isla-vista-properties/6850-del-playa/',
       },
       {
         id: 102,
@@ -26,6 +37,7 @@ const mockCompanies = [
         price: 1200,
         location: '6611 Pasado Road - Unit A, Isla Vista',
         applicationStatus: 'Leased through June 2026',
+        websiteUrl: 'https://www.ivproperties.com/properties/isla-vista-properties/6611-pasado-road-isla-vista-ca/unit-a/',
       },
       {
         id: 103,
@@ -34,6 +46,7 @@ const mockCompanies = [
         price: 1150,
         location: '6710 Pasado Road - Unit 1, Isla Vista',
         applicationStatus: 'Leased through June 2026',
+        websiteUrl: 'https://www.ivproperties.com/properties/isla-vista-properties/6710-pasado-road-isla-vista-ca/unit-1/',
       }
     ],
   },
@@ -51,6 +64,7 @@ const mockCompanies = [
         price: 4250,
         location: '6674 Trigo Road, #01, Goleta, CA 93117',
         applicationStatus: 'Available 06/25/2025',
+        websiteUrl: 'https://www.rlwa.com/listings/detail/c0ed2858-3b45-4249-9aca-144ffcac2bd1',
       },
       {
         id: 202,
@@ -59,6 +73,7 @@ const mockCompanies = [
         price: 3900,
         location: '6514 Sabado Tarde Road, #01, Goleta, CA 93117',
         applicationStatus: 'Available 06/25/2025',
+        websiteUrl: 'https://www.rlwa.com/listings/detail/f69d8d29-f188-4d42-a244-dfd975ed5f11',
       },
       {
         id: 203,
@@ -67,6 +82,7 @@ const mockCompanies = [
         price: 4300,
         location: '6688 Del Playa Drive, #A, Goleta, CA 93117',
         applicationStatus: 'Available 06/25/2025',
+        websiteUrl: 'https://www.rlwa.com/listings/detail/23696b90-8780-4da1-ad45-f23b067e9caf',
       }
     ],
   },
@@ -84,6 +100,7 @@ const mockCompanies = [
         price: 10250,
         location: '6653 Del PLaya,5, Goleta, CA 93117',
         applicationStatus: 'Available 07/15/2025',
+        websiteUrl: 'https://www.playalifeiv.com/listings/detail/604dc8b1-f08d-4979-8e79-23b9e3474af7',
       },
       {
         id: 302,
@@ -92,6 +109,7 @@ const mockCompanies = [
         price: 12000,
         location: '6777 Del PLaya, 4, Goleta, CA 93117',
         applicationStatus: 'Available 07/17/2025',
+        websiteUrl: 'https://www.playalifeiv.com/listings/detail/b871ff3c-4f66-447c-af55-78232bbacd92',
       },
       {
         id: 303,
@@ -100,6 +118,7 @@ const mockCompanies = [
         price: 14000,
         location: '6533 El Nido, Goleta, CA 93117',
         applicationStatus: 'Available 07/14/2025',
+        websiteUrl: 'https://www.playalifeiv.com/listings/detail/123f1a77-7696-45f4-80c8-05ca49ad64e6',
       }
     ]
   }

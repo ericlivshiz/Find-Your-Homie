@@ -1,20 +1,22 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { StarIcon } from 'lucide-react'
 
 interface ReviewFormProps {
-  onSubmit: (review: { rating: number; comment: string }) => void
+  onSubmit: (review: { name?: string; rating: number; message: string }) => void
   onCancel: () => void
 }
 
 export function ReviewForm({ onSubmit, onCancel }: ReviewFormProps) {
+  const [name, setName] = useState('')
   const [rating, setRating] = useState(0)
-  const [comment, setComment] = useState('')
+  const [message, setMessage] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit({ rating, comment })
+    onSubmit({ name, rating, message })
   }
 
   return (
@@ -38,14 +40,26 @@ export function ReviewForm({ onSubmit, onCancel }: ReviewFormProps) {
         </div>
       </div>
       <div>
-        <label htmlFor="comment" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+          Your Name (Optional)
+        </label>
+        <Input
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
+          className="w-full"
+        />
+      </div>
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
           Your Review
         </label>
         <Textarea
-          id="comment"
+          id="message"
           rows={4}
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           placeholder="Write your review here..."
           className="w-full"
         />
@@ -54,7 +68,7 @@ export function ReviewForm({ onSubmit, onCancel }: ReviewFormProps) {
         <Button type="button" variant="outline" onClick={onCancel}>
           Cancel
         </Button>
-        <Button type="submit" disabled={rating === 0 || comment.trim() === ''}>
+        <Button type="submit" disabled={rating === 0 || message.trim() === ''}>
           Submit Review
         </Button>
       </div>

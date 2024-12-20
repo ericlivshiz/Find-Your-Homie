@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -9,9 +11,15 @@ interface Listing {
   price: number
   location: string
   applicationStatus: string
+  websiteUrl: string
 }
 
 export function ListingCard({ listing }: { listing: Listing }) {
+  const handleViewDetails = () => {
+    console.log("Opening URL:", listing.websiteUrl)
+    window.open(listing.websiteUrl, '_blank');
+  };
+
   return (
     <Card className="overflow-hidden">
       <Image
@@ -30,11 +38,14 @@ export function ListingCard({ listing }: { listing: Listing }) {
         </Badge>
       </CardContent>
       <CardFooter className="bg-gray-50 p-4">
-        <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors">
+        <button
+          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
+          onClick={handleViewDetails}
+        >
           View Details
         </button>
       </CardFooter>
     </Card>
-  )
+  );
 }
 

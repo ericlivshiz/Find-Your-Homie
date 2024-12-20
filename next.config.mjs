@@ -5,6 +5,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ['rophpbjjvrpiuagfewbu.supabase.co'],
+  },
 }
 
 export default nextConfig;

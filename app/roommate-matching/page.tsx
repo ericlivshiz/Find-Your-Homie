@@ -1,8 +1,12 @@
+'use client'
+
 import BlueHeader from "@/components/BlueHeader";
 import RoommateCard from './components/RoommateCard'
 import PostProfileButton from './components/PostProfileButton'
+import { fetchPersonData } from "@/lib/supabasePersonQuery";
+import { useState, useEffect } from 'react';
 
-const dummyListings = [
+/* const dummyListings = [
   {
     id: 1,
     name: 'John D.',
@@ -32,9 +36,25 @@ const dummyListings = [
     image: '/assets/random-girl.png'
   },
   // Add more dummy listings as needed
-]
+] */
 
 export default function RoommateListingsPage() {
+  const [people, setPeople] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadPersonData = async () => {
+      try {
+        const data = await fetchPersonData();
+        console.log("Person data fetched:", data); // Log the data to console
+        setPeople(data);
+      } catch (error) {
+        console.error("Error fetching person data:", error);
+      }
+    };
+
+    loadPersonData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-100">
       <BlueHeader />
@@ -43,8 +63,8 @@ export default function RoommateListingsPage() {
           <main className="w-full md:w-3/4">
             <PostProfileButton />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {dummyListings.map((listing) => (
-                <RoommateCard key={listing.id} {...listing} />
+              {people.map((person) => (
+                <RoommateCard key={person.id} {...person} />
               ))}
             </div>
           </main>
