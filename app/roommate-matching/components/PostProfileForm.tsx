@@ -167,7 +167,7 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
             <Input id="contactInfo" name="contactInfo" value={formData.contactInfo} onChange={handleInputChange} required placeholder="Email or Phone" />
           </div>
           <div>
-            <Label htmlFor="image">Upload Image</Label>
+            <Label htmlFor="image">Upload Profile Picture</Label>
             <Input id="image" name="image" type="file" accept="image/*" onChange={handleImageChange} />
           </div>
           <Button type="submit">Submit Profile</Button>
