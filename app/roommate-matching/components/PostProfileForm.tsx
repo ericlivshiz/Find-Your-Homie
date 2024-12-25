@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { supabase } from '@/lib/supabaseClient'
+import { useUser } from "@clerk/nextjs";
 
 interface PostProfileFormProps {
   isOpen: boolean
@@ -24,7 +25,7 @@ type FormDataType = {
   drinking: boolean;
   pets: boolean;
   moveInDate: string;
-  contactInfo: string;
+  contact_info: string;
   image: File | null;
 };
 
@@ -39,9 +40,34 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
     drinking: false,
     pets: false,
     moveInDate: '',
-    contactInfo: '',
+    contact_info: '',
     image: null,
   });
+
+  const { user } = useUser();
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      if (user) {
+        const username = user.username;
+        console.log("Username:", username);
+        const { data, error } = await supabase
+          .from("User")
+          .select("id")
+          .eq("username", username)
+          .single();
+
+        if (error) {
+          console.error("Error fetching user ID:", error);
+        } else {
+          setUserId(data.id);
+        }
+      }
+    };
+
+    fetchUserId();
+  }, [user]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -100,8 +126,9 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
           drinking: formData.drinking,
           pets: formData.pets,
           move_in: formData.moveInDate,
-          contact_info: formData.contactInfo,
+          contact_info: formData.contact_info,
           image_url: imageUrl, // Save the image URL
+          user_id: userId,
         }]);
 
       if (error) {
@@ -164,7 +191,7 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
           </div>
           <div>
             <Label htmlFor="contactInfo">Contact Info</Label>
-            <Input id="contactInfo" name="contactInfo" value={formData.contactInfo} onChange={handleInputChange} required placeholder="Email or Phone" />
+            <Input id="contactInfo" name="contactInfo" value={formData.contact_info} onChange={handleInputChange} required placeholder="Email or Phone" />
           </div>
           <div>
             <Label htmlFor="image">Upload Profile Picture</Label>

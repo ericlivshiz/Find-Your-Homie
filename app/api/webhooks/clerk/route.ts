@@ -57,12 +57,14 @@ export async function POST(req: Request) {
     const first_name = evt.data.first_name;
     const last_name = evt.data.last_name;
     const email = evt.data.email_addresses[0].email_address;
+    const username = evt.data.username;
 
     const { data, error } = await supabase.from("User").insert([
       {
         first_name,
         last_name,
         email,
+        username,
       },
     ]);
 

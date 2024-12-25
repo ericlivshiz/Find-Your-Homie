@@ -17,7 +17,7 @@ export default function LandingPage() {
   };
 
   const navigateToDashboard = () => {
-    router.push('/dashboard/make-post');
+    router.push('/dashboard/profile');
   };
 
   const navigateToRoommateMatching = () => {
@@ -33,17 +33,20 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Find Your Next Home or Roommate at UCSB — Fast and Easy
+                Your UCSB Housing Hub
               </h2>
               <p className="text-xl mb-6">
-                Browse listings, post subleases, and connect with roommates in one place.
+                Browse housing, sublease, and roommate listings instantly—no login required! 
+              </p>
+              <p className="text-xl mb-6">
+              Sign up to go to your dashboard, where you can manage your profile, create posts, and save your favorite listings in your dashboard.
               </p>
               <div className="space-x-4">
                 <Button variant="secondary" size="lg" onClick={navigateToHousingListings}>
                   Browse Listings
                 </Button>
                 <Button variant="outline" size="lg" className="text-blue-600" onClick={navigateToDashboard}>
-                  Make a Post
+                  Your Dashboard
                 </Button>
               </div>
             </div>

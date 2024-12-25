@@ -31,7 +31,6 @@ export default function MakePostPage() {
             <p className="text-gray-600 text-sm">List your sublease to find tenants.</p>
           </CardContent>
         </Card>
-
         {/* Profile Card */}
         <Card
           className="cursor-pointer hover:bg-gray-100 transition-colors border border-gray-200 rounded-lg shadow-sm hover:shadow-md h-48 flex items-center justify-center"

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { User, Edit, Heart, ArrowLeft } from "lucide-react";
+import { Home, Building, Users, ArrowLeft } from "lucide-react";
 
 const navItems = [
   {
@@ -12,23 +12,23 @@ const navItems = [
     icon: ArrowLeft,
   },
   {
-    title: "PROFILE",
-    href: "/dashboard/profile",
-    icon: User,
+    title: "HOUSING",
+    href: "/housing-listings",
+    icon: Home,
   },
   {
-    title: "EDIT YOUR POSTS",
-    href: "/dashboard/edit-posts",
-    icon: Edit,
+    title: "SUBLEASE",
+    href: "/sublease-listings",
+    icon: Building,
   },
   {
-    title: "LIKED POSTS",
-    href: "/dashboard/liked-posts",
-    icon: Heart,
+    title: "ROOMMATE",
+    href: "/roommate-matching",
+    icon: Users,
   },
 ];
 
-export function Sidebar() {
+export function ListingsSidebar() {
   const pathname = usePathname();
 
   return (
@@ -58,5 +58,3 @@ export function Sidebar() {
     </div>
   );
 }
-
-

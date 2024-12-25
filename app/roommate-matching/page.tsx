@@ -1,5 +1,6 @@
 'use client'
 
+import { ListingsSidebar } from "@/components/ListingsSidebar";
 import BlueHeader from "@/components/BlueHeader";
 import RoommateCard from './components/RoommateCard'
 import PostProfileButton from './components/PostProfileButton'
@@ -68,18 +69,23 @@ export default function RoommateListingsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <BlueHeader />
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row gap-8">
-          <main className="w-full md:w-3/4">
-            {/* <PostProfileButton /> */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {people.map((person) => (
-                <RoommateCard key={person.id} {...person} />
-              ))}
+    <div className="flex flex-col min-h-screen bg-gray-100">
+      <div className="flex flex-grow">
+        <ListingsSidebar />
+        <div className="flex-grow">
+          <BlueHeader />
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex flex-col md:flex-row gap-8">
+              <main className="w-full md:w-3/4">
+                <PostProfileButton />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                  {people.map((person) => (
+                    <RoommateCard key={person.id} {...person} />
+                  ))}
+                </div>
+              </main>
             </div>
-          </main>
+          </div>
         </div>
       </div>
     </div>
