@@ -16,6 +16,10 @@ export default function LandingPage() {
     router.push('/sublease-listings');
   };
 
+  const navigateToDashboard = () => {
+    router.push('/dashboard/make-post');
+  };
+
   const navigateToRoommateMatching = () => {
     router.push('/roommate-matching');
   };
@@ -38,8 +42,8 @@ export default function LandingPage() {
                 <Button variant="secondary" size="lg" onClick={navigateToHousingListings}>
                   Browse Listings
                 </Button>
-                <Button variant="outline" size="lg" className="text-blue-600" onClick={navigateToSubleaseListings}>
-                  Post a Listing
+                <Button variant="outline" size="lg" className="text-blue-600" onClick={navigateToDashboard}>
+                  Make a Post
                 </Button>
               </div>
             </div>
@@ -67,7 +71,7 @@ export default function LandingPage() {
                 onClick={navigateToHousingListings}
               />
               <BenefitCard
-                title="Post Subleases Easily"
+                title="View Subleases Easily"
                 description="List your space in minutes and reach thousands of potential tenants."
                 icon="📝"
                 onClick={navigateToSubleaseListings}

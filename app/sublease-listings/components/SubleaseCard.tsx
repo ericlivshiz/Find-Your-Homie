@@ -19,7 +19,6 @@ interface Sublease {
   move_in: string;
   move_out: string;
   location: string;
-  image_url: string;
   description?: string;
   contact_info?: string;
   address?: string;

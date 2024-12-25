@@ -123,7 +123,7 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Post Your Profile</DialogTitle>
+          <DialogTitle className="text-lg font-medium text-blue-800">Post Your Profile</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

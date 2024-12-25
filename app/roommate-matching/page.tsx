@@ -73,7 +73,7 @@ export default function RoommateListingsPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-8">
           <main className="w-full md:w-3/4">
-            <PostProfileButton />
+            {/* <PostProfileButton /> */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
               {people.map((person) => (
                 <RoommateCard key={person.id} {...person} />

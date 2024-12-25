@@ -18,7 +18,7 @@ type SubleaseType = {
   location: string;
   description: string;
   contact_info: string;
-  image_url: string;
+  image_urls: string[];
 };
 
 export default function SubleaseListingsPage() {
@@ -43,7 +43,7 @@ export default function SubleaseListingsPage() {
       <BlueHeader />
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-8">Sublease Listings</h1>
-        <PostSubleaseButton />
+        {/* <PostSubleaseButton />*/}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {subleases.map((sublease) => (
             <SubleaseCard key={sublease.id} sublease={sublease} />
