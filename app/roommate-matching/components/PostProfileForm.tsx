@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { supabase } from '@/lib/supabaseClient'
+import { useUser } from "@clerk/nextjs";
 
 interface PostProfileFormProps {
   isOpen: boolean
@@ -19,12 +20,12 @@ type FormDataType = {
   gender: string;
   bio: string;
   budget: string;
-  sleepingHabits: string;
+  sleeping_habits: string;
   smoking: boolean;
   drinking: boolean;
   pets: boolean;
-  moveInDate: string;
-  contactInfo: string;
+  move_in: string;
+  contact_info: string;
   image: File | null;
 };
 
@@ -34,14 +35,39 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
     gender: '',
     bio: '',
     budget: '',
-    sleepingHabits: '',
+    sleeping_habits: '',
     smoking: false,
     drinking: false,
     pets: false,
-    moveInDate: '',
-    contactInfo: '',
+    move_in: '',
+    contact_info: '',
     image: null,
   });
+
+  const { user } = useUser();
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      if (user) {
+        const username = user.username;
+        console.log("Username:", username);
+        const { data, error } = await supabase
+          .from("User")
+          .select("id")
+          .eq("username", username)
+          .single();
+
+        if (error) {
+          console.error("Error fetching user ID:", error);
+        } else {
+          setUserId(data.id);
+        }
+      }
+    };
+
+    fetchUserId();
+  }, [user]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -95,13 +121,14 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
           gender: formData.gender,
           bio: formData.bio,
           budget: formData.budget,
-          sleeping_habits: formData.sleepingHabits,
+          sleeping_habits: formData.sleeping_habits,
           smoking: formData.smoking,
           drinking: formData.drinking,
           pets: formData.pets,
-          move_in: formData.moveInDate,
-          contact_info: formData.contactInfo,
+          move_in: formData.move_in,
+          contact_info: formData.contact_info,
           image_url: imageUrl, // Save the image URL
+          user_id: userId,
         }]);
 
       if (error) {
@@ -123,7 +150,7 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Post Your Profile</DialogTitle>
+          <DialogTitle className="text-lg font-medium text-blue-800">Post Your Profile</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -143,8 +170,8 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
             <Input id="budget" name="budget" value={formData.budget} onChange={handleInputChange} required placeholder="e.g., 800-1200" />
           </div>
           <div>
-            <Label htmlFor="sleepingHabits">Sleeping Habits</Label>
-            <Input id="sleepingHabits" name="sleepingHabits" value={formData.sleepingHabits} onChange={handleInputChange} />
+            <Label htmlFor="sleeping_habits">Sleeping Habits</Label>
+            <Input id="sleeping_habits" name="sleeping_habits" value={formData.sleeping_habits} onChange={handleInputChange} />
           </div>
           <div className="flex items-center space-x-2">
             <Switch id="smoking" checked={formData.smoking} onCheckedChange={() => handleSwitchChange('smoking')} />
@@ -159,12 +186,12 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
             <Label htmlFor="pets">Pets Allowed</Label>
           </div>
           <div>
-            <Label htmlFor="moveInDate">Preferred Move-in Date</Label>
-            <Input id="moveInDate" name="moveInDate" type="date" value={formData.moveInDate} onChange={handleInputChange} />
+            <Label htmlFor="move_in">Preferred Move-in Date</Label>
+            <Input id="move_in" name="move_in" type="date" value={formData.move_in} onChange={handleInputChange} />
           </div>
           <div>
-            <Label htmlFor="contactInfo">Contact Info</Label>
-            <Input id="contactInfo" name="contactInfo" value={formData.contactInfo} onChange={handleInputChange} required placeholder="Email or Phone" />
+            <Label htmlFor="contact_info">Contact Info</Label>
+            <Input id="contact_info" name="contact_info" value={formData.contact_info} onChange={handleInputChange} required placeholder="Email or Phone" />
           </div>
           <div>
             <Label htmlFor="image">Upload Profile Picture</Label>

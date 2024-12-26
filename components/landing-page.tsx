@@ -16,6 +16,10 @@ export default function LandingPage() {
     router.push('/sublease-listings');
   };
 
+  const navigateToDashboard = () => {
+    router.push('/dashboard/edit-posts');
+  };
+
   const navigateToRoommateMatching = () => {
     router.push('/roommate-matching');
   };
@@ -29,17 +33,20 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Find Your Next Home or Roommate at UCSB — Fast and Easy
+                Your UCSB Housing Hub
               </h2>
               <p className="text-xl mb-6">
-                Browse listings, post subleases, and connect with roommates in one place.
+                Browse housing, sublease, and roommate listings instantly - no login required! 
+              </p>
+              <p className="text-xl mb-6">
+              Sign up to go to Your Dashboard, where you can manage your profile, create posts, and view your favorite listings.
               </p>
               <div className="space-x-4">
                 <Button variant="secondary" size="lg" onClick={navigateToHousingListings}>
                   Browse Listings
                 </Button>
-                <Button variant="outline" size="lg" className="text-blue-600" onClick={navigateToSubleaseListings}>
-                  Post a Listing
+                <Button variant="outline" size="lg" className="text-blue-600" onClick={navigateToDashboard}>
+                  Your Dashboard
                 </Button>
               </div>
             </div>
@@ -67,7 +74,7 @@ export default function LandingPage() {
                 onClick={navigateToHousingListings}
               />
               <BenefitCard
-                title="Post Subleases Easily"
+                title="View Subleases Easily"
                 description="List your space in minutes and reach thousands of potential tenants."
                 icon="📝"
                 onClick={navigateToSubleaseListings}
