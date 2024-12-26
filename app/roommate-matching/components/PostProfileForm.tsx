@@ -20,11 +20,11 @@ type FormDataType = {
   gender: string;
   bio: string;
   budget: string;
-  sleepingHabits: string;
+  sleeping_habits: string;
   smoking: boolean;
   drinking: boolean;
   pets: boolean;
-  moveInDate: string;
+  move_in: string;
   contact_info: string;
   image: File | null;
 };
@@ -35,11 +35,11 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
     gender: '',
     bio: '',
     budget: '',
-    sleepingHabits: '',
+    sleeping_habits: '',
     smoking: false,
     drinking: false,
     pets: false,
-    moveInDate: '',
+    move_in: '',
     contact_info: '',
     image: null,
   });
@@ -121,11 +121,11 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
           gender: formData.gender,
           bio: formData.bio,
           budget: formData.budget,
-          sleeping_habits: formData.sleepingHabits,
+          sleeping_habits: formData.sleeping_habits,
           smoking: formData.smoking,
           drinking: formData.drinking,
           pets: formData.pets,
-          move_in: formData.moveInDate,
+          move_in: formData.move_in,
           contact_info: formData.contact_info,
           image_url: imageUrl, // Save the image URL
           user_id: userId,
@@ -170,8 +170,8 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
             <Input id="budget" name="budget" value={formData.budget} onChange={handleInputChange} required placeholder="e.g., 800-1200" />
           </div>
           <div>
-            <Label htmlFor="sleepingHabits">Sleeping Habits</Label>
-            <Input id="sleepingHabits" name="sleepingHabits" value={formData.sleepingHabits} onChange={handleInputChange} />
+            <Label htmlFor="sleeping_habits">Sleeping Habits</Label>
+            <Input id="sleeping_habits" name="sleeping_habits" value={formData.sleeping_habits} onChange={handleInputChange} />
           </div>
           <div className="flex items-center space-x-2">
             <Switch id="smoking" checked={formData.smoking} onCheckedChange={() => handleSwitchChange('smoking')} />
@@ -186,12 +186,12 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
             <Label htmlFor="pets">Pets Allowed</Label>
           </div>
           <div>
-            <Label htmlFor="moveInDate">Preferred Move-in Date</Label>
-            <Input id="moveInDate" name="moveInDate" type="date" value={formData.moveInDate} onChange={handleInputChange} />
+            <Label htmlFor="move_in">Preferred Move-in Date</Label>
+            <Input id="move_in" name="move_in" type="date" value={formData.move_in} onChange={handleInputChange} />
           </div>
           <div>
-            <Label htmlFor="contactInfo">Contact Info</Label>
-            <Input id="contactInfo" name="contactInfo" value={formData.contact_info} onChange={handleInputChange} required placeholder="Email or Phone" />
+            <Label htmlFor="contact_info">Contact Info</Label>
+            <Input id="contact_info" name="contact_info" value={formData.contact_info} onChange={handleInputChange} required placeholder="Email or Phone" />
           </div>
           <div>
             <Label htmlFor="image">Upload Profile Picture</Label>

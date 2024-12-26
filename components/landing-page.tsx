@@ -36,10 +36,10 @@ export default function LandingPage() {
                 Your UCSB Housing Hub
               </h2>
               <p className="text-xl mb-6">
-                Browse housing, sublease, and roommate listings instantly—no login required! 
+                Browse housing, sublease, and roommate listings instantly - no login required! 
               </p>
               <p className="text-xl mb-6">
-              Sign up to go to your dashboard, where you can manage your profile, create posts, and save your favorite listings in your dashboard.
+              Sign up to go to Your Dashboard, where you can manage your profile, create posts, and view your favorite listings.
               </p>
               <div className="space-x-4">
                 <Button variant="secondary" size="lg" onClick={navigateToHousingListings}>

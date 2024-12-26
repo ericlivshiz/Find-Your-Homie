@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from 'react'
 import Image from 'next/image'
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Heart } from "lucide-react"
 
 interface RoommateCardProps {
   name: string
@@ -29,8 +33,23 @@ export default function RoommateCard({
   contact_info,
   image_url
 }: RoommateCardProps) {
+  const [isLiked, setIsLiked] = useState(false);
+
+  const toggleLike = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsLiked(!isLiked);
+  };
+
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="flex flex-col h-full relative">
+      <div className="absolute top-2 right-2 z-10">
+        <Heart
+          onClick={toggleLike}
+          className={`cursor-pointer ${
+            isLiked ? 'text-red-500' : 'text-gray-500'
+          }`}
+        />
+      </div>
       <CardContent className="pt-6">
         <div className="flex items-center space-x-4 mb-4">
           {image_url && (

@@ -11,6 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Heart } from "lucide-react";
 
 interface Sublease {
   id: number;
@@ -29,6 +30,7 @@ interface Sublease {
 export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
 
   const currentImageUrl =
     sublease.image_urls && sublease.image_urls.length > 0
@@ -47,11 +49,22 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
     );
   };
 
+  const toggleLike = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsLiked(!isLiked);
+  };
+
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Card className="cursor-pointer shadow-lg hover:shadow-xl transition-shadow">
+          <Card className="cursor-pointer shadow-lg hover:shadow-xl transition-shadow relative">
+            <div className="absolute top-2 right-2 z-10">
+              <Heart
+                onClick={toggleLike}
+                className={`cursor-pointer ${isLiked ? 'text-red-500' : 'text-gray-500'}`}
+              />
+            </div>
             <div className="relative h-48">
               <Image
                 src={currentImageUrl}

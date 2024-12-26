@@ -17,7 +17,7 @@ const navItems = [
     icon: User,
   },
   {
-    title: "EDIT YOUR POSTS",
+    title: "CREATE & EDIT POSTS",
     href: "/dashboard/edit-posts",
     icon: Edit,
   },

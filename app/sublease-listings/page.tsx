@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ListingsSidebar } from "@/components/ListingsSidebar";
 import BlueHeader from "@/components/BlueHeader";
@@ -6,6 +6,10 @@ import SubleaseCard from "./components/SubleaseCard";
 import PostSubleaseButton from "./components/PostSubleaseButton";
 import { fetchSubleaseData } from "@/lib/supabaseSubleaseQuery";
 import React, { useEffect, useState } from "react";
+import RentFilter from "./components/RentFilter";
+import DateFilter from "./components/DateFilter";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import LocationFilter from "./components/LocationFilter";
 
 // Define a type for your sublease data
 type SubleaseType = {
@@ -24,6 +28,11 @@ type SubleaseType = {
 
 export default function SubleaseListingsPage() {
   const [subleases, setSubleases] = useState<SubleaseType[]>([]);
+  const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
+
+  const toggleFiltersExpand = () => {
+    setIsFiltersExpanded(!isFiltersExpanded);
+  };
 
   useEffect(() => {
     const loadSubleaseData = async () => {
@@ -39,6 +48,21 @@ export default function SubleaseListingsPage() {
     loadSubleaseData();
   }, []);
 
+  const handleRentFilterChange = (min: number, max: number) => {
+    // Implement the logic to filter subleases based on rent range
+    // This will involve querying the database with the specified rent range
+  };
+
+  const handleDateFilterChange = (moveIn: string, moveOut: string) => {
+    // Implement the logic to filter subleases based on move-in and move-out dates
+    // This will involve querying the database with the specified date range
+  };
+
+  const handleLocationFilterChange = (goleta: boolean, islaVista: boolean) => {
+    // Implement the logic to filter subleases based on location
+    // This will involve querying the database with the specified location filters
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <div className="flex flex-grow">
@@ -46,8 +70,24 @@ export default function SubleaseListingsPage() {
         <div className="flex-grow">
           <BlueHeader />
           <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-8">Sublease Listings</h1>
-            {/* <PostSubleaseButton />*/}
+            <div className="bg-grey shadow-md rounded-lg p-6 mb-8">
+              <div className="flex items-center cursor-pointer" onClick={toggleFiltersExpand}>
+                {isFiltersExpanded ? <ChevronUp className="text-gray-500 mr-2" /> : <ChevronDown className="text-gray-500 mr-2" />}
+                <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+                  Filters
+                </h2>
+              </div>
+              {isFiltersExpanded && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <RentFilter onFilterChange={handleRentFilterChange} />
+                  <DateFilter onFilterChange={handleDateFilterChange} />
+                  <LocationFilter onFilterChange={handleLocationFilterChange} />
+                </div>
+              )}
+            </div>
+            <h1 className="text-3xl font-bold mb-8 text-gray-800">
+              Sublease Listings
+            </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
               {subleases.map((sublease) => (
                 <SubleaseCard key={sublease.id} sublease={sublease} />
@@ -59,4 +99,3 @@ export default function SubleaseListingsPage() {
     </div>
   );
 }
-

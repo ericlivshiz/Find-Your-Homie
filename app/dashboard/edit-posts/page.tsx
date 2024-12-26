@@ -13,49 +13,21 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import PostProfileForm from "@/app/roommate-matching/components/PostProfileForm";
 import PostSubleaseForm from "@/components/forms/PostSubleaseForm";
+import { SubleasePostType } from "./SubleaseType";
+import { ProfilePostType } from "./ProfileType";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import SubleasePosts from '@/components/SubleasePosts';
+import ProfilePost from '@/components/ProfilePost';
+import BlueHeader from "@/components/BlueHeader";
 
-type SubleasePost = {
-  id: number;
-  name?: string;
-  title: string;
-  address: string;
-  unit: string;
-  rent: number;
-  move_in: string;
-  move_out: string;
-  location: string;
-  description: string;
-  contact_info: string;
-  image_urls: string[];
-  image_url?: string;
-  type: 'Sublease';
-};
 
-type ProfilePost = {
-  id: number;
-  name: string;
-  title?: string;
-  gender: string;
-  bio: string;
-  budget: string;
-  sleeping_habits: string;
-  smoking: boolean;
-  drinking: boolean;
-  pets: boolean;
-  move_in: string;
-  contact_info: string;
-  image_url: string;
-  image_urls?: string[]
-  type: 'Profile';
-};
 
-type Post = SubleasePost | ProfilePost;
+type Post = SubleasePostType | ProfilePostType;
 
 export default function EditPostsPage() {
   const { user } = useUser();
@@ -231,341 +203,138 @@ const handleDelete = async (id: number) => {
     );
   };
 
+  const subleasePosts = posts.filter(post => post.type === 'Sublease');
+  const profilePost = posts.find(post => post.type === 'Profile') || null;
+
+  const renderEditForm = (post: Post) => (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target as HTMLFormElement);
+        const updatedData = Object.fromEntries(formData.entries());
+        handleSave(post.id, updatedData);
+      }}
+      className="space-y-4"
+    >
+      {post.type === "Sublease" ? (
+        <>
+          <div>
+            <Label htmlFor={`title-${post.id}`}>Title</Label>
+            <Input id={`title-${post.id}`} name="title" defaultValue={post.title} />
+          </div>
+          <div>
+            <Label htmlFor={`address-${post.id}`}>Address</Label>
+            <Input id={`address-${post.id}`} name="address" defaultValue={post.address} />
+          </div>
+          <div>
+            <Label htmlFor={`unit-${post.id}`}>Unit</Label>
+            <Input id={`unit-${post.id}`} name="unit" defaultValue={post.unit} />
+          </div>
+          <div>
+            <Label htmlFor={`rent-${post.id}`}>Rent</Label>
+            <Input id={`rent-${post.id}`} name="rent" defaultValue={post.rent} />
+          </div>
+          <div>
+            <Label htmlFor={`move_in-${post.id}`}>Move-in Date</Label>
+            <Input id={`move_in-${post.id}`} name="move_in" defaultValue={post.move_in} />
+          </div>
+          <div>
+            <Label htmlFor={`move_out-${post.id}`}>Move-out Date</Label>
+            <Input id={`move_out-${post.id}`} name="move_out" defaultValue={post.move_out} />
+          </div>
+          <div>
+            <Label htmlFor={`location-${post.id}`}>Location</Label>
+            <Input id={`location-${post.id}`} name="location" defaultValue={post.location} />
+          </div>
+          <div>
+            <Label htmlFor={`description-${post.id}`}>Description</Label>
+            <Textarea id={`description-${post.id}`} name="description" defaultValue={post.description} />
+          </div>
+          <div>
+            <Label htmlFor={`contact_info-${post.id}`}>Contact Info</Label>
+            <Input id={`contact_info-${post.id}`} name="contact_info" defaultValue={post.contact_info} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            <Label htmlFor={`name-${post.id}`}>Name</Label>
+            <Input id={`name-${post.id}`} name="name" defaultValue={post.name} />
+          </div>
+          <div>
+            <Label htmlFor={`gender-${post.id}`}>Gender</Label>
+            <Input id={`gender-${post.id}`} name="gender" defaultValue={post.gender} />
+          </div>
+          <div>
+            <Label htmlFor={`bio-${post.id}`}>Bio</Label>
+            <Textarea id={`bio-${post.id}`} name="bio" defaultValue={post.bio} />
+          </div>
+          <div>
+            <Label htmlFor={`budget-${post.id}`}>Budget</Label>
+            <Input id={`budget-${post.id}`} name="budget" defaultValue={post.budget} />
+          </div>
+          <div>
+            <Label htmlFor={`sleeping_habits-${post.id}`}>Sleeping Habits</Label>
+            <Input id={`sleeping_habits-${post.id}`} name="sleeping_habits" defaultValue={post.sleeping_habits} />
+          </div>
+          <div className="flex items-center space-x-2">
+            <Switch id={`smoking-${post.id}`} checked={post.smoking} onCheckedChange={() => handleSwitchChange(post.id, 'smoking')} />
+            <Label htmlFor={`smoking-${post.id}`}>Smoking</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Switch id={`drinking-${post.id}`} checked={post.drinking} onCheckedChange={() => handleSwitchChange(post.id, 'drinking')} />
+            <Label htmlFor={`drinking-${post.id}`}>Drinking</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Switch id={`pets-${post.id}`} checked={post.pets} onCheckedChange={() => handleSwitchChange(post.id, 'pets')} />
+            <Label htmlFor={`pets-${post.id}`}>Pets Allowed</Label>
+          </div>
+          <div>
+            <Label htmlFor={`move_in-${post.id}`}>Preferred Move-in Date</Label>
+            <Input id={`move_in-${post.id}`} name="move_in" defaultValue={post.move_in} />
+          </div>
+          <div>
+            <Label htmlFor={`contact_info-${post.id}`}>Contact Info</Label>
+            <Input id={`contact_info-${post.id}`} name="contact_info" value={post.contact_info} onChange={(e) => handleInputChange(e, post.id)} />
+          </div>
+        </>
+      )}
+      <div className="flex justify-end gap-2">
+        <Button type="submit">Save</Button>
+        <Button variant="outline" size="icon" onClick={handleCancel}>
+          <X className="h-4 w-4" />
+        </Button>
+      </div>
+    </form>
+  );
+
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <Sidebar />
-      <div className="flex-grow p-6 space-y-6">
-        <h1 className="text-2xl font-bold">Edit Your Posts</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <Card key={post.id} className="overflow-hidden">
-              <div
-                className="aspect-video bg-gray-100"
-                style={{
-                  backgroundImage: `url(${
-                    (post.image_urls && post.image_urls[0]) ||
-                    post.image_url ||
-                    ""
-                  })`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
-              <CardContent className="p-4">
-                {editingPost === post.id ? (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const formData = new FormData(
-                        e.target as HTMLFormElement
-                      );
-                      const updatedData = Object.fromEntries(
-                        formData.entries()
-                      );
-                      handleSave(post.id, updatedData);
-                    }}
-                    className="space-y-4"
-                  >
-                    {post.type === "Sublease" ? (
-                      <>
-                        <div>
-                          <Label htmlFor={`title-${post.id}`}>Title</Label>
-                          <Input
-                            id={`title-${post.id}`}
-                            name="title"
-                            defaultValue={post.title}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`address-${post.id}`}>Address</Label>
-                          <Input
-                            id={`address-${post.id}`}
-                            name="address"
-                            defaultValue={post.address}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`unit-${post.id}`}>Unit</Label>
-                          <Input
-                            id={`unit-${post.id}`}
-                            name="unit"
-                            defaultValue={post.unit}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`rent-${post.id}`}>Rent</Label>
-                          <Input
-                            id={`rent-${post.id}`}
-                            name="rent"
-                            defaultValue={post.rent}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`move_in-${post.id}`}>
-                            Move-in Date
-                          </Label>
-                          <Input
-                            id={`move_in-${post.id}`}
-                            name="move_in"
-                            defaultValue={post.move_in}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`move_out-${post.id}`}>
-                            Move-out Date
-                          </Label>
-                          <Input
-                            id={`move_out-${post.id}`}
-                            name="move_out"
-                            defaultValue={post.move_out}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`location-${post.id}`}>
-                            Location
-                          </Label>
-                          <Input
-                            id={`location-${post.id}`}
-                            name="location"
-                            defaultValue={post.location}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`description-${post.id}`}>
-                            Description
-                          </Label>
-                          <Textarea
-                            id={`description-${post.id}`}
-                            name="description"
-                            defaultValue={post.description}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`contact_info-${post.id}`}>
-                            Contact Info
-                          </Label>
-                          <Input
-                            id={`contact_info-${post.id}`}
-                            name="contact_info"
-                            defaultValue={post.contact_info}
-                          />
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div>
-                          <Label htmlFor={`name-${post.id}`}>Name</Label>
-                          <Input
-                            id={`name-${post.id}`}
-                            name="name"
-                            defaultValue={post.name}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`gender-${post.id}`}>Gender</Label>
-                          <Input
-                            id={`gender-${post.id}`}
-                            name="gender"
-                            defaultValue={post.gender}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`bio-${post.id}`}>Bio</Label>
-                          <Textarea
-                            id={`bio-${post.id}`}
-                            name="bio"
-                            defaultValue={post.bio}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`budget-${post.id}`}>Budget</Label>
-                          <Input
-                            id={`budget-${post.id}`}
-                            name="budget"
-                            defaultValue={post.budget}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`sleepingHabits-${post.id}`}>
-                            Sleeping Habits
-                          </Label>
-                          <Input
-                            id={`sleeping_habits-${post.id}`}
-                            name="sleeping_habits"
-                            defaultValue={post.sleeping_habits}
-                          />
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Switch
-                            id={`smoking-${post.id}`}
-                            checked={post.smoking}
-                            onCheckedChange={() =>
-                              handleSwitchChange(post.id, "smoking")
-                            }
-                          />
-                          <Label htmlFor={`smoking-${post.id}`}>Smoking</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Switch
-                            id={`drinking-${post.id}`}
-                            checked={post.drinking}
-                            onCheckedChange={() =>
-                              handleSwitchChange(post.id, "drinking")
-                            }
-                          />
-                          <Label htmlFor={`drinking-${post.id}`}>
-                            Drinking
-                          </Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Switch
-                            id={`pets-${post.id}`}
-                            checked={post.pets}
-                            onCheckedChange={() =>
-                              handleSwitchChange(post.id, "pets")
-                            }
-                          />
-                          <Label htmlFor={`pets-${post.id}`}>
-                            Pets Allowed
-                          </Label>
-                        </div>
-                        <div>
-                          <Label htmlFor={`move_in-${post.id}`}>
-                            Preferred Move-in Date
-                          </Label>
-                          <Input
-                            id={`move_in-${post.id}`}
-                            name="move_in"
-                            defaultValue={post.move_in}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`contact_info-${post.id}`}>
-                            Contact Info
-                          </Label>
-                          <Input
-                            id={`contact_info-${post.id}`}
-                            name="contact_info"
-                            defaultValue={post.contact_info}
-                          />
-                        </div>
-                      </>
-                    )}
-                    <div className="flex justify-end gap-2">
-                      <Button type="submit">Save</Button>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={handleCancel}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </form>
-                ) : (
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-semibold">
-                        {post.title || post.name}
-                      </h3>
-                      <p className="text-sm text-gray-500">
-                        {post.type || (post.title ? "Sublease" : "Profile")}
-                      </p>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => handleEdit(post.id)}
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => handleDelete(post.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-          <Card
-            className="cursor-pointer hover:bg-gray-100 transition-colors border border-gray-200 rounded-lg shadow-sm hover:shadow-md h-48 flex items-center justify-center"
-            onClick={() => setIsSelectionDialogOpen(true)}
-          >
-            <CardHeader className="text-center">
-              <div className="flex flex-col items-center">
-                <span className="text-4xl text-blue-800 mb-2">+</span>
-                <CardTitle className="text-blue-800 font-semibold">
-                  Add New Post
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 text-sm">
-                Create a new sublease or profile post.
-              </p>
-            </CardContent>
-          </Card>
+      <div className="flex flex-col flex-grow">
+        <BlueHeader />
+        <div className="flex-grow p-6 space-y-6">
+          <h1 className="text-2xl font-bold">Edit Your Posts</h1>
+          <SubleasePosts
+            posts={subleasePosts}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onAddSublease={() => setIsSubleaseOpen(true)}
+          />
+          {editingPost && renderEditForm(posts.find(post => post.id === editingPost)!)}
+          <ProfilePost
+            post={profilePost}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onAddProfile={() => setIsProfileOpen(true)}
+          />
+          <PostProfileForm isOpen={isProfileOpen} onClose={handleFormClose} />
+          <PostSubleaseForm isOpen={isSubleaseOpen} onClose={handleFormClose} />
         </div>
-
-        <Dialog
-          open={isSelectionDialogOpen}
-          onOpenChange={setIsSelectionDialogOpen}
-        >
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle>Choose Post Type</DialogTitle>
-            </DialogHeader>
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <Card
-                className="cursor-pointer hover:bg-gray-100 transition-colors"
-                onClick={() => handlePostSelection("sublease")}
-              >
-                <CardHeader className="text-center">
-                  <div className="flex flex-col items-center">
-                    <Home className="w-8 h-8 text-blue-800 mb-2" />
-                    <CardTitle className="text-blue-800 font-semibold">
-                      Sublease
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 text-sm">
-                    List your sublease to find tenants.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card
-                className="cursor-pointer hover:bg-gray-100 transition-colors"
-                onClick={() => handlePostSelection("profile")}
-              >
-                <CardHeader className="text-center">
-                  <div className="flex flex-col items-center">
-                    <User className="w-8 h-8 text-blue-800 mb-2" />
-                    <CardTitle className="text-blue-800 font-semibold">
-                      Profile
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 text-sm">
-                    Share your profile to find roommates.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </DialogContent>
-        </Dialog>
-
-        <PostProfileForm isOpen={isProfileOpen} onClose={handleFormClose} />
-        <PostSubleaseForm isOpen={isSubleaseOpen} onClose={handleFormClose} />
       </div>
     </div>
   );
 }
+
+
 
