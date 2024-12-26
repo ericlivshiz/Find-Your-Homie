@@ -17,7 +17,7 @@ export default function LandingPage() {
   };
 
   const navigateToDashboard = () => {
-    router.push('/dashboard/profile');
+    router.push('/dashboard/edit-posts');
   };
 
   const navigateToRoommateMatching = () => {
