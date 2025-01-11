@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Heart } from "lucide-react"
+import { useToast } from "../../../hooks/use-toast";
 
 interface RoommateCardProps {
   name: string
@@ -34,10 +35,16 @@ export default function RoommateCard({
   image_url
 }: RoommateCardProps) {
   const [isLiked, setIsLiked] = useState(false);
+  const { toast } = useToast();
 
   const toggleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsLiked(!isLiked);
+    toast({
+      title: isLiked ? "Unliked" : "Liked",
+      description: `You have ${isLiked ? "unliked" : "liked"} this profile.`,
+      variant: isLiked ? "destructive" : "default",
+    });
   };
 
   return (
