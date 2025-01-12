@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function WhyChooseUs() {
+    const dont = "don't";
   return (
     <div>
       <section className="py-20 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
@@ -37,7 +38,7 @@ export default function WhyChooseUs() {
                 Company Ratings
               </h4>
               <p className="text-lg text-gray-600">
-                Don't blindly trust agencies. Check what students have to say about the most popular real-estate companies.
+                {dont} blindly trust agencies. Check what students have to say about the most popular real-estate companies.
               </p>
             </div>
 

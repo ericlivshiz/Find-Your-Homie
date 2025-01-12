@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Pencil, Trash2, User } from 'lucide-react';
 import { ProfilePostType } from '@/app/dashboard/edit-posts/ProfileType';
+import Image from 'next/image';
 
 interface ProfilePostProps {
   post: ProfilePostType | null;
@@ -18,7 +19,7 @@ export default function ProfilePost({ post, onEdit, onDelete, onAddProfile }: Pr
         <Card className="overflow-hidden">
           <CardContent className="p-4">
             <div className="flex items-center">
-              <img
+              <Image
                 src={post.image_url || ''}
                 alt="Profile Picture"
                 className="w-16 h-16 rounded-full mr-4"
