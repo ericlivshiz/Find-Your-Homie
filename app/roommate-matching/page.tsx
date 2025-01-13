@@ -1,15 +1,16 @@
-'use client'
+"use client";
 
 import { ListingsSidebar } from "@/components/ListingsSidebar";
 import BlueHeader from "@/components/BlueHeader";
-import RoommateCard from './components/RoommateCard'
-import PostProfileButton from './components/PostProfileButton'
+import RoommateCard from "./components/RoommateCard";
+import PostProfileButton from "./components/PostProfileButton";
 import { fetchPersonData } from "@/lib/supabasePersonQuery";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import GenderFilter from "./components/GenderFilter";
 import SleepHabitsFilter from "./components/SleepHabitsFilter";
 import LifestyleFilter from "./components/LifestyleFilter";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import FooterSection from "@/components/footer-section";
 
 // Define a type for your roommate data
 type RoommateType = {
@@ -45,16 +46,16 @@ type FormDataType = {
 export default function RoommateListingsPage() {
   const [people, setPeople] = useState<RoommateType[]>([]);
   const [formData, setFormData] = useState<FormDataType>({
-    name: '',
-    gender: '',
-    bio: '',
-    budget: '',
-    sleeping_habits: '',
+    name: "",
+    gender: "",
+    bio: "",
+    budget: "",
+    sleeping_habits: "",
     smoking: false,
     drinking: false,
     pets: false,
-    move_in: '',
-    contact_info: '',
+    move_in: "",
+    contact_info: "",
     image: null,
   });
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
@@ -71,7 +72,11 @@ export default function RoommateListingsPage() {
     // Implement the logic to filter roommates based on sleep habits
   };
 
-  const handleLifestyleFilterChange = (smoking: boolean, drinking: boolean, pets: boolean) => {
+  const handleLifestyleFilterChange = (
+    smoking: boolean,
+    drinking: boolean,
+    pets: boolean
+  ) => {
     // Implement the logic to filter roommates based on lifestyle
   };
 
@@ -90,24 +95,35 @@ export default function RoommateListingsPage() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       <div className="flex flex-grow">
         <ListingsSidebar />
         <div className="flex-grow">
           <BlueHeader />
           <div className="container mx-auto px-4 py-8">
-            <div className="bg-grey shadow-md rounded-lg p-6 mb-8">
-              <div className="flex items-center cursor-pointer" onClick={toggleFiltersExpand}>
-                {isFiltersExpanded ? <ChevronUp className="text-gray-500 mr-2" /> : <ChevronDown className="text-gray-500 mr-2" />}
-                <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+            <div className="bg-gray-800 shadow-md rounded-lg p-6 mb-8">
+              <div
+                className="flex items-center cursor-pointer"
+                onClick={toggleFiltersExpand}
+              >
+                {isFiltersExpanded ? (
+                  <ChevronUp className="text-gray-400 mr-2" />
+                ) : (
+                  <ChevronDown className="text-gray-400 mr-2" />
+                )}
+                <h2 className="text-2xl font-semibold mb-4 text-gray-300">
                   Filters
                 </h2>
               </div>
               {isFiltersExpanded && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   <GenderFilter onFilterChange={handleGenderFilterChange} />
-                  <SleepHabitsFilter onFilterChange={handleSleepHabitsFilterChange} />
-                  <LifestyleFilter onFilterChange={handleLifestyleFilterChange} />
+                  <SleepHabitsFilter
+                    onFilterChange={handleSleepHabitsFilterChange}
+                  />
+                  <LifestyleFilter
+                    onFilterChange={handleLifestyleFilterChange}
+                  />
                 </div>
               )}
             </div>
@@ -124,7 +140,7 @@ export default function RoommateListingsPage() {
           </div>
         </div>
       </div>
+      <FooterSection />
     </div>
-  )
+  );
 }
-

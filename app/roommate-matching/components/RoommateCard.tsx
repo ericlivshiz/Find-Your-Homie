@@ -48,7 +48,7 @@ export default function RoommateCard({
   };
 
   return (
-    <Card className="flex flex-col h-full relative">
+    <Card className="bg-slate-700 bg-opacity-80 flex flex-col h-full relative">
       <div className="absolute top-2 right-2 z-10">
         <Heart
           onClick={toggleLike}
@@ -70,8 +70,8 @@ export default function RoommateCard({
           )}
           <h2 className="text-xl font-semibold">{name}</h2>
         </div>
-        {gender && <p className="text-sm text-gray-600 mb-2"><strong>Gender:</strong> {gender}</p>}
-        <p className="text-sm text-gray-600 mb-4">{bio}</p>
+        {gender && <p className="text-sm text-black mb-2"><strong>Gender:</strong> {gender}</p>}
+        <p className="text-sm text-black mb-4"><strong>Bio: </strong>{bio}</p>
         <ul className="space-y-2 text-sm">
           <li><strong>Budget:</strong> ${budget}</li>
           {sleeping_habits && <li><strong>Sleeping Habits:</strong> {sleeping_habits}</li>}

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FooterSecion() {
+export default function FooterSection() {
   return (
     <div>
       <footer className="py-6 bg-gradient-to-br from-blue-900 to-slate-800 text-white text-center">

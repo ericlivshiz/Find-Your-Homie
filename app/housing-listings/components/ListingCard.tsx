@@ -21,25 +21,25 @@ export function ListingCard({ listing }: { listing: Listing }) {
   };
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden bg-slate-700 bg-opacity-80">
       <Image
         src={listing.images[0]}
         alt={listing.title}
         width={300}
         height={200}
-        className="w-full h-48 object-cover"
+        className="w-full h-48 object-cover "
       />
       <CardContent className="p-4">
         <h4 className="font-semibold text-lg mb-2">{listing.title}</h4>
-        <p className="text-gray-600 mb-2">{listing.location}</p>
+        <p className="text-white font-semibold mb-2">{listing.location}</p>
         <p className="font-bold text-lg mb-2">${listing.price}/month</p>
         <Badge variant={listing.applicationStatus === 'Open Now' ? 'default' : 'secondary'}>
           {listing.applicationStatus}
         </Badge>
       </CardContent>
-      <CardFooter className="bg-gray-50 p-4">
+      <CardFooter className="bg-slate-700 bg-opacity-80 p-4">
         <button
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
+          className="w-full bg-slate-800 text-white font-medium py-2 rounded-md hover:bg-blue-700 transition-colors"
           onClick={handleViewDetails}
         >
           View Details

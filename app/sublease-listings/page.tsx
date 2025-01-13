@@ -10,6 +10,7 @@ import RentFilter from "./components/RentFilter";
 import DateFilter from "./components/DateFilter";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import LocationFilter from "./components/LocationFilter";
+import FooterSection from "@/components/footer-section";
 
 // Define a type for your sublease data
 type SubleaseType = {
@@ -64,16 +65,16 @@ export default function SubleaseListingsPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       <div className="flex flex-grow">
         <ListingsSidebar />
         <div className="flex-grow">
           <BlueHeader />
           <div className="container mx-auto px-4 py-8">
-            <div className="bg-grey shadow-md rounded-lg p-6 mb-8">
+            <div className="bg-gray-800 shadow-md rounded-lg p-6 mb-8">
               <div className="flex items-center cursor-pointer" onClick={toggleFiltersExpand}>
-                {isFiltersExpanded ? <ChevronUp className="text-gray-500 mr-2" /> : <ChevronDown className="text-gray-500 mr-2" />}
-                <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+                {isFiltersExpanded ? <ChevronUp className="text-gray-400 mr-2" /> : <ChevronDown className="text-gray-400 mr-2" />}
+                <h2 className="text-2xl font-semibold mb-4 text-gray-300">
                   Filters
                 </h2>
               </div>
@@ -85,7 +86,7 @@ export default function SubleaseListingsPage() {
                 </div>
               )}
             </div>
-            <h1 className="text-3xl font-bold mb-8 text-gray-800">
+            <h1 className="text-3xl font-bold mb-8 text-gray-300">
               Sublease Listings
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
@@ -96,6 +97,8 @@ export default function SubleaseListingsPage() {
           </div>
         </div>
       </div>
+      <FooterSection />
     </div>
   );
+  
 }

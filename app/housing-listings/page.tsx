@@ -4,6 +4,7 @@ import { SearchBar } from './components/SearchBar'
 import { Filters } from './components/Filters'
 import { CompanySection } from './components/CompanySection'
 import Header from "@/components/Header";
+import FooterSecion from "@/components/footer-section";
 
 interface Listing {
   id: number;
@@ -128,13 +129,13 @@ const mockCompanies = [
 
 export default function HousingListingsPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
       <div className="flex flex-grow">
         <ListingsSidebar />
         <div className="flex-grow">
           <Header />
           <main className="container mx-auto px-4 py-8">
-            <h2 className="text-2xl font-semibold mb-6">Looking for Housing</h2>
+            <h2 className="text-3xl font-semibold mb-6 text-gray-300">Looking for Housing</h2>
             
             <div className="mb-6">
               <SearchBar />
@@ -153,12 +154,9 @@ export default function HousingListingsPage() {
         </div>
       </div>
 
-      <footer className="bg-blue-600 text-white py-4">
-        <div className="container mx-auto px-4 text-center">
-          <p>Built by Gauchos, for Gauchos.</p>
-        </div>
-      </footer>
+      <FooterSecion />
     </div>
-  )
+  );
 }
+
 

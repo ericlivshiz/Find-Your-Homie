@@ -65,7 +65,7 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Card className="cursor-pointer shadow-lg hover:shadow-xl transition-shadow relative">
+          <Card className="cursor-pointer bg-slate-700 bg-opacity-80 shadow-lg hover:shadow-xl transition-shadow relative">
             <div className="absolute top-2 right-2 z-10">
               <Heart
                 onClick={toggleLike}
@@ -87,14 +87,14 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-xl font-bold text-primary">
+              <p className="text-xl font-bold text-black-900">
                 ${sublease.rent}/month
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-white font-semibold">
                 {new Date(sublease.move_in).toLocaleDateString()} -{" "}
                 {new Date(sublease.move_out).toLocaleDateString()}
               </p>
-              <p className="text-sm text-muted-foreground">{sublease.location}</p>
+              <p className="text-sm text-white font-semibold">{sublease.location}</p>
             </CardContent>
           </Card>
         </DialogTrigger>
