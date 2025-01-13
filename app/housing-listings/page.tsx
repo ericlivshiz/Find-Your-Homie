@@ -3,6 +3,7 @@ import BlueHeader from "@/components/BlueHeader";
 import { SearchBar } from './components/SearchBar'
 import { Filters } from './components/Filters'
 import { CompanySection } from './components/CompanySection'
+import Header from "@/components/Header";
 
 interface Listing {
   id: number;
@@ -131,7 +132,7 @@ export default function HousingListingsPage() {
       <div className="flex flex-grow">
         <ListingsSidebar />
         <div className="flex-grow">
-          <BlueHeader />
+          <Header />
           <main className="container mx-auto px-4 py-8">
             <h2 className="text-2xl font-semibold mb-6">Looking for Housing</h2>
             
