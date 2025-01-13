@@ -1,34 +1,14 @@
-export default function HowItWorks() {
+export default function LookingToPost() {
   const steps = [
     {
-      title: "Looking to Rent",
+      title: "Post Your Property",
       description:
-        "Explore verified listings tailored for UCSB students to find your next home effortlessly.",
+        "Showcase your property to UCSB students with detailed descriptions and photos for quick and effective renting.",
     },
     {
-      title: "Looking For a Sublease",
+      title: "Post Your Profile",
       description:
-        "Connect with students subleasing their properties in prime locations.",
-    },
-    {
-      title: "Looking for a Roommate (No Current Lease)",
-      description:
-        "Find a roommate who matches your preferences and start your housing journey together.",
-    },
-    {
-      title: "Looking to Post Your Property",
-      description:
-        "Showcase your property to UCSB students with detailed descriptions and photos.",
-    },
-    {
-      title: "Looking to Post Sublease",
-      description:
-        "Easily find tenants for your property with our secure and intuitive platform.",
-    },
-    {
-      title: "Looking for a Roommate (With Current Lease)",
-      description:
-        "Quickly find compatible roommates to share your existing space.",
+        "Create a profile to connect with potential roommates or students looking for housing.",
     },
   ];
 
@@ -39,23 +19,20 @@ export default function HowItWorks() {
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
-        <h1 className="text-4xl font-bold mb-4 text-center">
-          How Find Your Homie Works
+        <h1 className="text-4xl font-extrabold mb-4 text-center">
+          Looking To Post?
         </h1>
         <h2 className="text-xl text-center mb-12 text-yellow-300">
-          We noticed students often face these housing needs:
+          Find the right audience for your housing needs:
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {steps.map((step, index) => (
             <div
               key={index}
               className="bg-slate-700 bg-opacity-80 p-6 rounded-lg shadow-md hover:shadow-lg hover:bg-opacity-90 transition-all text-center"
             >
               <div className="text-4xl mb-4">
-                {index === 0 || index === 1 ? "🔍🏠" : ""}
-                {index === 2 ? "🔍👤" : ""}
-                {index === 3 || index === 4 ? "📝🏠" : ""}
-                {index === 5 ? "👤🏠" : ""}
+                {index === 0 ? "📝🏠" : "👤🏠"}
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-white">
                 {step.title}
@@ -66,9 +43,7 @@ export default function HowItWorks() {
         </div>
         <div className="mt-12 text-center">
           <p className="text-lg text-yellow-300">
-            Our platform provides tailored solutions for each scenario, making
-            it easy for students to find housing, sublease, and connect with
-            roommates.
+            Our platform simplifies the process of sharing your property or profile with the UCSB community.
           </p>
         </div>
       </div>
@@ -81,3 +56,4 @@ export default function HowItWorks() {
     </div>
   );
 }
+
