@@ -82,12 +82,12 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
               />
             </div>
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">
+              <CardTitle className="text-lg font-extrabold">
                 {sublease.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-xl font-bold text-black-900">
+              <p className="text-xl font-extrabold text-black-900">
                 ${sublease.rent}/month
               </p>
               <p className="text-sm text-white font-semibold">

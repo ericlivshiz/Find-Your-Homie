@@ -68,11 +68,11 @@ export default function RoommateCard({
               className="rounded-lg"
             />
           )}
-          <h2 className="text-xl font-semibold">{name}</h2>
+          <h2 className="text-xl font-extrabold">{name}</h2>
         </div>
-        {gender && <p className="text-sm text-black mb-2"><strong>Gender:</strong> {gender}</p>}
-        <p className="text-sm text-black mb-4"><strong>Bio: </strong>{bio}</p>
-        <ul className="space-y-2 text-sm">
+        {gender && <p className="text-sm mb-2 font-semibold"><strong>Gender:</strong> {gender}</p>}
+        <p className="text-sm mb-4 font-semibold"><strong>Bio: </strong>{bio}</p>
+        <ul className="space-y-2 text-sm font-semibold">
           <li><strong>Budget:</strong> ${budget}</li>
           {sleeping_habits && <li><strong>Sleeping Habits:</strong> {sleeping_habits}</li>}
           <li><strong>Smoking:</strong> {smoking ? 'Yes' : 'No'}</li>

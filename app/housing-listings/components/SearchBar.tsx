@@ -19,7 +19,7 @@ export function SearchBar() {
         placeholder="Search listings..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-3 pl-10 pr-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full p-3 pl-10 pr-4 bg-slate-800 bg-opacity-80 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button type="submit" className="absolute left-3 top-1/2 transform -translate-y-1/2">
         <Search className="text-gray-400" />

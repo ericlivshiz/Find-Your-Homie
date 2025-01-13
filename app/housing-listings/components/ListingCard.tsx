@@ -30,8 +30,8 @@ export function ListingCard({ listing }: { listing: Listing }) {
         className="w-full h-48 object-cover "
       />
       <CardContent className="p-4">
-        <h4 className="font-semibold text-lg mb-2">{listing.title}</h4>
-        <p className="text-white font-semibold mb-2">{listing.location}</p>
+        <h4 className="font-extrabold text-lg mb-2">{listing.title}</h4>
+        <p className="font-bold mb-2">{listing.location}</p>
         <p className="font-bold text-lg mb-2">${listing.price}/month</p>
         <Badge variant={listing.applicationStatus === 'Open Now' ? 'default' : 'secondary'}>
           {listing.applicationStatus}
