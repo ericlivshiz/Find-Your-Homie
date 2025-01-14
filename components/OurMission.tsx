@@ -4,6 +4,7 @@ export default function OurMission() {
   const thats = " that's";
   const its = "it's";
   const isnt = "isn't"
+  const were = "We're"
   return (
     <div>
       <section className="py-24 relative overflow-hidden">
@@ -22,7 +23,7 @@ export default function OurMission() {
               Real-estate companies prioritize profits, leaving students to navigate an 
               exhausting maze of social media posts, group chats, and scattered housing sites. 
               <span className="block mt-4 text-yellow-300 font-semibold">
-                We're here to change that.
+                {were} here to change that.
               </span>
             </p>
           </div>
