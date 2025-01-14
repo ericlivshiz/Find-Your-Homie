@@ -1,6 +1,9 @@
 import React from "react";
 
 export default function OurMission() {
+  const thats = " that's";
+  const its = "it's";
+  const isnt = "isn't"
   return (
     <div>
       <section className="py-24 relative overflow-hidden">
@@ -35,8 +38,8 @@ export default function OurMission() {
                   Centralized Information
                 </h4>
                 <p className="text-gray-400 leading-relaxed">
-                  We scrape data from scattered sources, unifying it into a single platform 
-                  that’s intuitive, reliable, and easy to navigate.
+                  We scrape data from scattered sources, unifying it into a single platform  
+                  {thats} intuitive, reliable, and easy to navigate.
                 </p>
               </div>
             </div>
@@ -51,7 +54,7 @@ export default function OurMission() {
                   Supporting Students
                 </h4>
                 <p className="text-gray-400 leading-relaxed">
-                  Our mission isn’t profit—it’s to empower students by simplifying 
+                  Our mission {isnt} profit—{its} to empower students by simplifying 
                   their housing search and helping them find fair, affordable options.
                 </p>
               </div>
