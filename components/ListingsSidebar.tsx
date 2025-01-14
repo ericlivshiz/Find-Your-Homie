@@ -39,7 +39,7 @@ export function ListingsSidebar() {
             key={item.href}
             href={item.href}
             className={cn(
-              "flex items-center gap-2 px-3 py-2 rounded-lg transition-colors font-medium",
+              "flex items-center gap-2 px-3 py-2 rounded-lg transition-colors font-bold",
               pathname === item.href
                 ? "bg-blue-600 text-white"
                 : "text-gray-300 hover:bg-blue-600 hover:text-white"

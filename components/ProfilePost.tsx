@@ -21,7 +21,7 @@ export default function ProfilePost({
     <div className="space-y-6">
       <h2 className="text-xl font-bold">Profile Post</h2>
       {post ? (
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden max-w-xl">
           <CardContent className="p-4">
             <div className="flex items-center">
               <Image

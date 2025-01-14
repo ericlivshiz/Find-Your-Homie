@@ -6,6 +6,7 @@ import WhyChooseUs from "./why-choose-us";
 import HeroSection from "./hero-section";
 import ListingsSections from "./listings-section";
 import FooterSecion from "./footer-section";
+import OurMission from "./OurMission";
 
 export default function LandingPage() {
 
@@ -17,6 +18,7 @@ export default function LandingPage() {
         <ListingsSections />
         <HowItWorks />
         <WhyChooseUs />
+        <OurMission />
       </main>
       <FooterSecion />
     </div>

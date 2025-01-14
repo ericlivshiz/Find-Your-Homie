@@ -11,6 +11,7 @@ import DateFilter from "./components/DateFilter";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import LocationFilter from "./components/LocationFilter";
 import FooterSection from "@/components/footer-section";
+import Header from "@/components/Header";
 
 // Define a type for your sublease data
 type SubleaseType = {
@@ -65,11 +66,11 @@ export default function SubleaseListingsPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
       <div className="flex flex-grow">
         <ListingsSidebar />
         <div className="flex-grow">
-          <BlueHeader />
+          <Header />
           <div className="container mx-auto px-4 py-8">
             <div className="bg-gray-800 shadow-md rounded-lg p-6 mb-8">
               <div className="flex items-center cursor-pointer" onClick={toggleFiltersExpand}>

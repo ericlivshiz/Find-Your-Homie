@@ -13,7 +13,7 @@ interface SubleasePostsProps {
 export default function SubleasePosts({ posts, onEdit, onDelete, onAddSublease }: SubleasePostsProps) {
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold">Sublease Posts</h2>
+      <h2 className="text-xl font-bold">Housing Posts</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
           <Card key={post.id} className="overflow-hidden">
