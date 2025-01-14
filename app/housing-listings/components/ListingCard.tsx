@@ -21,7 +21,7 @@ export function ListingCard({ listing }: { listing: Listing }) {
   };
 
   return (
-    <Card className="overflow-hidden bg-slate-700 bg-opacity-80">
+    <Card className="border-black overflow-hidden bg-slate-700 bg-opacity-80">
       <Image
         src={listing.images[0]}
         alt={listing.title}

@@ -7,6 +7,7 @@ import HeroSection from "./hero-section";
 import ListingsSections from "./listings-section";
 import FooterSecion from "./footer-section";
 import OurMission from "./OurMission";
+import GetInTouch from "./GetInTouch";
 
 export default function LandingPage() {
 
@@ -19,6 +20,7 @@ export default function LandingPage() {
         <HowItWorks />
         <WhyChooseUs />
         <OurMission />
+        <GetInTouch />
       </main>
       <FooterSecion />
     </div>
