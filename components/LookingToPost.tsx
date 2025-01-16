@@ -1,4 +1,12 @@
+import { useRouter } from "next/navigation";
+
 export default function LookingToPost() {
+  const router = useRouter();
+
+  const navigateToDashboard = () => {
+    router.push("/dashboard/edit-posts");
+  };
+
   const steps = [
     {
       title: "Post Your Property",
@@ -29,7 +37,8 @@ export default function LookingToPost() {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="bg-slate-700 bg-opacity-80 p-6 rounded-lg shadow-md hover:shadow-lg hover:bg-opacity-90 transition-all text-center"
+              onClick={navigateToDashboard}
+              className="bg-slate-700 bg-opacity-80 p-6 rounded-lg shadow-md hover:shadow-lg hover:bg-opacity-90 transition-all text-center cursor-pointer"
             >
               <div className="text-4xl mb-4">
                 {index === 0 ? "📝🏠" : "👤🏠"}
@@ -56,4 +65,5 @@ export default function LookingToPost() {
     </div>
   );
 }
+
 
