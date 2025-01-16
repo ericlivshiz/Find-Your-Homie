@@ -16,30 +16,40 @@ interface Listing {
 
 export function ListingCard({ listing }: { listing: Listing }) {
   const handleViewDetails = () => {
-    console.log("Opening URL:", listing.websiteUrl)
-    window.open(listing.websiteUrl, '_blank');
+    console.log("Opening URL:", listing.websiteUrl);
+    window.open(listing.websiteUrl, "_blank");
   };
 
   return (
-    <Card className="border-black overflow-hidden bg-slate-700 bg-opacity-80">
-      <Image
-        src={listing.images[0]}
-        alt={listing.title}
-        width={300}
-        height={200}
-        className="w-full h-48 object-cover "
-      />
-      <CardContent className="p-4">
-        <h4 className="font-extrabold text-lg mb-2">{listing.title}</h4>
-        <p className="font-bold mb-2">{listing.location}</p>
-        <p className="font-bold text-lg mb-2">${listing.price}/month</p>
-        <Badge variant={listing.applicationStatus === 'Open Now' ? 'default' : 'secondary'}>
+    <Card className="rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300">
+      {/* Image Section */}
+      <div className="relative">
+        <Image
+          src={listing.images[0]}
+          alt={listing.title}
+          width={300}
+          height={200}
+          className="w-full h-48 object-cover"
+        />
+        <Badge
+          variant={listing.applicationStatus === "Open Now" ? "default" : "secondary"}
+          className="absolute top-4 left-4 px-3 py-1 bg-opacity-90 text-sm font-semibold text-white bg-blue-600 rounded-full"
+        >
           {listing.applicationStatus}
         </Badge>
+      </div>
+
+      {/* Content Section */}
+      <CardContent className="p-6">
+        <h4 className="text-xl font-bold text-white mb-2">{listing.title}</h4>
+        <p className="text-gray-300 text-sm mb-1">{listing.location}</p>
+        <p className="text-xl font-semibold text-blue-400">${listing.price}/month</p>
       </CardContent>
-      <CardFooter className="bg-slate-700 bg-opacity-80 p-4">
+
+      {/* Footer Section */}
+      <CardFooter className="p-6 bg-gray-900 bg-opacity-75 flex justify-center">
         <button
-          className="w-full bg-slate-800 text-white font-medium py-2 rounded-md hover:bg-blue-700 transition-colors"
+          className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 active:bg-blue-700 transition-colors"
           onClick={handleViewDetails}
         >
           View Details
@@ -48,4 +58,5 @@ export function ListingCard({ listing }: { listing: Listing }) {
     </Card>
   );
 }
+
 

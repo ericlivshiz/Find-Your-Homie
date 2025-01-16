@@ -14,11 +14,23 @@ export default function OurMission() {
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-black"></div>
 
+        {/* Subtle Glow Effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute w-[300px] h-[300px] bg-blue-600 opacity-30 blur-3xl rounded-full -top-10 -left-20 animate-pulse"></div>
+          <div className="absolute w-[350px] h-[350px] bg-yellow-600 opacity-25 blur-3xl rounded-full -bottom-20 -right-10 animate-pulse"></div>
+        </div>
+
         {/* Content */}
         <div className="container mx-auto px-6 relative z-10 text-center">
+          {/* Title */}
           <h1 className="text-6xl font-extrabold text-white mb-12">
-            Solving {ucsbs} Housing Crisis
+            Our Mission:
           </h1>
+
+          {/* Subtitle*/}
+          <h2 className="text-4xl font-semibold text-yellow-300 mb-12">
+            Solving {ucsbs} Housing Crisis
+          </h2>
 
           {/* Introduction */}
           <div className="max-w-5xl mx-auto text-left text-gray-300 mb-16">
@@ -128,4 +140,6 @@ export default function OurMission() {
     </div>
   );
 }
+
+
 
