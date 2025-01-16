@@ -9,7 +9,7 @@ export default function PostProfileButton() {
 
   return (
     <>
-      <Button size="lg" onClick={() => setIsFormOpen(true)}>
+      <Button size="lg" onClick={() => setIsFormOpen(true)} className="font-bold">
         Post Your Profile
       </Button>
       <PostProfileForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />

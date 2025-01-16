@@ -11,7 +11,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Heart } from "lucide-react";
+import { Heart} from "lucide-react";
+import { useToast } from "../../../hooks/use-toast";
 
 interface Sublease {
   id: number;
@@ -31,6 +32,7 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const { toast } = useToast();
 
   const currentImageUrl =
     sublease.image_urls && sublease.image_urls.length > 0
@@ -52,17 +54,22 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
   const toggleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsLiked(!isLiked);
+    toast({
+      title: isLiked ? "Unliked" : "Liked",
+      description: `You have ${isLiked ? "unliked" : "liked"} this post.`,
+      variant: isLiked ? "destructive" : "default",
+    });
   };
 
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Card className="cursor-pointer shadow-lg hover:shadow-xl transition-shadow relative">
+          <Card className="cursor-pointer bg-slate-700 bg-opacity-80 shadow-lg hover:shadow-xl transition-shadow relative">
             <div className="absolute top-2 right-2 z-10">
               <Heart
                 onClick={toggleLike}
-                className={`cursor-pointer ${isLiked ? 'text-red-500' : 'text-gray-500'}`}
+                className={`cursor-pointer transform transition-transform duration-200 ${isLiked ? 'text-red-500 scale-110' : 'text-gray-500 scale-100'}`}
               />
             </div>
             <div className="relative h-48">
@@ -75,19 +82,19 @@ export default function SubleaseCard({ sublease }: { sublease: Sublease }) {
               />
             </div>
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">
+              <CardTitle className="text-lg font-extrabold">
                 {sublease.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-xl font-bold text-primary">
+              <p className="text-xl font-extrabold text-black-900">
                 ${sublease.rent}/month
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-white font-semibold">
                 {new Date(sublease.move_in).toLocaleDateString()} -{" "}
                 {new Date(sublease.move_out).toLocaleDateString()}
               </p>
-              <p className="text-sm text-muted-foreground">{sublease.location}</p>
+              <p className="text-sm text-white font-semibold">{sublease.location}</p>
             </CardContent>
           </Card>
         </DialogTrigger>

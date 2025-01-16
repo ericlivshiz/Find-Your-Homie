@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Heart } from "lucide-react"
+import { useToast } from "../../../hooks/use-toast";
 
 interface RoommateCardProps {
   name: string
@@ -34,14 +35,20 @@ export default function RoommateCard({
   image_url
 }: RoommateCardProps) {
   const [isLiked, setIsLiked] = useState(false);
+  const { toast } = useToast();
 
   const toggleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsLiked(!isLiked);
+    toast({
+      title: isLiked ? "Unliked" : "Liked",
+      description: `You have ${isLiked ? "unliked" : "liked"} this profile.`,
+      variant: isLiked ? "destructive" : "default",
+    });
   };
 
   return (
-    <Card className="flex flex-col h-full relative">
+    <Card className="bg-slate-700 bg-opacity-80 flex flex-col h-full relative">
       <div className="absolute top-2 right-2 z-10">
         <Heart
           onClick={toggleLike}
@@ -61,11 +68,11 @@ export default function RoommateCard({
               className="rounded-lg"
             />
           )}
-          <h2 className="text-xl font-semibold">{name}</h2>
+          <h2 className="text-xl font-extrabold">{name}</h2>
         </div>
-        {gender && <p className="text-sm text-gray-600 mb-2"><strong>Gender:</strong> {gender}</p>}
-        <p className="text-sm text-gray-600 mb-4">{bio}</p>
-        <ul className="space-y-2 text-sm">
+        {gender && <p className="text-sm mb-2 font-semibold"><strong>Gender:</strong> {gender}</p>}
+        <p className="text-sm mb-4 font-semibold"><strong>Bio: </strong>{bio}</p>
+        <ul className="space-y-2 text-sm font-semibold">
           <li><strong>Budget:</strong> ${budget}</li>
           {sleeping_habits && <li><strong>Sleeping Habits:</strong> {sleeping_habits}</li>}
           <li><strong>Smoking:</strong> {smoking ? 'Yes' : 'No'}</li>

@@ -1,7 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Pencil, Trash2, User } from 'lucide-react';
-import { ProfilePostType } from '@/app/dashboard/edit-posts/ProfileType';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Pencil, Trash2, User } from "lucide-react";
+import { ProfilePostType } from "@/app/dashboard/edit-posts/ProfileType";
+import Image from "next/image";
 
 interface ProfilePostProps {
   post: ProfilePostType | null;
@@ -10,37 +11,66 @@ interface ProfilePostProps {
   onAddProfile: () => void;
 }
 
-export default function ProfilePost({ post, onEdit, onDelete, onAddProfile }: ProfilePostProps) {
+export default function ProfilePost({
+  post,
+  onEdit,
+  onDelete,
+  onAddProfile,
+}: ProfilePostProps) {
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold">Profile Post</h2>
       {post ? (
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden max-w-xl">
           <CardContent className="p-4">
             <div className="flex items-center">
-              <img
-                src={post.image_url || ''}
+              <Image
+                src={post.image_url || ""}
                 alt="Profile Picture"
                 className="w-16 h-16 rounded-full mr-4"
+                width={100}
+                height={100}
+                layout="intrinsic"
               />
+
               <div>
                 <h3 className="font-semibold">{post.name}</h3>
                 <p className="text-sm text-gray-500">Gender: {post.gender}</p>
                 <p className="text-sm text-gray-500">Bio: {post.bio}</p>
                 <p className="text-sm text-gray-500">Budget: {post.budget}</p>
-                <p className="text-sm text-gray-500">Sleeping Habits: {post.sleeping_habits}</p>
-                <p className="text-sm text-gray-500">Smoking: {post.smoking ? 'Yes' : 'No'}</p>
-                <p className="text-sm text-gray-500">Drinking: {post.drinking ? 'Yes' : 'No'}</p>
-                <p className="text-sm text-gray-500">Pets: {post.pets ? 'Allowed' : 'Not Allowed'}</p>
-                <p className="text-sm text-gray-500">Move-in Date: {post.move_in}</p>
-                <p className="text-sm text-gray-500">Contact Info: {post.contact_info}</p>
+                <p className="text-sm text-gray-500">
+                  Sleeping Habits: {post.sleeping_habits}
+                </p>
+                <p className="text-sm text-gray-500">
+                  Smoking: {post.smoking ? "Yes" : "No"}
+                </p>
+                <p className="text-sm text-gray-500">
+                  Drinking: {post.drinking ? "Yes" : "No"}
+                </p>
+                <p className="text-sm text-gray-500">
+                  Pets: {post.pets ? "Allowed" : "Not Allowed"}
+                </p>
+                <p className="text-sm text-gray-500">
+                  Move-in Date: {post.move_in}
+                </p>
+                <p className="text-sm text-gray-500">
+                  Contact Info: {post.contact_info}
+                </p>
               </div>
             </div>
             <div className="flex justify-end gap-2 mt-4">
-              <Button variant="outline" size="icon" onClick={() => onEdit(post.id)}>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => onEdit(post.id)}
+              >
                 <Pencil className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="icon" onClick={() => onDelete(post.id)}>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => onDelete(post.id)}
+              >
                 <Trash2 className="h-4 w-4" />
               </Button>
             </div>
@@ -60,12 +90,10 @@ export default function ProfilePost({ post, onEdit, onDelete, onAddProfile }: Pr
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 text-sm">
-              Create your profile post.
-            </p>
+            <p className="text-gray-600 text-sm">Create your profile post.</p>
           </CardContent>
         </Card>
       )}
     </div>
   );
-} 
+}
