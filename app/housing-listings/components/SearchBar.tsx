@@ -23,8 +23,10 @@ import {
 export function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [housingType, setHousingType] = React.useState("all");
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
+    setIsDialogOpen(false);
     e.preventDefault();
     console.log("Search Term:", searchTerm);
     console.log("Housing Type:", housingType);
@@ -33,7 +35,7 @@ export function SearchBar() {
 
   return (
     <form onSubmit={handleSearch} className="relative">
-      <Dialog>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
           <Button
             variant="outline"
@@ -43,15 +45,20 @@ export function SearchBar() {
             <span>Find Housing</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] bg-slate-800 text-gray-300 rounded-lg border border-gray-300 p-6">
           <DialogHeader>
-            <DialogTitle>Housing Filters</DialogTitle>
+            <DialogTitle className="text-lg font-semibold">
+              Housing Filters
+            </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
+                  >
                     {housingType === "all" && <Home className="mr-2 h-4 w-4" />}
                     {housingType === "company" && (
                       <Building className="mr-2 h-4 w-4" />
@@ -85,16 +92,25 @@ export function SearchBar() {
               </DropdownMenu>
             </div>
             <div className="relative">
-              <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-4 top-2.5 h-4 w-4 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search with AI"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full h-9 p-3 pl-10 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full h-9 p-3 pl-10 pr-10 rounded-lg border border-gray-300 bg-slate-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <Sparkles className="absolute right-2 top-2.5 h-4 w-4 text-gray-400" />
             </div>
+          </div>
+          <div className="flex justify-end">
+            <Button
+              variant="outline"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600"
+              onClick={handleSearch}
+            >
+              Done
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
