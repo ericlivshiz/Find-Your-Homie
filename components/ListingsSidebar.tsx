@@ -17,12 +17,7 @@ const navItems = [
     icon: Home,
   },
   {
-    title: "SUBLEASE",
-    href: "/sublease-listings",
-    icon: Building,
-  },
-  {
-    title: "ROOMMATE",
+    title: "PEOPLE",
     href: "/roommate-matching",
     icon: Users,
   },

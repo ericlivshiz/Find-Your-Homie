@@ -6,12 +6,9 @@ import RoommateCard from "./components/RoommateCard";
 import PostProfileButton from "./components/PostProfileButton";
 import { fetchPersonData } from "@/lib/supabasePersonQuery";
 import { useState, useEffect } from "react";
-import GenderFilter from "./components/GenderFilter";
-import SleepHabitsFilter from "./components/SleepHabitsFilter";
-import LifestyleFilter from "./components/LifestyleFilter";
-import { ChevronDown, ChevronUp } from "lucide-react";
 import FooterSection from "@/components/footer-section";
 import Header from "@/components/Header";
+import SearchBar from "./components/SearchBar";
 
 // Define a type for your roommate data
 type RoommateType = {
@@ -46,40 +43,6 @@ type FormDataType = {
 
 export default function RoommateListingsPage() {
   const [people, setPeople] = useState<RoommateType[]>([]);
-  const [formData, setFormData] = useState<FormDataType>({
-    name: "",
-    gender: "",
-    bio: "",
-    budget: "",
-    sleeping_habits: "",
-    smoking: false,
-    drinking: false,
-    pets: false,
-    move_in: "",
-    contact_info: "",
-    image: null,
-  });
-  const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
-
-  const toggleFiltersExpand = () => {
-    setIsFiltersExpanded(!isFiltersExpanded);
-  };
-
-  const handleGenderFilterChange = (gender: string) => {
-    // Implement the logic to filter roommates based on gender
-  };
-
-  const handleSleepHabitsFilterChange = (habit: string) => {
-    // Implement the logic to filter roommates based on sleep habits
-  };
-
-  const handleLifestyleFilterChange = (
-    smoking: boolean,
-    drinking: boolean,
-    pets: boolean
-  ) => {
-    // Implement the logic to filter roommates based on lifestyle
-  };
 
   useEffect(() => {
     const loadPersonData = async () => {
@@ -102,35 +65,15 @@ export default function RoommateListingsPage() {
         <div className="flex-grow">
           <Header />
           <div className="container mx-auto px-4 py-8">
-            <div className="bg-gray-800 shadow-md rounded-lg p-6 mb-8">
-              <div
-                className="flex items-center cursor-pointer"
-                onClick={toggleFiltersExpand}
-              >
-                {isFiltersExpanded ? (
-                  <ChevronUp className="text-gray-400 mr-2" />
-                ) : (
-                  <ChevronDown className="text-gray-400 mr-2" />
-                )}
-                <h2 className="text-2xl font-semibold mb-4 text-gray-300">
-                  Filters
-                </h2>
-              </div>
-              {isFiltersExpanded && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <GenderFilter onFilterChange={handleGenderFilterChange} />
-                  <SleepHabitsFilter
-                    onFilterChange={handleSleepHabitsFilterChange}
-                  />
-                  <LifestyleFilter
-                    onFilterChange={handleLifestyleFilterChange}
-                  />
-                </div>
-              )}
+          <h2 className="text-3xl font-semibold mb-6 text-gray-300">Looking for Roommates</h2>
+            
+            <div className="mb-6">
+              <SearchBar />
             </div>
+
+            {/* Roommate Listings */}
             <div className="flex flex-col md:flex-row gap-8">
               <main className="w-full md:w-3/4">
-                <PostProfileButton />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                   {people.map((person) => (
                     <RoommateCard key={person.id} {...person} />
@@ -145,3 +88,4 @@ export default function RoommateListingsPage() {
     </div>
   );
 }
+
