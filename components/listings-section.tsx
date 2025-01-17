@@ -73,7 +73,7 @@ function BenefitCard({
       onClick={onClick}
     >
       <div className="text-4xl mb-4">{icon}</div>
-      <h4 className="text-xl text-slate-200 font-semibold mb-2">{title}</h4>
+      <h3 className="text-2xl font-semibold mb-4 text-white">{title}</h3>
       <p className="text-slate-200">{description}</p>
     </div>
   );
