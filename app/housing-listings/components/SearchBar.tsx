@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Building, Home, Search, Sparkles } from "lucide-react";
+import { Building, Home, Search, Sparkles, Bed, Bath, DollarSign } from "lucide-react"; // Imported Bed icon
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -23,13 +23,28 @@ import {
 export function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [housingType, setHousingType] = React.useState("all");
+  const [beds, setBeds] = React.useState("any");
+  const [baths, setBaths] = React.useState("any");
+  const [rentType, setRentType] = React.useState("noMax"); // "noMax" | "noMin" | "custom"
+  const [minPrice, setMinPrice] = React.useState("");
+  const [maxPrice, setMaxPrice] = React.useState("");
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
-    setIsDialogOpen(false);
     e.preventDefault();
+    setIsDialogOpen(false);
     console.log("Search Term:", searchTerm);
     console.log("Housing Type:", housingType);
+    console.log("Beds:", beds);
+    console.log("Baths:", baths);
+    
+    // If the user selected a custom range for rent, we have minPrice and maxPrice
+    if (rentType === "custom") {
+      console.log("Custom Rent Range:", minPrice, "-", maxPrice);
+    } else {
+      console.log("Rent Type:", rentType);
+    }
+
     // Add your search logic here
   };
 
@@ -45,13 +60,16 @@ export function SearchBar() {
             <span>Find Housing</span>
           </Button>
         </DialogTrigger>
+
         <DialogContent className="sm:max-w-[425px] bg-slate-800 text-gray-300 rounded-lg border border-gray-300 p-6">
           <DialogHeader>
             <DialogTitle className="text-lg font-semibold">
               Housing Filters
             </DialogTitle>
           </DialogHeader>
+
           <div className="grid gap-4 py-4">
+            {/* Housing Type Dropdown */}
             <div className="grid gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -91,6 +109,173 @@ export function SearchBar() {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
+
+            {/* Beds Dropdown with the Bed Icon */}
+            <div className="grid gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
+                  >
+                    {beds === "any" && <Bed className="mr-2 h-4 w-4" />}
+                    {beds === "1" && <Bed className="mr-2 h-4 w-4" />}
+                    {beds === "2" && <Bed className="mr-2 h-4 w-4" />}
+                    {beds === "3" && <Bed className="mr-2 h-4 w-4" />}
+                    {beds === "4+" && <Bed className="mr-2 h-4 w-4" />}
+                    {beds === "any" && "Any # of Beds"}
+                    {beds === "1" && "1 Bed"}
+                    {beds === "2" && "2 Beds"}
+                    {beds === "3" && "3 Beds"}
+                    {beds === "4+" && "4+ Beds"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Beds</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup value={beds} onValueChange={setBeds}>
+                    <DropdownMenuRadioItem value="any">
+                      <Bed className="mr-2 h-4 w-4" />
+                      Any # of Beds
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="1">
+                      <Bed className="mr-2 h-4 w-4" />
+                      1 Bed
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="2">
+                      <Bed className="mr-2 h-4 w-4" />
+                      2 Beds
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="3">
+                      <Bed className="mr-2 h-4 w-4" />
+                      3 Beds
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="4+">
+                      <Bed className="mr-2 h-4 w-4" />
+                      4+ Beds
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Baths Dropdown */}
+            <div className="grid gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
+                  >
+                    {baths === "any" && <Bath className="mr-2 h-4 w-4" />}
+                    {baths === "1" && <Bath className="mr-2 h-4 w-4" />}
+                    {baths === "2" && <Bath className="mr-2 h-4 w-4" />}
+                    {baths === "3" && <Bath className="mr-2 h-4 w-4" />}
+                    {baths === "4+" && <Bath className="mr-2 h-4 w-4" />}
+                    {baths === "any" && "Any # of Baths"}
+                    {baths === "1" && "1 Bath"}
+                    {baths === "2" && "2 Baths"}
+                    {baths === "3" && "3 Baths"}
+                    {baths === "4+" && "4+ Baths"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Baths</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup value={baths} onValueChange={setBaths}>
+                    <DropdownMenuRadioItem value="any">
+                      <Bath className="mr-2 h-4 w-4" />
+                      Any # of Baths
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="1">
+                      <Bath className="mr-2 h-4 w-4" />
+                      1 Bath
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="2">
+                      <Bath className="mr-2 h-4 w-4" />
+                      2 Baths
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="3">
+                      <Bath className="mr-2 h-4 w-4" />
+                      3 Baths
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Rent Dropdown with Custom Range */}
+            <div className="grid gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
+                  >
+                    <DollarSign className="mr-2 h-4 w-4" />
+                    {rentType === "noMax" && "No Max Price"}
+                    {rentType === "noMin" && "No Min Price"}
+                    {rentType === "custom" && "Custom Range"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Rent</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup
+                    value={rentType}
+                    onValueChange={(val) => {
+                      setRentType(val);
+                      // Reset min/max if changing away from custom
+                      if (val !== "custom") {
+                        setMinPrice("");
+                        setMaxPrice("");
+                      }
+                    }}
+                  >
+                    <DropdownMenuRadioItem value="noMax">
+                      <DollarSign className="mr-2 h-4 w-4" />
+                      Min - Max Price
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="noMin">
+                      <DollarSign className="mr-2 h-4 w-4" />
+                      Max - Min Price
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="custom">
+                      <DollarSign className="mr-2 h-4 w-4" />
+                      Custom Range
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+
+                  {/* If user selects 'custom', show inline inputs */}
+                  {rentType === "custom" && (
+                    <div className="mt-3 space-y-2 p-3 border-t border-gray-600">
+                      <div className="flex items-center gap-2">
+                        <label className="text-sm">Min</label>
+                        <input
+                          type="number"
+                          className="w-16 p-1 rounded bg-slate-700 text-gray-200 border border-gray-500"
+                          placeholder="0"
+                          value={minPrice}
+                          onChange={(e) => setMinPrice(e.target.value)}
+                        />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <label className="text-sm">Max</label>
+                        <input
+                          type="number"
+                          className="w-16 p-1 rounded bg-slate-700 text-gray-200 border border-gray-500"
+                          placeholder="9999"
+                          value={maxPrice}
+                          onChange={(e) => setMaxPrice(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Search with AI Input */}
             <div className="relative">
               <Search className="absolute left-4 top-2.5 h-4 w-4 text-gray-400" />
               <input
@@ -103,6 +288,7 @@ export function SearchBar() {
               <Sparkles className="absolute right-2 top-2.5 h-4 w-4 text-gray-400" />
             </div>
           </div>
+
           <div className="flex justify-end">
             <Button
               variant="outline"
