@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart } from "lucide-react";
-import { useToast } from "../../../hooks/use-toast"; // Adjust path as needed
+import { useToast } from "../../../hooks/use-toast";
 
 interface Listing {
   id: number;
@@ -38,13 +38,18 @@ export function ListingCard({ listing }: { listing: Listing }) {
     });
   };
 
+  // Determine variant and text color for badge
+  const isOpenNow = listing.applicationStatus === "Open Now";
+  const badgeVariant = isOpenNow ? "default" : "secondary";
+  const badgeTextClass = isOpenNow ? "text-white" : "text-black";
+
   return (
     <Card className="relative rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300">
       {/* Heart (Like) Icon */}
       <div className="absolute top-2 right-2 z-10">
         <Heart
           onClick={toggleLike}
-          strokeWidth={5}
+          strokeWidth={4}
           className={`cursor-pointer ${
             isLiked ? "text-red-500" : "text-black"
           }`}
@@ -61,10 +66,8 @@ export function ListingCard({ listing }: { listing: Listing }) {
           className="w-full h-48 object-cover"
         />
         <Badge
-          variant={
-            listing.applicationStatus === "Open Now" ? "default" : "secondary"
-          }
-          className="absolute top-4 left-4 px-3 py-1 bg-opacity-90 text-sm font-semibold text-white bg-blue-600 rounded-full"
+          variant={badgeVariant}
+          className={`absolute top-4 left-4 px-3 py-1 text-sm font-semibold ${badgeTextClass}`}
         >
           {listing.applicationStatus}
         </Badge>
