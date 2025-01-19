@@ -16,25 +16,43 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
-import { Search, Sparkles, User, Sun, Moon, Mail } from "lucide-react"; // Make sure to adjust the import paths for your icons
+import {
+  Search,
+  Sparkles,
+  User,
+  Sun,
+  Moon,
+  UserMinus,
+  Users,
+  BeerOff,       // For no drinking
+  CigaretteOff, // For no smoking
+  WashingMachine,
+  Trash2
+
+} from "lucide-react";
 
 export default function SearchBar() {
   // State management
   const [gender, setGender] = useState("any");
   const [sleepingHabits, setSleepingHabits] = useState("any");
-  const [lifestyle, setLifestyle] = useState({
-    drinking: false,
-    pets: false,
-    smoking: false,
-  });
+  const [socialSkill, setSocialSkill] = useState("any");
+  const [substanceUse, setSubstanceUse] = useState("any"); // NEW state for Substance Use
+  const [cleanliness, setCleanliness] = useState("any");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
   // Handle form submission
-  const handleSearchRoommates = (e) => {
+  const handleSearchRoommates = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle search logic
-    console.log({ gender, sleepingHabits, lifestyle });
+    console.log({
+      gender,
+      sleepingHabits,
+      socialSkill,
+      substanceUse,
+      cleanliness
+    });
+    setIsDialogOpen(false);
   };
 
   return (
@@ -52,7 +70,7 @@ export default function SearchBar() {
         <DialogContent className="sm:max-w-[425px] bg-slate-800 text-gray-300 rounded-lg border border-gray-300 p-6">
           <DialogHeader>
             <DialogTitle className="text-lg font-semibold">
-              Housing Filters
+              Roommate Filters
             </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
@@ -122,6 +140,129 @@ export default function SearchBar() {
                     <DropdownMenuRadioItem value="night">
                       <Moon className="mr-2 h-4 w-4 text-gray-500" />
                       Night Owl
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Social Skills Dropdown */}
+            <div className="grid gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
+                  >
+                    {socialSkill === "any" && "Any Social Preference"}
+                    {socialSkill === "introverted" && "Introverted"}
+                    {socialSkill === "ambivert" && "Ambivert"}
+                    {socialSkill === "extroverted" && "Extroverted"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Social Skills</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup
+                    value={socialSkill}
+                    onValueChange={setSocialSkill}
+                  >
+                    <DropdownMenuRadioItem value="any">
+                      Any Social Preference
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="introverted">
+                      <UserMinus className="mr-2 h-4 w-4 text-gray-500" />
+                      Introverted
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="ambivert">
+                      <User className="mr-2 h-4 w-4 text-gray-500" />
+                      Ambivert
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="extroverted">
+                      <Users className="mr-2 h-4 w-4 text-gray-500" />
+                      Extroverted
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Substance Use Dropdown */}
+            <div className="grid gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
+                  >
+                    {substanceUse === "any" && "Any Substance Use"}
+                    {substanceUse === "noSmoking" && "No Smoking"}
+                    {substanceUse === "noDrinking" && "No Drinking"}
+                    {substanceUse === "soberLiving" && "Sober Living"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Substance Use</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup
+                    value={substanceUse}
+                    onValueChange={setSubstanceUse}
+                  >
+                    <DropdownMenuRadioItem value="any">
+                      Any Substance Use
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="noSmoking">
+                      <CigaretteOff className="mr-2 h-4 w-4 text-gray-500" />
+                      No Smoking
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="noDrinking">
+                      <BeerOff className="mr-2 h-4 w-4 text-gray-500" />
+                      No Drinking
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="soberLiving">
+                      <Users className="mr-2 h-4 w-4 text-gray-500" />
+                      Sober Living
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Cleanliness Dropdown */}
+            <div className="grid gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
+                  >
+                    {cleanliness === "any" && "Any Cleanliness Preference"}
+                    {cleanliness === "spotless" && "Spotless"}
+                    {cleanliness === "moderate" && "Moderate"}
+                    {cleanliness === "cluttered" && "Cluttered"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Cleanliness</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup
+                    value={cleanliness}
+                    onValueChange={setCleanliness}
+                  >
+                    <DropdownMenuRadioItem value="any">
+                      Any Cleanliness Preference
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="spotless">
+                      <Sparkles className="mr-2 h-4 w-4 text-gray-500" />
+                      Spotless
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="moderate">
+                      <WashingMachine className="mr-2 h-4 w-4 text-gray-500" />
+                      Moderate
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="cluttered">
+                      <Trash2 className="mr-2 h-4 w-4 text-gray-500" />
+                      Cluttered
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>

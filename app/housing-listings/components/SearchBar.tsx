@@ -213,8 +213,8 @@ export function SearchBar() {
                     className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
                   >
                     <DollarSign className="mr-2 h-4 w-4" />
-                    {rentType === "noMax" && "No Max Price"}
-                    {rentType === "noMin" && "No Min Price"}
+                    {rentType === "noMax" && "Min - Max Price"}
+                    {rentType === "noMin" && "Max - Min Price"}
                     {rentType === "custom" && "Custom Range"}
                   </Button>
                 </DropdownMenuTrigger>
