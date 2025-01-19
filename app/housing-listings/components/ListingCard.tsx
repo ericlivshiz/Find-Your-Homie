@@ -1,27 +1,56 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useState } from "react";
+import Image from "next/image";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Heart } from "lucide-react";
+import { useToast } from "../../../hooks/use-toast"; // Adjust path as needed
 
 interface Listing {
-  id: number
-  title: string
-  images: string[]
-  price: number
-  location: string
-  applicationStatus: string
-  websiteUrl: string
+  id: number;
+  title: string;
+  images: string[];
+  price: number;
+  location: string;
+  applicationStatus: string;
+  websiteUrl: string;
 }
 
 export function ListingCard({ listing }: { listing: Listing }) {
+  const [isLiked, setIsLiked] = useState(false);
+  const { toast } = useToast();
+
   const handleViewDetails = () => {
     console.log("Opening URL:", listing.websiteUrl);
     window.open(listing.websiteUrl, "_blank");
   };
 
+  const toggleLike = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsLiked(!isLiked);
+    toast({
+      title: isLiked ? "Unliked" : "Liked",
+      description: `You have ${
+        isLiked ? "unliked" : "liked"
+      } this listing.`,
+      variant: isLiked ? "destructive" : "default",
+    });
+  };
+
   return (
-    <Card className="rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300">
+    <Card className="relative rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300">
+      {/* Heart (Like) Icon */}
+      <div className="absolute top-2 right-2 z-10">
+        <Heart
+          onClick={toggleLike}
+          strokeWidth={5}
+          className={`cursor-pointer ${
+            isLiked ? "text-red-500" : "text-black"
+          }`}
+        />
+      </div>
+
       {/* Image Section */}
       <div className="relative">
         <Image
@@ -32,7 +61,9 @@ export function ListingCard({ listing }: { listing: Listing }) {
           className="w-full h-48 object-cover"
         />
         <Badge
-          variant={listing.applicationStatus === "Open Now" ? "default" : "secondary"}
+          variant={
+            listing.applicationStatus === "Open Now" ? "default" : "secondary"
+          }
           className="absolute top-4 left-4 px-3 py-1 bg-opacity-90 text-sm font-semibold text-white bg-blue-600 rounded-full"
         >
           {listing.applicationStatus}
@@ -43,7 +74,9 @@ export function ListingCard({ listing }: { listing: Listing }) {
       <CardContent className="p-6">
         <h4 className="text-xl font-bold text-white mb-2">{listing.title}</h4>
         <p className="text-gray-300 text-sm mb-1">{listing.location}</p>
-        <p className="text-xl font-semibold text-blue-400">${listing.price}/month</p>
+        <p className="text-xl font-semibold text-blue-400">
+          ${listing.price}/month
+        </p>
       </CardContent>
 
       {/* Footer Section */}
@@ -58,5 +91,3 @@ export function ListingCard({ listing }: { listing: Listing }) {
     </Card>
   );
 }
-
-
