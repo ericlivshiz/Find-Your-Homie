@@ -27,22 +27,22 @@ export function ListingsSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 min-h-screen bg-gradient-to-br from-blue-900 via-slate-800 to-blue-800 p-4 text-white">
-      <nav className="space-y-2">
+    <div className="w-64 min-h-screen bg-gradient-to-br from-indigo-900 via-slate-800 to-blue-700 p-6 text-white">
+      <nav className="space-y-4">
         {navItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
             className={cn(
-              "flex items-center gap-2 px-3 py-2 rounded-lg transition-colors font-bold",
+              "flex items-center gap-2 px-4 py-3 rounded-lg transition-all font-semibold",
               pathname === item.href
-                ? "bg-blue-600 text-white"
-                : "text-gray-300 hover:bg-blue-600 hover:text-white"
+                ? "bg-indigo-600 text-white shadow-md"
+                : "text-gray-200 hover:bg-indigo-600 hover:text-white"
             )}
           >
             <item.icon
               className={cn(
-                "h-5 w-5 transition-colors",
+                "h-6 w-6 transition-all",
                 pathname === item.href ? "text-white" : "text-gray-400"
               )}
             />
@@ -53,4 +53,5 @@ export function ListingsSidebar() {
     </div>
   );
 }
+
 
