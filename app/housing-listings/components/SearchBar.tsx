@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Building, Home, Search, Sparkles, Bed, Bath, DollarSign } from "lucide-react"; // Imported Bed icon
+import { Building, Home, Search, Sparkles, Bed, Bath, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -25,27 +25,38 @@ export function SearchBar() {
   const [housingType, setHousingType] = React.useState("all");
   const [beds, setBeds] = React.useState("any");
   const [baths, setBaths] = React.useState("any");
-  const [rentType, setRentType] = React.useState("noMax"); // "noMax" | "noMin" | "custom"
+
+  // Rent filter: "noMax" | "noMin" | "custom"
+  const [rentType, setRentType] = React.useState("noMax");
   const [minPrice, setMinPrice] = React.useState("");
   const [maxPrice, setMaxPrice] = React.useState("");
+
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setIsDialogOpen(false);
+
     console.log("Search Term:", searchTerm);
     console.log("Housing Type:", housingType);
     console.log("Beds:", beds);
     console.log("Baths:", baths);
-    
-    // If the user selected a custom range for rent, we have minPrice and maxPrice
+
     if (rentType === "custom") {
       console.log("Custom Rent Range:", minPrice, "-", maxPrice);
     } else {
       console.log("Rent Type:", rentType);
     }
-
     // Add your search logic here
+  };
+
+  const handleRentChange = (val: string) => {
+    setRentType(val);
+    // If leaving custom, reset the fields
+    if (val !== "custom") {
+      setMinPrice("");
+      setMaxPrice("");
+    }
   };
 
   return (
@@ -63,9 +74,7 @@ export function SearchBar() {
 
         <DialogContent className="sm:max-w-[425px] bg-slate-800 text-gray-300 rounded-lg border border-gray-300 p-6">
           <DialogHeader>
-            <DialogTitle className="text-lg font-semibold">
-              Housing Filters
-            </DialogTitle>
+            <DialogTitle className="text-lg font-semibold">Housing Filters</DialogTitle>
           </DialogHeader>
 
           <div className="grid gap-4 py-4">
@@ -78,12 +87,8 @@ export function SearchBar() {
                     className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
                   >
                     {housingType === "all" && <Home className="mr-2 h-4 w-4" />}
-                    {housingType === "company" && (
-                      <Building className="mr-2 h-4 w-4" />
-                    )}
-                    {housingType === "sublease" && (
-                      <Home className="mr-2 h-4 w-4" />
-                    )}
+                    {housingType === "company" && <Building className="mr-2 h-4 w-4" />}
+                    {housingType === "sublease" && <Home className="mr-2 h-4 w-4" />}
                     {housingType === "all" && "All Housing"}
                     {housingType === "company" && "Company Housing"}
                     {housingType === "sublease" && "Subleases"}
@@ -97,20 +102,23 @@ export function SearchBar() {
                     onValueChange={setHousingType}
                   >
                     <DropdownMenuRadioItem value="all">
-                      <Home className="mr-2 h-4 w-4" /> All Housing
+                      <Home className="mr-2 h-4 w-4" />
+                      All Housing
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="company">
-                      <Building className="mr-2 h-4 w-4" /> Company Housing
+                      <Building className="mr-2 h-4 w-4" />
+                      Company Housing
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="sublease">
-                      <Home className="mr-2 h-4 w-4" /> Subleases
+                      <Home className="mr-2 h-4 w-4" />
+                      Subleases
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
 
-            {/* Beds Dropdown with the Bed Icon */}
+            {/* Beds Dropdown */}
             <div className="grid gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -199,12 +207,16 @@ export function SearchBar() {
                       <Bath className="mr-2 h-4 w-4" />
                       3 Baths
                     </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="4+">
+                      <Bath className="mr-2 h-4 w-4" />
+                      4+ Baths
+                    </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
 
-            {/* Rent Dropdown with Custom Range */}
+            {/* Rent Dropdown */}
             <div className="grid gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -223,14 +235,7 @@ export function SearchBar() {
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup
                     value={rentType}
-                    onValueChange={(val) => {
-                      setRentType(val);
-                      // Reset min/max if changing away from custom
-                      if (val !== "custom") {
-                        setMinPrice("");
-                        setMaxPrice("");
-                      }
-                    }}
+                    onValueChange={(val) => handleRentChange(val)}
                   >
                     <DropdownMenuRadioItem value="noMax">
                       <DollarSign className="mr-2 h-4 w-4" />
@@ -245,34 +250,34 @@ export function SearchBar() {
                       Custom Range
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
-
-                  {/* If user selects 'custom', show inline inputs */}
-                  {rentType === "custom" && (
-                    <div className="mt-3 space-y-2 p-3 border-t border-gray-600">
-                      <div className="flex items-center gap-2">
-                        <label className="text-sm">Min</label>
-                        <input
-                          type="number"
-                          className="w-16 p-1 rounded bg-slate-700 text-gray-200 border border-gray-500"
-                          placeholder="0"
-                          value={minPrice}
-                          onChange={(e) => setMinPrice(e.target.value)}
-                        />
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <label className="text-sm">Max</label>
-                        <input
-                          type="number"
-                          className="w-16 p-1 rounded bg-slate-700 text-gray-200 border border-gray-500"
-                          placeholder="9999"
-                          value={maxPrice}
-                          onChange={(e) => setMaxPrice(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                  )}
                 </DropdownMenuContent>
               </DropdownMenu>
+
+              {/* If user selects 'custom', show inline inputs here */}
+              {rentType === "custom" && (
+                <div className="mt-3 space-y-2 p-3 border border-gray-600 rounded-md">
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm text-gray-200 font-semibold">Min</label>
+                    <input
+                      type="number"
+                      className="w-20 p-1 rounded bg-slate-700 text-gray-200 border border-gray-500 focus:outline-none"
+                      placeholder="0"
+                      value={minPrice}
+                      onChange={(e) => setMinPrice(e.target.value)}
+                    />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm text-gray-200 font-semibold">Max</label>
+                    <input
+                      type="number"
+                      className="w-20 p-1 rounded bg-slate-700 text-gray-200 border border-gray-500 focus:outline-none"
+                      placeholder="9999"
+                      value={maxPrice}
+                      onChange={(e) => setMaxPrice(e.target.value)}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Search with AI Input */}
