@@ -6,7 +6,7 @@ import BlueHeader from "@/components/BlueHeader";
 
 export default function ProfilePage() {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-gray-900">
       <Sidebar />
       <div className="flex flex-col flex-grow">
         <BlueHeader />

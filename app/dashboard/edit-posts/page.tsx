@@ -309,31 +309,43 @@ const handleDelete = async (id: number) => {
   );
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <div className="flex flex-col flex-grow">
-        <BlueHeader />
-        <div className="flex-grow p-6 space-y-6">
-          <h1 className="text-2xl font-bold">Edit Your Posts</h1>
-          <SubleasePosts
-            posts={subleasePosts}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            onAddSublease={() => setIsSubleaseOpen(true)}
-          />
-          {editingPost && renderEditForm(posts.find(post => post.id === editingPost)!)}
-          <ProfilePost
-            post={profilePost}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            onAddProfile={() => setIsProfileOpen(true)}
-          />
-          <PostProfileForm isOpen={isProfileOpen} onClose={handleFormClose} />
-          <PostSubleaseForm isOpen={isSubleaseOpen} onClose={handleFormClose} />
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
+      <div className="flex flex-grow">
+        <Sidebar /> {/* Replace with ListingsSidebar if needed, or keep Sidebar as is */}
+        <div className="flex-grow">
+          <BlueHeader />
+          {/* Main Content Area */}
+          <main className="container mx-auto px-4 py-8">
+            <h1 className="text-2xl font-extrabold mb-6 text-white">Edit Your Posts</h1>
+  
+            <SubleasePosts
+              posts={subleasePosts}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onAddSublease={() => setIsSubleaseOpen(true)}
+            />
+  
+            {editingPost && renderEditForm(posts.find((post) => post.id === editingPost)!)}
+  
+            {/* Added margin-top for more space before ProfilePost */}
+            <div className="mt-8">
+              <ProfilePost
+                post={profilePost}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                onAddProfile={() => setIsProfileOpen(true)}
+              />
+            </div>
+  
+            <PostProfileForm isOpen={isProfileOpen} onClose={handleFormClose} />
+            <PostSubleaseForm isOpen={isSubleaseOpen} onClose={handleFormClose} />
+          </main>
         </div>
       </div>
     </div>
   );
+  
+  
 }
 
 
