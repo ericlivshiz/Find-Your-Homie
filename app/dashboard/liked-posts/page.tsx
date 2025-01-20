@@ -5,13 +5,13 @@ import RoommateCard from "../../roommate-matching/components/RoommateCard";
 
 export default function LikedPostsPage() {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-gray-900">
       <Sidebar />
       <div className="flex flex-col flex-grow">
         <BlueHeader />
         <div className="flex-grow p-6 space-y-8">
           <section>
-            <h2 className="text-2xl font-bold mb-4">Liked Housing Posts</h2>
+            <h2 className="text-2xl font-extrabold mb-4 text-white">Liked Housing Posts</h2>
             {/* Add dummy housing post cards here */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Example housing post card */}
@@ -22,13 +22,13 @@ export default function LikedPostsPage() {
                 move_in: "2023-11-01",
                 move_out: "2024-05-01",
                 location: "Downtown",
-                image_urls: ["/path/to/image.jpg"],
+                image_urls: ["/assets/iv-property-1.png"],
               }} />
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4">Liked Sublease Posts</h2>
+            <h2 className="text-2xl font-extrabold mb-4 text-white">Liked Sublease Posts</h2>
             {/* Add dummy sublease post cards here */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Example sublease post card */}
@@ -39,13 +39,13 @@ export default function LikedPostsPage() {
                 move_in: "2023-12-01",
                 move_out: "2024-06-01",
                 location: "Uptown",
-                image_urls: ["/path/to/image.jpg"],
+                image_urls: ["/assets/iv-property-2.png"],
               }} />
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4">Liked Roommate Profiles</h2>
+            <h2 className="text-2xl font-extrabold mb-4 text-white">Liked Roommate Profiles</h2>
             {/* Add dummy roommate profile cards here */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Example roommate profile card */}
@@ -57,7 +57,7 @@ export default function LikedPostsPage() {
                 drinking={true}
                 pets={false}
                 contact_info="john.doe@example.com"
-                image_url="/path/to/profile.jpg"
+                image_url="/assets/random-guy.png"
               />
             </div>
           </section>

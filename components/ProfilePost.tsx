@@ -19,81 +19,81 @@ export default function ProfilePost({
 }: ProfilePostProps) {
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold">Profile Post</h2>
+      <h2 className="text-xl font-bold text-white">Profile Post</h2>
       {post ? (
-        <Card className="overflow-hidden max-w-xl">
-          <CardContent className="p-4">
-            <div className="flex items-center">
-              <Image
-                src={post.image_url || ""}
-                alt="Profile Picture"
-                className="w-16 h-16 rounded-full mr-4"
-                width={100}
-                height={100}
-                layout="intrinsic"
-              />
-
-              <div>
-                <h3 className="font-semibold">{post.name}</h3>
-                <p className="text-sm text-gray-500">Gender: {post.gender}</p>
-                <p className="text-sm text-gray-500">Bio: {post.bio}</p>
-                <p className="text-sm text-gray-500">Budget: {post.budget}</p>
-                <p className="text-sm text-gray-500">
-                  Sleeping Habits: {post.sleeping_habits}
-                </p>
-                <p className="text-sm text-gray-500">
-                  Smoking: {post.smoking ? "Yes" : "No"}
-                </p>
-                <p className="text-sm text-gray-500">
-                  Drinking: {post.drinking ? "Yes" : "No"}
-                </p>
-                <p className="text-sm text-gray-500">
-                  Pets: {post.pets ? "Allowed" : "Not Allowed"}
-                </p>
-                <p className="text-sm text-gray-500">
-                  Move-in Date: {post.move_in}
-                </p>
-                <p className="text-sm text-gray-500">
-                  Contact Info: {post.contact_info}
-                </p>
-              </div>
+        <Card className="relative rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300 max-w-xl">
+          <CardContent className="p-6">
+            <div className="flex items-center space-x-4 mb-4">
+              {post.image_url && (
+                <Image
+                  src={post.image_url}
+                  alt="Profile Picture"
+                  className="w-16 h-16 rounded-full mr-4"
+                  width={50}
+                  height={50}
+                />
+              )}
+              <h3 className="text-xl font-bold text-white">{post.name}</h3>
             </div>
+            <ul className="space-y-2 text-sm text-gray-300 font-semibold">
+              {post.gender && (
+                <li>
+                  <strong>Gender:</strong> {post.gender}
+                </li>
+              )}
+              <li>
+                <strong>Bio:</strong> {post.bio}
+              </li>
+              <li>
+                <strong>Budget:</strong> {post.budget}
+              </li>
+              <li>
+                <strong>Sleeping Habits:</strong> {post.sleeping_habits}
+              </li>
+              <li>
+                <strong>Smoking:</strong> {post.smoking ? "Yes" : "No"}
+              </li>
+              <li>
+                <strong>Drinking:</strong> {post.drinking ? "Yes" : "No"}
+              </li>
+              <li>
+                <strong>Pets:</strong> {post.pets ? "Allowed" : "Not Allowed"}
+              </li>
+              <li>
+                <strong>Move-in Date:</strong> {post.move_in}
+              </li>
+              <li>
+                <strong>Contact Info:</strong> {post.contact_info}
+              </li>
+            </ul>
+  
             <div className="flex justify-end gap-2 mt-4">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => onEdit(post.id)}
-              >
-                <Pencil className="h-4 w-4" />
+              <Button variant="outline" size="icon" className="bg-black" onClick={() => onEdit(post.id)}>
+                <Pencil className="h-4 w-4 text-white" />
               </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => onDelete(post.id)}
-              >
-                <Trash2 className="h-4 w-4" />
+              <Button variant="outline" size="icon" className="bg-black" onClick={() => onDelete(post.id)}>
+                <Trash2 className="h-4 w-4 text-white" />
               </Button>
             </div>
           </CardContent>
         </Card>
       ) : (
         <Card
-          className="cursor-pointer hover:bg-gray-100 transition-colors border border-gray-200 rounded-lg shadow-sm hover:shadow-md h-48 flex items-center justify-center"
+          className="relative rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300 cursor-pointer h-48 flex items-center justify-center"
           onClick={onAddProfile}
         >
           <CardHeader className="text-center">
             <div className="flex flex-col items-center">
-              <span className="text-4xl text-blue-800 mb-2">+</span>
-              <CardTitle className="text-blue-800 font-semibold">
-                Add Profile
-              </CardTitle>
+              <span className="text-4xl text-blue-400 mb-2">+</span>
+              <CardTitle className="text-blue-400 font-semibold">Add Profile</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 text-sm">Create your profile post.</p>
+            <p className="text-gray-300 text-sm">Create your profile post.</p>
           </CardContent>
         </Card>
       )}
     </div>
   );
+  
 }
