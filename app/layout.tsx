@@ -9,6 +9,8 @@ import{
 } from "@clerk/nextjs";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import {Analytics} from "@vercel/analytics/next"
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,6 +40,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           {children}
+          <Analytics />
           <Toaster />
         </body>
       </html>
