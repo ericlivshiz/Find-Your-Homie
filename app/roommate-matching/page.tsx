@@ -66,7 +66,6 @@ export default function RoommateListingsPage() {
         <div className="hidden md:block">
           <ListingsSidebar />
         </div>
-  
         <div className="flex-grow">
           <Header />
           {/* Mobile Navbar placed under Header for small screens */}
@@ -78,7 +77,6 @@ export default function RoommateListingsPage() {
             <div className="mb-6">
               <SearchBar />
             </div>
-  
             {/* Roommate Listings */}
             <div className="flex flex-col md:flex-row gap-8">
               <main className="w-full md:w-3/4">
@@ -95,6 +93,6 @@ export default function RoommateListingsPage() {
       <FooterSection />
     </div>
   );
-  
+
 }
 
