@@ -63,13 +63,13 @@ export default function SubleasePosts({ posts, onEdit, onDelete, onAddSublease }
             <div className="flex flex-col items-center">
               <span className="text-4xl text-blue-400 mb-2">+</span>
               <CardTitle className="text-blue-400 font-semibold">
-                Add Sublease
+                Create Housing Post
               </CardTitle>
             </div>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-300">
-              Create a new sublease post.
+              Create a new housing post for students to find.
             </p>
           </CardContent>
         </Card>
