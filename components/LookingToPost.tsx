@@ -144,7 +144,23 @@ export default function LookingToPost() {
             <SignedIn key={`signed-in-${index}`}>
               <div
                 onClick={navigateToDashboard}
-                className="bg-slate-700 bg-opacity-80 p-6 rounded-lg shadow-md hover:shadow-lg hover:bg-opacity-90 transition-all text-center cursor-pointer"
+                className="relative
+      bg-gradient-to-br
+      from-gray-800
+      via-gray-900
+      to-black
+      p-6
+      rounded-xl
+      shadow-md
+      hover:shadow-2xl
+      hover:from-gray-700
+      hover:via-gray-800
+      hover:to-gray-900
+      transition-all
+      text-center
+      cursor-pointer
+      border
+      border-gray-700"
               >
                 <div className="text-4xl mb-4">
                   {index === 0 ? "📝🏠" : "👤🏠"}

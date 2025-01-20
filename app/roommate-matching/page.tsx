@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import FooterSection from "@/components/footer-section";
 import Header from "@/components/Header";
 import SearchBar from "./components/SearchBar";
+import { MobileNavbar } from "@/components/MobileListingsNavbar";
 
 // Define a type for your roommate data
 type RoommateType = {
@@ -61,16 +62,23 @@ export default function RoommateListingsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
       <div className="flex flex-grow">
-        <ListingsSidebar />
+        {/* Sidebar visible on medium and larger screens */}
+        <div className="hidden md:block">
+          <ListingsSidebar />
+        </div>
+  
         <div className="flex-grow">
           <Header />
+          {/* Mobile Navbar placed under Header for small screens */}
+          <div className="md:hidden">
+            <MobileNavbar />
+          </div>
           <div className="container mx-auto px-4 py-8">
-          <h2 className="text-3xl font-semibold mb-6 text-gray-300">Looking for Roommates</h2>
-            
+            <h2 className="text-3xl font-semibold mb-6 text-gray-300">Looking for Roommates</h2>
             <div className="mb-6">
               <SearchBar />
             </div>
-
+  
             {/* Roommate Listings */}
             <div className="flex flex-col md:flex-row gap-8">
               <main className="w-full md:w-3/4">
@@ -87,5 +95,6 @@ export default function RoommateListingsPage() {
       <FooterSection />
     </div>
   );
+  
 }
 

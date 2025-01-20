@@ -5,6 +5,7 @@ import { Filters } from './components/Filters'
 import { CompanySection } from './components/CompanySection'
 import Header from "@/components/Header";
 import FooterSecion from "@/components/footer-section";
+import { MobileNavbar } from "@/components/MobileListingsNavbar";
 
 interface Listing {
   id: number;
@@ -131,20 +132,22 @@ export default function HousingListingsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
       <div className="flex flex-grow">
-        <ListingsSidebar />
+        {/* Sidebar visible on medium and larger screens */}
+        <div className="hidden md:block">
+          <ListingsSidebar />
+        </div>
+  
         <div className="flex-grow">
           <Header />
+          {/* Mobile Navbar placed under Header for small screens */}
+          <div className="md:hidden">
+            <MobileNavbar />
+          </div>
           <main className="container mx-auto px-4 py-8">
             <h2 className="text-3xl font-semibold mb-6 text-gray-300">Looking for Housing</h2>
-            
             <div className="mb-6">
               <SearchBar />
             </div>
-
-            {/* <div className="mb-8">
-              <Filters />
-            </div> */}
-
             <div className="space-y-12">
               {mockCompanies.map((company) => (
                 <CompanySection key={company.id} company={company} />
@@ -153,10 +156,10 @@ export default function HousingListingsPage() {
           </main>
         </div>
       </div>
-
       <FooterSecion />
     </div>
   );
+  
 }
 
 
