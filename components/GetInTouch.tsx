@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function GetInTouch() {
+  const were = "We're ";
     return (
         <div>
           <section className="py-24 relative overflow-hidden">
@@ -14,7 +15,7 @@ export default function GetInTouch() {
                 Get in Touch
               </h1>
               <p className="text-xl text-center text-gray-300 mb-12">
-                We’re open to <span className="text-yellow-300">feedback</span> and{" "}
+                {were} open to <span className="text-yellow-300">feedback</span> and{" "}
                 <span className="text-yellow-300">contributors</span> who want to help us grow.
               </p>
     

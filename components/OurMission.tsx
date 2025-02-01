@@ -10,6 +10,7 @@ export default function OurMission() {
   const ucsbs = "UCSB's";
   const arent = "aren't ";
   const todays = "today's ";
+  const nextGenUX = "When you use our platform, you'll feel like it was updated yesterday (because it was). We're all about delivering a seamless, intuitive experience that's modern, fast, and designed for today's students. It's a next-gen UX that you won't just use, you'll enjoy using."
   return (
     <div>
       <section className="py-24 relative overflow-hidden">
@@ -112,7 +113,7 @@ export default function OurMission() {
             </h2>
             <p className="text-lg leading-relaxed text-gray-300 max-w-4xl mx-auto">
               {were} leveraging technology to simplify the housing search
-              process. Here's how:
+              process. {heres} how:
             </p>
             <div className="mt-6 space-y-6 text-left text-gray-300 max-w-4xl mx-auto">
               <div>
@@ -133,11 +134,7 @@ export default function OurMission() {
                   Next-Generation UX
                 </h3>
                 <p>
-                  When you use our platform, you'll feel like it was updated
-                  yesterday (because it was). We're all about delivering a seamless, intuitive
-                  experience that's modern, fast, and designed for {todays}
-                  students. {Its} a next-gen UX that you won't just use, you'll
-                  enjoy using.
+                {nextGenUX}
                 </p>
               </div>
               <div>
