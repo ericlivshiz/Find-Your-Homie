@@ -1,13 +1,13 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
+import { useRouter } from "next/navigation";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
   const router = useRouter();
 
   const navigateToHome = () => {
-    router.push('/');
+    router.push("/");
   };
 
   return (
@@ -19,7 +19,7 @@ export default function Header() {
       </div>
 
       {/* Content */}
-      <h1 
+      <h1
         className="text-2xl font-bold text-blue-900 cursor-pointer relative z-10"
         onClick={navigateToHome}
       >
@@ -27,7 +27,13 @@ export default function Header() {
       </h1>
       <div className="relative z-10">
         <SignedOut>
-          <SignInButton />
+          <SignInButton>
+            <button
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md focus:outline-none"
+            >
+              Sign In
+            </button>
+          </SignInButton>
         </SignedOut>
         <SignedIn>
           <UserButton />
@@ -36,3 +42,4 @@ export default function Header() {
     </header>
   );
 }
+
