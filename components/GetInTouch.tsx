@@ -11,10 +11,6 @@ export default function GetInTouch() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  // Regular expression for validating email format
-  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
   // Handle input changes
   const handleWaitlistEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWaitlistEmail(e.target.value);
@@ -33,27 +29,13 @@ export default function GetInTouch() {
   };
 
   const handleJoinWaitlist = async () => {
-    if (!emailRegex.test(waitlistEmail)) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
-      return;
-    }
     try {
       const { data, error } = await supabase
-          .from("Waitlist")
-          .insert([{ email: waitlistEmail }]); // Insert email for waitlist
-
+        .from("Waitlist")
+        .insert([{ email: waitlistEmail }]); // Insert email for waitlist
+  
       if (error) {
-        console.error("Error inserting data:", error);
-        toast({
-          title: "Error",
-          description: "Something went wrong while joining the waitlist.",
-          variant: "destructive",
-        });
-        return;
+        throw error;
       }
   
       // Show success toast
@@ -79,29 +61,14 @@ export default function GetInTouch() {
   // Handle Send Message submission
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevent the default form submission
-
-    if (!emailRegex.test(email)) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
-      return;
-    }
-
+  
     try {
       const { data, error } = await supabase
-          .from("GetInTouch")
-          .insert([{ name, email, message }]); // Insert name, email, and message for GetInTouch
-
+        .from("GetInTouch")
+        .insert([{ name, email, message }]); // Insert name, email, and message for GetInTouch
+  
       if (error) {
-        console.error("Error inserting data:", error);
-        toast({
-          title: "Error",
-          description: "Something went wrong while joining the waitlist.",
-          variant: "destructive",
-        });
-        return;
+        throw error;
       }
   
       // Show success toast
