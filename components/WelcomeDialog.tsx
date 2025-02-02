@@ -14,9 +14,14 @@ const WelcomeDialog = () => {
 
   const words = message.split(" ");
 
-  const { toast } = useToast();
-
+  // Check localStorage on initial load to see if dialog was already closed
   useEffect(() => {
+    const dialogClosed = localStorage.getItem("dialogClosed");
+    if (dialogClosed === "true") {
+      setIsDialogVisible(false); // Hide the dialog if it's already closed
+    }
+
+    // Handle the typing effect
     const timer = setInterval(() => {
       setTypedWords((prev) => [...prev, words[currentIndex]]);
       setCurrentIndex((prevIndex) => prevIndex + 1);
@@ -25,27 +30,17 @@ const WelcomeDialog = () => {
     return () => clearInterval(timer);
   }, [currentIndex, words]);
 
+  // Close the dialog and store the state in localStorage
   const handleJoinWaitlist = () => {
-    // Close the dialog
     setIsDialogVisible(false);
-  
+    localStorage.setItem("dialogClosed", "true"); // Persist the state in localStorage
+
     // Scroll to the bottom of the page (where the Join Waitlist section is)
     const joinWaitlistSection = document.getElementById("join-waitlist-section");
     if (joinWaitlistSection) {
-      joinWaitlistSection.scrollIntoView({ behavior: "smooth" });
+      joinWaitlistSection.scrollIntoView({ block: "nearest", behavior: "smooth" });
     }
   };
-  
-
-//   const handleJoinWaitlist = () => {
-    
-//     toast({
-//       title: "Join Waitlist",
-//       description: "You have successfully joined the waitlist!",
-//       variant: "default",
-//     });
-//     // Redirect to the waitlist page or show additional actions
-//   };
 
   return (
     <Dialog open={isDialogVisible} onOpenChange={setIsDialogVisible}>
