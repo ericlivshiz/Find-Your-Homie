@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export default function GetInTouch() {
+  const were = "We're";
   const [email, setEmail] = useState("");
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +56,7 @@ export default function GetInTouch() {
               Get in Touch
             </h1>
             <p className="text-xl text-center text-gray-300 mb-12">
-              We're open to <span className="text-yellow-300">feedback</span>{" "}
+              {were} open to <span className="text-yellow-300">feedback</span>{" "}
               and <span className="text-yellow-300">contributors</span> who want
               to help us grow.
             </p>
