@@ -26,13 +26,26 @@ const WelcomeDialog = () => {
   }, [currentIndex, words]);
 
   const handleJoinWaitlist = () => {
-    toast({
-      title: "Join Waitlist",
-      description: "You have successfully joined the waitlist!",
-      variant: "default",
-    });
-    // Redirect to the waitlist page or show additional actions
+    // Close the dialog
+    setIsDialogVisible(false);
+  
+    // Scroll to the bottom of the page (where the Join Waitlist section is)
+    const joinWaitlistSection = document.getElementById("join-waitlist-section");
+    if (joinWaitlistSection) {
+      joinWaitlistSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
+  
+
+//   const handleJoinWaitlist = () => {
+    
+//     toast({
+//       title: "Join Waitlist",
+//       description: "You have successfully joined the waitlist!",
+//       variant: "default",
+//     });
+//     // Redirect to the waitlist page or show additional actions
+//   };
 
   return (
     <Dialog open={isDialogVisible} onOpenChange={setIsDialogVisible}>
