@@ -289,6 +289,7 @@ export default function SearchBar() {
               type="submit"
               variant="outline"
               className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600"
+              onClick={handleSearchRoommates}
             >
               Done
             </Button>
