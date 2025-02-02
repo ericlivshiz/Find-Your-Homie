@@ -43,7 +43,6 @@ export default function SearchBar() {
 
   // Handle form submission
   const handleSearchRoommates = (e: React.FormEvent) => {
-    e.preventDefault();
     // Handle search logic
     console.log({
       gender,
@@ -289,6 +288,7 @@ export default function SearchBar() {
               type="submit"
               variant="outline"
               className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600"
+              onClick={handleSearchRoommates}
             >
               Done
             </Button>
