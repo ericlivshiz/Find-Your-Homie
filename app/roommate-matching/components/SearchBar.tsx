@@ -43,7 +43,6 @@ export default function SearchBar() {
 
   // Handle form submission
   const handleSearchRoommates = (e: React.FormEvent) => {
-    e.preventDefault();
     // Handle search logic
     console.log({
       gender,
