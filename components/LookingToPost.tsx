@@ -14,6 +14,8 @@ import {
 
 export default function LookingToPost() {
   const router = useRouter();
+  const DemoMode = 1; // Set this to 1 for demo mode and 0 for regular mode
+  const were = "We're";
 
   // Mock steps for your UI
   const steps = [
@@ -33,24 +35,25 @@ export default function LookingToPost() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   // Typed text animation
-  const message = `Thanks for helping our Gaucho community thrive! To ensure a safe and authentic environment, we require a UCSB email for sign-up. Once you’re logged in, you’ll be redirected to your Dashboard in the Edit Posts section—where we’ll guide you, step by step, through creating or updating your posts. Let’s get you started!`;
-  const words = message.split(" ");
+  const devMessage = "We're working hard on bringing you the best experience! Our dashboard is under construction and will be available soon. Stay tuned!";
+  const regularMessage = "Thanks for helping our Gaucho community thrive! To ensure a safe and authentic environment, we require a UCSB email for sign-up. Once you’re logged in, you’ll be redirected to your Dashboard in the Edit Posts section—where we’ll guide you, step by step, through creating or updating your posts. Let’s get you started!";
+
   const [typedWords, setTypedWords] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const message = DemoMode === 1 ? devMessage : regularMessage;
+  const words = message.split(" ");
+  
+
   // Reveal words one by one
   useEffect(() => {
-    let timer: NodeJS.Timer;
-
-    if (isDialogOpen && currentIndex < words.length) {
-      timer = setInterval(() => {
-        setTypedWords((prev) => [...prev, words[currentIndex]]);
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 40); // Adjust speed here (ms between words)
-    }
+    const timer = setInterval(() => {
+      setTypedWords((prev) => [...prev, words[currentIndex]]);
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }, 75); // Adjust speed here (ms between words)
 
     return () => clearInterval(timer);
-  }, [isDialogOpen, currentIndex, words]);
+  }, [currentIndex, words]);
 
   // Reset typed animation text whenever the dialog closes or reopens
   useEffect(() => {
@@ -61,17 +64,8 @@ export default function LookingToPost() {
   }, [isDialogOpen]);
 
   // Route to /dashboard/edit-posts if signed in
-  // This is triggered on step click if user is logged in
   const navigateToDashboard = () => {
     router.push("/dashboard/edit-posts");
-  };
-
-  // On step click, check sign-in status:
-  // If the user is not signed in => open the dialog
-  // If the user is signed in => route to edit-posts
-  const handleStepClick = () => {
-    // We'll rely on Clerk’s <SignedIn>, <SignedOut> logic below
-    // This function itself doesn't do anything special
   };
 
   return (
@@ -81,59 +75,20 @@ export default function LookingToPost() {
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
-        <h1 className="text-4xl font-extrabold mb-4 text-center">
-          Looking To Post?
-        </h1>
-        <h2 className="text-xl text-center mb-12 text-yellow-300">
-          Find the right audience for your housing needs:
-        </h2>
+        <h1 className="text-4xl font-extrabold mb-4 text-center">Looking To Post?</h1>
+        <h2 className="text-xl text-center mb-12 text-yellow-300">Find the right audience for your housing needs:</h2>
         <div className="grid md:grid-cols-2 gap-8">
           {steps.map((step, index) => (
             <SignedOut key={index}>
               {/* If user is SignedOut => show the step card that triggers the dialog */}
               <div
                 onClick={() => setIsDialogOpen(true)}
-                className="
-      relative
-      bg-gradient-to-br
-      from-gray-800
-      via-gray-900
-      to-black
-      p-6
-      rounded-xl
-      shadow-md
-      hover:shadow-2xl
-      hover:from-gray-700
-      hover:via-gray-800
-      hover:to-gray-900
-      transition-all
-      text-center
-      cursor-pointer
-      border
-      border-gray-700
-    "
+                className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black p-6 rounded-xl shadow-md hover:shadow-2xl hover:from-gray-700 hover:via-gray-800 hover:to-gray-900 transition-all text-center cursor-pointer border border-gray-700"
               >
-                {/* Subtle glow effect in the corner */}
-                <div
-                  className="
-        absolute
-        -top-4
-        -right-4
-        w-[120px]
-        h-[120px]
-        bg-blue-600
-        blur-3xl
-        rounded-full
-        opacity-20
-        pointer-events-none
-      "
-                />
                 <div className="text-4xl mb-4">
                   {index === 0 ? "📝🏠" : "👤🏠"}
                 </div>
-                <h3 className="text-2xl font-semibold mb-4 text-white">
-                  {step.title}
-                </h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">{step.title}</h3>
                 <p className="text-gray-300">{step.description}</p>
               </div>
             </SignedOut>
@@ -144,30 +99,12 @@ export default function LookingToPost() {
             <SignedIn key={`signed-in-${index}`}>
               <div
                 onClick={navigateToDashboard}
-                className="relative
-      bg-gradient-to-br
-      from-gray-800
-      via-gray-900
-      to-black
-      p-6
-      rounded-xl
-      shadow-md
-      hover:shadow-2xl
-      hover:from-gray-700
-      hover:via-gray-800
-      hover:to-gray-900
-      transition-all
-      text-center
-      cursor-pointer
-      border
-      border-gray-700"
+                className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black p-6 rounded-xl shadow-md hover:shadow-2xl hover:from-gray-700 hover:via-gray-800 hover:to-gray-900 transition-all text-center cursor-pointer border border-gray-700"
               >
                 <div className="text-4xl mb-4">
                   {index === 0 ? "📝🏠" : "👤🏠"}
                 </div>
-                <h3 className="text-2xl font-semibold mb-4 text-white">
-                  {step.title}
-                </h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">{step.title}</h3>
                 <p className="text-gray-300">{step.description}</p>
               </div>
             </SignedIn>
@@ -175,8 +112,7 @@ export default function LookingToPost() {
         </div>
         <div className="mt-12 text-center">
           <p className="text-lg text-yellow-300">
-            Our platform simplifies the process of sharing your property or
-            profile with the UCSB community.
+            Our platform simplifies the process of sharing your property or profile with the UCSB community.
           </p>
         </div>
       </div>
@@ -189,50 +125,23 @@ export default function LookingToPost() {
 
       {/* Dialog for non-logged in users */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent
-          className="
-      sm:max-w-[425px]
-      max-w-md
-      bg-gradient-to-br
-      from-slate-800
-      to-black
-      text-gray-200
-      rounded-lg
-      border
-      border-gray-700
-      p-6
-      shadow-xl
-    "
-        >
+        <DialogContent className="sm:max-w-[425px] max-w-md bg-gradient-to-br from-slate-800 to-black text-gray-200 rounded-lg border border-gray-700 p-6 shadow-xl">
           <DialogHeader>
             <DialogTitle className="text-xl font-extrabold text-white mb-4">
-              Ready to Post?
+              {DemoMode === 1 ? `${were} still working on this!` : "Ready to Post?"}
             </DialogTitle>
           </DialogHeader>
 
           {/* Typed text animation (simpler styling) */}
-          <p className="text-sm leading-relaxed text-gray-300">
-            {typedWords.join(" ")}
-          </p>
+          <p className="text-sm leading-relaxed text-gray-300">{typedWords.join(" ")}</p>
 
           <div className="flex justify-end mt-6">
             <Button
               variant="outline"
-              className="
-          bg-blue-600
-          text-white
-          px-4
-          py-2
-          rounded-md
-          font-semibold
-          shadow-md
-          hover:bg-blue-500
-          active:bg-blue-700
-          transition-colors
-        "
+              className="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold shadow-md hover:bg-blue-500 active:bg-blue-700 transition-colors"
               onClick={navigateToDashboard}
             >
-              Take me to Sign In
+              {DemoMode === 1 ? "Ok, Got It" : "Take me to Sign In"}
             </Button>
           </div>
         </DialogContent>
@@ -240,3 +149,4 @@ export default function LookingToPost() {
     </div>
   );
 }
+
