@@ -1,13 +1,38 @@
-import React from "react";
-import { Button } from "./ui/button";
-import Image from "next/image";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function HeroSection() {
   const router = useRouter();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [typedWords, setTypedWords] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const DemoMode = 1;
+
+  const message =
+    "We’re working hard to bring you the best experience! Our dashboard is under construction and will be available soon. Stay tuned for updates!";
+
+  const words = message.split(" ");
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTypedWords((prev) => [...prev, words[currentIndex]]);
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }, 100); // Adjust speed here
+
+    return () => clearInterval(timer);
+  }, [currentIndex, words]);
 
   const navigateToDashboard = () => {
-    router.push("/dashboard/edit-posts");
+    if (!DemoMode) {
+      router.push("/dashboard/edit-posts");
+    } else {
+      setIsDialogOpen(true); // Open dialog in demo mode
+    }
   };
 
   const navigateToHousingListings = () => {
@@ -27,12 +52,10 @@ export default function HeroSection() {
               Your UCSB Housing Hub
             </h2>
             <p className="text-xl mb-6">
-              Browse housing, sublease, and roommate listings instantly — no
-              login required!
+              Browse housing, sublease, and roommate listings instantly — no login required!
             </p>
             <p className="text-xl mb-6">
-              Sign up to go to Your Dashboard, where you can manage your
-              profile, create posts, and view your favorite listings.
+              Sign up to go to Your Dashboard, where you can manage your profile, create posts, and view your favorite listings.
             </p>
             <div className="space-x-4">
               <Button
@@ -69,6 +92,31 @@ export default function HeroSection() {
           <div className="absolute w-[400px] h-[400px] bg-slate-600 opacity-25 blur-3xl rounded-full -bottom-20 -right-20 animate-pulse"></div>
         </div>
       </section>
+
+      {/* Demo Mode Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent
+          className="sm:max-w-[700px] max-w-md bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white rounded-lg p-8 shadow-xl transition-all"
+        >
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-center text-white mb-4">
+              Demo Mode - Feature Coming Soon
+            </DialogTitle>
+          </DialogHeader>
+          <div className="text-center text-lg text-gray-300 mb-6">
+            <p>{typedWords.join(" ")}</p>
+          </div>
+          <div className="flex justify-center">
+            <Button
+              variant="outline"
+              className="bg-blue-600 text-white hover:bg-blue-500 transition-all"
+              onClick={() => setIsDialogOpen(false)}
+            >
+              Got it!
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
