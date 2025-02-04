@@ -6,6 +6,7 @@ import { CompanySection } from './components/CompanySection'
 import Header from "@/components/Header";
 import FooterSecion from "@/components/footer-section";
 import { MobileNavbar } from "@/components/MobileListingsNavbar";
+import CtrlDialogListener from './components/CtrlDialogListener'
 
 interface Listing {
   id: number;
@@ -131,6 +132,7 @@ const mockCompanies = [
 export default function HousingListingsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
+      <CtrlDialogListener /> {/* Add the dialog component here */}
       <div className="flex flex-grow">
         {/* Sidebar visible on medium and larger screens */}
         <div className="hidden md:block">

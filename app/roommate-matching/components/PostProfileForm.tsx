@@ -52,16 +52,18 @@ export default function PostProfileForm({ isOpen, onClose }: PostProfileFormProp
       if (user) {
         const username = user.username;
         console.log("Username:", username);
-        const { data, error } = await supabase
-          .from("User")
-          .select("id")
-          .eq("username", username)
-          .single();
 
-        if (error) {
-          console.error("Error fetching user ID:", error);
-        } else {
-          setUserId(data.id);
+        try {
+          const response = await fetch(`/api/fetchUserId?username=${username}`);
+          const { data, error } = await response.json();
+
+          if (error) {
+            console.error("Error fetching user ID:", error);
+          } else {
+            setUserId(data.id);
+          }
+        } catch (error) {
+          console.error("Error:", error);
         }
       }
     };

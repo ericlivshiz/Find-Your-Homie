@@ -19,6 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 export function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -75,6 +76,7 @@ export function SearchBar() {
         <DialogContent className="sm:max-w-[425px] bg-slate-800 text-gray-300 rounded-lg border border-gray-300 p-6">
           <DialogHeader>
             <DialogTitle className="text-lg font-semibold">Housing Filters</DialogTitle>
+            <DialogDescription className="text-sm"> Toggle this filter by pressing ctrl anytime!</DialogDescription>
           </DialogHeader>
 
           <div className="grid gap-4 py-4">

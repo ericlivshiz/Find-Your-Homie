@@ -42,16 +42,19 @@ export default function EditPostsPage() {
     const fetchUserId = async () => {
       if (user) {
         const username = user.username;
-        const { data, error } = await supabase
-          .from("User")
-          .select("id")
-          .eq("username", username)
-          .single();
+        console.log("Username:", username);
 
-        if (error) {
-          console.error("Error fetching user ID:", error);
-        } else {
-          setUserId(data.id);
+        try {
+          const response = await fetch(`/api/fetchUserId?username=${username}`);
+          const { data, error } = await response.json();
+
+          if (error) {
+            console.error("Error fetching user ID:", error);
+          } else {
+            setUserId(data.id);
+          }
+        } catch (error) {
+          console.error("Error:", error);
         }
       }
     };
@@ -201,6 +204,13 @@ const handleDelete = async (id: number) => {
         post.id === id ? { ...post, [field]: !post[field] } : post
       )
     );
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
+    // const { name, value } = e.target;
+    // setPosts((prevPosts) =>
+    //   prevPosts.map((post) => (post.id === id ? { ...post, [name]: value } : post))
+    // );
   };
 
   const subleasePosts = posts.filter(post => post.type === 'Sublease');

@@ -14,43 +14,60 @@ export default function CompanyReviewPage() {
   const params = useParams();
   const companyId = parseInt(params.companyId as string, 10);
 
-  const [reviews, setReviews] = useState([]);
+  const [reviewsData, setReviewsData] = useState<{ id: number; created_at: string; name: string; rating: number; message: string; company_id: number }[]>([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    const loadReviews = async () => {
+    // Fetch data from the API route
+    const fetchData = async () => {
       try {
-        const data = await fetchReviews(companyId);
-        setReviews(data);
+        const res = await fetch("/api/fetchReviews");
+        const result = await res.json();
+  
+        if (res.ok) {
+          setReviewsData(result.data); // Store the reviews data in state
+        } else {
+          setError(result.error || "Something went wrong.");
+        }
       } catch (error) {
-        console.error("Error fetching reviews:", error);
+        setError("Failed to fetch data.");
       }
     };
-    loadReviews();
-  }, [companyId]);
+  
+    fetchData();
+  }, []);
+  
 
   const handleNewReview = async (newReview) => {
     try {
-      const { error } = await supabase
-        .from('Reviews')
-        .insert([{
+      const response = await fetch('/api/insertReview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           name: newReview.name || 'Anonymous',
           rating: newReview.rating,
           message: newReview.message,
           company_id: companyId,
-        }]);
-
-      if (error) {
-        console.error('Error inserting review:', error);
-      } else {
-        console.log('Review inserted successfully');
-        setReviews(prevReviews => [newReview, ...prevReviews]);
+        }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        console.log('Review inserted successfully:', result.data);
+        setReviewsData(prevReviews => [newReview, ...prevReviews]);
         setShowReviewForm(false);
+      } else {
+        console.error('Error inserting review:', result.error);
       }
     } catch (error) {
       console.error('Error submitting review:', error);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -70,7 +87,7 @@ export default function CompanyReviewPage() {
 
         <div className="bg-white rounded-lg shadow-md p-6">
           <h3 className="text-xl font-semibold mb-4">Reviews</h3>
-          <ReviewList reviews={reviews} />
+          <ReviewList reviews={reviewsData} />
         </div>
       </main>
 

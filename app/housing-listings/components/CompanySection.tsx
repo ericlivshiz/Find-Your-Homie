@@ -19,6 +19,7 @@ interface Listing {
   price: number
   location: string
   applicationStatus: string
+  websiteUrl: string
 }
 
 export function CompanySection({ company }: { company: Company }) {
