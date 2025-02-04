@@ -71,7 +71,7 @@ export default function LookingToPost() {
   return (
     <div className="relative overflow-hidden py-16 text-white">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black animate-gradient-xy"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black to-slate-900 animate-gradient-xy"></div>
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
@@ -119,7 +119,6 @@ export default function LookingToPost() {
 
       {/* Subtle Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-[300px] h-[300px] bg-gray-600 opacity-30 blur-3xl rounded-full -top-20 -left-10 animate-pulse"></div>
         <div className="absolute w-[400px] h-[400px] bg-gray-700 opacity-25 blur-3xl rounded-full -bottom-20 -right-20 animate-pulse"></div>
       </div>
 

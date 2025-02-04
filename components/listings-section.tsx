@@ -82,7 +82,7 @@ export default function ListingsSections() {
     <div>
       <section className="py-16 relative overflow-hidden">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black animate-gradient-xy"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-black animate-gradient-xy"></div>
 
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
@@ -163,7 +163,6 @@ export default function ListingsSections() {
         {/* Subtle Glow Effects */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute w-[300px] h-[300px] bg-gray-600 opacity-30 blur-3xl rounded-full -top-10 -left-20 animate-pulse"></div>
-          <div className="absolute w-[400px] h-[400px] bg-gray-700 opacity-25 blur-3xl rounded-full -bottom-20 -right-10 animate-pulse"></div>
         </div>
       </section>
 

@@ -41,33 +41,39 @@ export default function GetInTouch() {
       });
       return;
     }
-    try {
-      const { data, error } = await supabase
-          .from("Waitlist")
-          .insert([{ email: waitlistEmail }]); // Insert email for waitlist
-
-      if (error) {
-        console.error("Error inserting data:", error);
-        toast({
-          title: "Error",
-          description: "Something went wrong while joining the waitlist.",
-          variant: "destructive",
-        });
-        return;
-      }
   
-      // Show success toast
-      toast({
-        title: "Success!",
-        description: "You've been added to the waitlist.",
-        variant: "default", // Optional: Customize toast style
+    try {
+      // Call the API route instead of directly inserting into Supabase
+      const res = await fetch("/api/insertWaitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: waitlistEmail }),
       });
   
-      console.log("Successfully added to waitlist:", data);
-      // Reset the form field after submission
-      setWaitlistEmail("");
+      const result = await res.json();
+  
+      if (res.ok) {
+        // Show success toast
+        toast({
+          title: "Success!",
+          description: result.message,
+          variant: "default",
+        });
+        console.log("Successfully added to waitlist:", result.data);
+        // Reset the form field after submission
+        setWaitlistEmail("");
+      } else {
+        // Show error toast if something went wrong
+        toast({
+          title: "Error",
+          description: result.error || "Something went wrong while joining the waitlist.",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
-      console.error("Error inserting data:", error);
+      console.error("Error submitting to API:", error);
       toast({
         title: "Error",
         description: "Something went wrong while joining the waitlist.",
@@ -75,11 +81,12 @@ export default function GetInTouch() {
       });
     }
   };
+  
 
   // Handle Send Message submission
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevent the default form submission
-
+  
     if (!emailRegex.test(email)) {
       toast({
         title: "Invalid Email",
@@ -88,36 +95,41 @@ export default function GetInTouch() {
       });
       return;
     }
-
-    try {
-      const { data, error } = await supabase
-          .from("GetInTouch")
-          .insert([{ name, email, message }]); // Insert name, email, and message for GetInTouch
-
-      if (error) {
-        console.error("Error inserting data:", error);
-        toast({
-          title: "Error",
-          description: "Something went wrong while joining the waitlist.",
-          variant: "destructive",
-        });
-        return;
-      }
   
-      // Show success toast
-      toast({
-        title: "Message Sent!",
-        description: "Your message has been sent successfully.",
-        variant: "default", // Optional: Customize toast style
+    try {
+      // Call the API route instead of directly inserting into Supabase
+      const res = await fetch("/api/insertMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
       });
   
-      console.log("Successfully sent message:", data);
-      // Reset the form fields after submission
-      setName("");
-      setEmail("");
-      setMessage("");
+      const result = await res.json();
+  
+      if (res.ok) {
+        // Show success toast
+        toast({
+          title: "Message Sent!",
+          description: result.message,
+          variant: "default",
+        });
+        console.log("Successfully sent message:", result.data);
+        // Reset the form fields after submission
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        // Show error toast if something went wrong
+        toast({
+          title: "Error",
+          description: result.error || "Something went wrong while sending your message.",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
-      console.error("Error inserting data:", error);
+      console.error("Error submitting to API:", error);
       toast({
         title: "Error",
         description: "Something went wrong while sending your message.",
@@ -125,17 +137,18 @@ export default function GetInTouch() {
       });
     }
   };
+  
 
   return (
     <div>
       <section className="py-24 relative overflow-hidden">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black animate-gradient-xy"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-900 to-black animate-gradient-xy"></div>
 
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
           {/* Join The Waitlist Section */}
-          <div className="max-w-3xl mx-auto bg-gray-800 bg-opacity-60 backdrop-blur-lg rounded-xl shadow-xl p-8 mb-12" id="join-waitlist-section">
+          <div className="max-w-3xl mx-auto bg-slate-900 bg-opacity-60 backdrop-blur-lg rounded-xl shadow-xl p-8 mb-12" id="join-waitlist-section">
             <h2 className="text-5xl font-extrabold text-center text-white mb-6">
               Join The Waitlist
             </h2>
@@ -168,7 +181,7 @@ export default function GetInTouch() {
           </div>
 
           {/* Get In Touch Section */}
-          <div className="max-w-3xl mx-auto bg-gray-800 bg-opacity-60 backdrop-blur-lg rounded-xl shadow-xl p-8">
+          <div className="max-w-3xl mx-auto bg-slate-900 bg-opacity-60 backdrop-blur-lg rounded-xl shadow-xl p-8">
             <h1 className="text-5xl font-extrabold text-center text-white mb-6">
               Get in Touch
             </h1>
