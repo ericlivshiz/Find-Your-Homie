@@ -37,7 +37,7 @@ export default function ListingsSections() {
 
   // Reveal words one by one when the dialog is open
   useEffect(() => {
-    let timer: NodeJS.Timer;
+    let timer: NodeJS.Timeout;
 
     if (isDialogOpen && activeDialog && currentIndex < words.length) {
       timer = setInterval(() => {

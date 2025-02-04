@@ -41,28 +41,33 @@ export default function CompanyReviewPage() {
 
   const handleNewReview = async (newReview) => {
     try {
-      const { error } = await supabase
-        .from('Reviews')
-        .insert([{
-          id: Date.now(), // or generate a unique id
-          created_at: new Date().toISOString(),
+      const response = await fetch('/api/insertReview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           name: newReview.name || 'Anonymous',
           rating: newReview.rating,
           message: newReview.message,
           company_id: companyId,
-        }]);
-
-      if (error) {
-        console.error('Error inserting review:', error);
-      } else {
-        console.log('Review inserted successfully');
+        }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        console.log('Review inserted successfully:', result.data);
         setReviewsData(prevReviews => [newReview, ...prevReviews]);
         setShowReviewForm(false);
+      } else {
+        console.error('Error inserting review:', result.error);
       }
     } catch (error) {
       console.error('Error submitting review:', error);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gray-100">
