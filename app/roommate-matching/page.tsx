@@ -43,21 +43,29 @@ type FormDataType = {
 };
 
 export default function RoommateListingsPage() {
-  const [people, setPeople] = useState<RoommateType[]>([]);
+  const [person, setPersonData] = useState<RoommateType[]>([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const loadPersonData = async () => {
+    // Fetch data from the API route
+    const fetchData = async () => {
       try {
-        const data = await fetchPersonData();
-        console.log("Person data fetched:", data); // Log the data to console
-        setPeople(data);
+        const res = await fetch("/api/fetchPeople");
+        const result = await res.json();
+  
+        if (res.ok) {
+          setPersonData(result.data);
+        } else {
+          setError(result.error || "Something went wrong.");
+        }
       } catch (error) {
-        console.error("Error fetching person data:", error);
+        setError("Failed to fetch data.");
       }
     };
-
-    loadPersonData();
+  
+    fetchData();
   }, []);
+  
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
@@ -81,7 +89,7 @@ export default function RoommateListingsPage() {
             <div className="flex flex-col md:flex-row gap-8">
               <main className="w-full md:w-3/4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                  {people.map((person) => (
+                  {person.map((person) => (
                     <RoommateCard key={person.id} {...person} />
                   ))}
                 </div>
