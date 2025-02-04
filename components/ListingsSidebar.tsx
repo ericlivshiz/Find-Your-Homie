@@ -27,7 +27,7 @@ export function ListingsSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 h-full bg-gradient-to-br from-indigo-900 via-slate-800 to-blue-700 p-6 text-white">
+    <div className="w-64 h-full bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 p-6 text-white">
       <nav className="space-y-4">
         {navItems.map((item) => (
           <Link
