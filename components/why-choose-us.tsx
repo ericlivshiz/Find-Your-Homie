@@ -4,7 +4,7 @@ export default function WhyChooseUs() {
   const dont = "don't";
   return (
     <div>
-      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-b from-slate-900 via-gray-800 to-gray-900 relative overflow-hidden">
         <div className="container mx-auto px-6 text-center relative z-10">
           <h3 className="text-4xl font-extrabold text-white mb-16">
             Why Choose Find Your Homie?

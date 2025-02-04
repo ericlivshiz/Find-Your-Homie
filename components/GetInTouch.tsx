@@ -130,12 +130,12 @@ export default function GetInTouch() {
     <div>
       <section className="py-24 relative overflow-hidden">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black animate-gradient-xy"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-900 to-black animate-gradient-xy"></div>
 
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
           {/* Join The Waitlist Section */}
-          <div className="max-w-3xl mx-auto bg-gray-800 bg-opacity-60 backdrop-blur-lg rounded-xl shadow-xl p-8 mb-12" id="join-waitlist-section">
+          <div className="max-w-3xl mx-auto bg-slate-900 bg-opacity-60 backdrop-blur-lg rounded-xl shadow-xl p-8 mb-12" id="join-waitlist-section">
             <h2 className="text-5xl font-extrabold text-center text-white mb-6">
               Join The Waitlist
             </h2>
@@ -168,7 +168,7 @@ export default function GetInTouch() {
           </div>
 
           {/* Get In Touch Section */}
-          <div className="max-w-3xl mx-auto bg-gray-800 bg-opacity-60 backdrop-blur-lg rounded-xl shadow-xl p-8">
+          <div className="max-w-3xl mx-auto bg-slate-900 bg-opacity-60 backdrop-blur-lg rounded-xl shadow-xl p-8">
             <h1 className="text-5xl font-extrabold text-center text-white mb-6">
               Get in Touch
             </h1>

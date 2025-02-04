@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { ListingsSidebar } from "@/components/ListingsSidebar";
 import BlueHeader from "@/components/BlueHeader";
 import { SearchBar } from './components/SearchBar'
@@ -130,6 +133,17 @@ const mockCompanies = [
 ]
 
 export default function HousingListingsPage() {
+  const [housingFilters, setHousingFilters] = useState({
+    isDialogOpen: false,
+    searchTerm: "",
+    housingType: "all",
+    beds: "any",
+    baths: "any",
+    rentType: "noMax",
+    minPrice: "",
+    maxPrice: "",
+  });
+  
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
       <CtrlDialogListener /> {/* Add the dialog component here */}

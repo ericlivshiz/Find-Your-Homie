@@ -43,7 +43,7 @@ export default function HeroSection() {
     <div>
       <section className="py-12 md:py-24 relative overflow-hidden text-white">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-slate-800 to-blue-800 animate-gradient-xy"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900 to-slate-900 animate-gradient-xy"></div>
 
         {/* Content */}
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center md:space-x-12 relative z-10">
