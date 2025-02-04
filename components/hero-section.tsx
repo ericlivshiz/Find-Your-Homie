@@ -43,7 +43,7 @@ export default function HeroSection() {
     <div>
       <section className="py-12 md:py-24 relative overflow-hidden text-white">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900 to-slate-900 animate-gradient-xy"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 animate-gradient-xy"></div>
 
         {/* Content */}
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center md:space-x-12 relative z-10">
@@ -89,7 +89,6 @@ export default function HeroSection() {
         {/* Subtle Glow Effects */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute w-[300px] h-[300px] bg-blue-700 opacity-30 blur-3xl rounded-full -top-20 -left-10 animate-pulse"></div>
-          <div className="absolute w-[400px] h-[400px] bg-slate-600 opacity-25 blur-3xl rounded-full -bottom-20 -right-20 animate-pulse"></div>
         </div>
       </section>
 
