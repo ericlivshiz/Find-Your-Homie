@@ -11,10 +11,9 @@ export default function Header() {
   };
 
   return (
-    <header className="py-4 px-6 bg-gradient-to-br from-black via-gray-900 to-gray-800 shadow-lg flex justify-between items-center relative">
+    <header className="py-4 px-6 bg-gradient-to-br from-black via-slate-900 to-gray-800 shadow-lg flex justify-between items-center relative">
       {/* Subtle Glow Effect */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-[300px] h-[300px] bg-blue-700 opacity-40 blur-3xl rounded-full -top-10 -left-10 animate-pulse"></div>
         <div className="absolute w-[400px] h-[400px] bg-gray-800 opacity-30 blur-3xl rounded-full -bottom-10 -right-10 animate-pulse"></div>
       </div>
 

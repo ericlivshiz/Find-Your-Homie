@@ -20,11 +20,11 @@ export function ReviewList({ reviews }: ReviewListProps) {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center">
               <StarRating rating={review.rating} size={16} />
-              <span className="ml-2 font-semibold">{review.name}</span>
+              <span className="ml-2 font-semibold text-white">{review.name}</span>
             </div>
-            <span className="text-sm text-gray-500">{new Date(review.created_at).toLocaleDateString()}</span>
+            <span className="text-sm font-bold text-white">{new Date(review.created_at).toLocaleDateString()}</span>
           </div>
-          <p className="text-gray-700">{review.message}</p>
+          <p className="font-medium text-white">{review.message}</p>
         </div>
       ))}
     </div>

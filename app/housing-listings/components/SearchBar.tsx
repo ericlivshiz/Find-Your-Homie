@@ -69,7 +69,7 @@ export function SearchBar() {
             className="w-full justify-start text-left font-normal bg-slate-800 bg-opacity-80 text-gray-300 rounded-lg border border-gray-300"
           >
             <Search className="mr-2 h-4 w-4" />
-            <span>Find Housing</span>
+            <span>Find Housing - Press Ctrl Anytime!</span>
           </Button>
         </DialogTrigger>
 

@@ -22,7 +22,7 @@ export function ReviewForm({ onSubmit, onCancel }: ReviewFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+        <label className="block text-sm font-semibold text-white mb-1">Rating</label>
         <div className="flex">
           {[1, 2, 3, 4, 5].map((star) => (
             <button
@@ -40,7 +40,7 @@ export function ReviewForm({ onSubmit, onCancel }: ReviewFormProps) {
         </div>
       </div>
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="name" className="block text-sm font-semibold text-white mb-1">
           Your Name (Optional)
         </label>
         <Input
@@ -52,7 +52,7 @@ export function ReviewForm({ onSubmit, onCancel }: ReviewFormProps) {
         />
       </div>
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="message" className="block text-sm font-semibold text-white mb-1">
           Your Review
         </label>
         <Textarea
@@ -61,7 +61,7 @@ export function ReviewForm({ onSubmit, onCancel }: ReviewFormProps) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Write your review here..."
-          className="w-full"
+          className="w-full text-white font-bold"
         />
       </div>
       <div className="flex justify-end space-x-2">

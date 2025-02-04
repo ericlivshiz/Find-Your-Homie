@@ -1,13 +1,24 @@
-import { supabase } from "@/lib/supabaseClient"; // Adjust the path if necessary
+import { supabase } from "@/lib/supabaseClient"; // Adjust path if needed
 
-// Handle GET request for fetching reviews data
 export async function GET(req: Request) {
   try {
-    // Fetch data from the "Reviews" table
-    const { data: reviewsData, error } = await supabase.from("Reviews").select();
+    // Extract the company_id from query params (from URL)
+    const url = new URL(req.url);
+    const companyId = url.searchParams.get("company_id");
+
+    if (!companyId) {
+      return new Response(JSON.stringify({ error: "company_id is required" }), {
+        status: 400,
+      });
+    }
+
+    // Fetch reviews data with a filter for company_id
+    const { data: reviewsData, error } = await supabase
+      .from("Reviews")
+      .select()
+      .eq("company_id", companyId); // Only fetch reviews with the matching company_id
 
     if (error) {
-      // Return a 500 error if there's an issue fetching data
       return new Response(JSON.stringify({ error: (error as any).message }), {
         status: 500,
       });
@@ -19,7 +30,6 @@ export async function GET(req: Request) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    // Handle unexpected errors and return a 500 error
     return new Response(JSON.stringify({ error: (error as any).message }), {
       status: 500,
     });
