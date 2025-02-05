@@ -36,7 +36,7 @@ export default function LookingToPost() {
 
   // Typed text animation
   const devMessage = "We're working hard on bringing you the best experience! Our dashboard is under construction and will be available soon. Stay tuned!";
-  const regularMessage = "Thanks for helping our Gaucho community thrive! To ensure a safe and authentic environment, we require a UCSB email for sign-up. Once you’re logged in, you’ll be redirected to your Dashboard in the Edit Posts section—where we’ll guide you, step by step, through creating or updating your posts. Let’s get you started!";
+  const regularMessage = "Thanks for helping our Gaucho community thrive! To ensure a safe and authentic environment, we require a UCSB email for sign-up. Once you're logged in, you'll be redirected to your Dashboard in the Edit Posts section—where we'll guide you, step by step, through creating or updating your posts. Let's get you started!";
 
   const [typedWords, setTypedWords] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -66,6 +66,14 @@ export default function LookingToPost() {
   // Route to /dashboard/edit-posts if signed in
   const navigateToDashboard = () => {
     router.push("/dashboard/edit-posts");
+  };
+
+  const handleButtonClick = () => {
+    if (DemoMode === 1) {
+      setIsDialogOpen(false); // Close the dialog in demo mode
+    } else {
+      navigateToDashboard(); // Navigate to the dashboard in regular mode
+    }
   };
 
   return (
@@ -138,7 +146,7 @@ export default function LookingToPost() {
             <Button
               variant="outline"
               className="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold shadow-md hover:bg-blue-500 active:bg-blue-700 transition-colors"
-              onClick={navigateToDashboard}
+              onClick={handleButtonClick}
             >
               {DemoMode === 1 ? "Ok, Got It" : "Take me to Sign In"}
             </Button>

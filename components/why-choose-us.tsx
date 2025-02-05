@@ -54,7 +54,6 @@ export default function WhyChooseUs() {
         {/* Subtle Animated Glow */}
         <div
           className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center"
-          aria-hidden="true"
         >
           <svg
             className="w-[600px] h-[600px] sm:w-[700px] sm:h-[700px] opacity-20"

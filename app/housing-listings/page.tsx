@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ListingsSidebar } from "@/components/ListingsSidebar";
 import BlueHeader from "@/components/BlueHeader";
-import { SearchBar } from './components/SearchBar'
+import SearchBar from './components/SearchBar'
 import { Filters } from './components/Filters'
 import { CompanySection } from './components/CompanySection'
 import Header from "@/components/Header";
@@ -137,6 +137,7 @@ export default function HousingListingsPage() {
     isDialogOpen: false,
     searchTerm: "",
     housingType: "all",
+    occupancy: "any",
     beds: "any",
     baths: "any",
     rentType: "noMax",
@@ -146,7 +147,7 @@ export default function HousingListingsPage() {
   
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
-      <CtrlDialogListener /> {/* Add the dialog component here */}
+      {/* <CtrlDialogListener housingFilters={housingFilters} setHousingFilters={setHousingFilters}/> */}
       <div className="flex flex-grow">
         {/* Sidebar visible on medium and larger screens */}
         <div className="hidden md:block">
@@ -162,7 +163,7 @@ export default function HousingListingsPage() {
           <main className="container mx-auto px-4 py-8">
             <h2 className="text-3xl font-semibold mb-6 text-gray-300">Looking for Housing</h2>
             <div className="mb-6">
-              <SearchBar />
+              <SearchBar housingFilters={housingFilters} setHousingFilters={setHousingFilters}/>
             </div>
             <div className="space-y-12">
               {mockCompanies.map((company) => (
