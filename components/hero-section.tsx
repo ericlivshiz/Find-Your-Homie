@@ -61,6 +61,7 @@ export default function HeroSection() {
               <Button
                 variant="secondary"
                 size="lg"
+                className="text-blue-500 bg-slate-900 bg-opacity-60 border-blue-500 border-2 hover:bg-blue-700 hover:text-white"
                 onClick={navigateToHousingListings}
               >
                 Browse Listings
@@ -68,7 +69,7 @@ export default function HeroSection() {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-blue-500 border-blue-500 hover:bg-blue-700 hover:text-white"
+                className="text-blue-500 bg-slate-900 bg-opacity-60 border-blue-500 hover:bg-blue-700 hover:text-white"
                 onClick={navigateToDashboard}
               >
                 Your Dashboard
@@ -77,7 +78,7 @@ export default function HeroSection() {
           </div>
           <div className="md:w-1/2">
             <Image
-              src="/assets/sb-ai-pic.jpg"
+              src="/assets/findyourhomie-pic.jpg"
               alt="App Interface Mockup"
               width={400}
               height={400}

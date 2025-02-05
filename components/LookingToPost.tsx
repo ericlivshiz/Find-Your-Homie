@@ -79,7 +79,7 @@ export default function LookingToPost() {
   return (
     <div className="relative overflow-hidden py-16 text-white">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black to-slate-900 animate-gradient-xy"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-900 to-black animate-gradient-xy"></div>
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">

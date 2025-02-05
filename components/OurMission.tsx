@@ -15,7 +15,7 @@ export default function OurMission() {
     <div>
       <section className="py-24 relative overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-900 to-black animate-gradient-xy"></div>
 
         {/* Subtle Glow Effects */}
         <div className="absolute inset-0 pointer-events-none">
