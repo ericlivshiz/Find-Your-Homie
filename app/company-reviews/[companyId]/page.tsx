@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { StarRating } from "../../../components/StarRating";
 import { ReviewList } from "./components/ReviewList";
 import { ReviewForm } from "./components/ReviewForm";
@@ -12,6 +12,7 @@ import FooterSection from "@/components/footer-section";
 export default function CompanyReviewPage() {
   const params = useParams();
   const companyId = parseInt(params.companyId as string, 10);
+  const router = useRouter(); // Hook for routing
 
   const [reviewsData, setReviewsData] = useState<
     {
@@ -21,20 +22,19 @@ export default function CompanyReviewPage() {
       rating: number;
       message: string;
       company_id: number;
-    }[]
+    }[] 
   >([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // Fetch data from the API route
     const fetchData = async () => {
       try {
-        const res = await fetch(`/api/fetchReviews?company_id=${companyId}`); // Pass companyId as query param
+        const res = await fetch(`/api/fetchReviews?company_id=${companyId}`);
         const result = await res.json();
 
         if (res.ok) {
-          setReviewsData(result.data); // Store the reviews data in state
+          setReviewsData(result.data);
         } else {
           setError(result.error || "Something went wrong.");
         }
@@ -44,7 +44,7 @@ export default function CompanyReviewPage() {
     };
 
     fetchData();
-  }, [companyId]); // Ensure to refetch if companyId changes
+  }, [companyId]);
 
   const handleNewReview = async (newReview) => {
     try {
@@ -64,7 +64,6 @@ export default function CompanyReviewPage() {
       const result = await response.json();
 
       if (response.ok) {
-        console.log("Review inserted successfully:", result.data);
         setReviewsData((prevReviews) => [newReview, ...prevReviews]);
         setShowReviewForm(false);
       } else {
@@ -78,9 +77,19 @@ export default function CompanyReviewPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-800 to-black overflow-x-hidden">
       <Header />
-      
+
+      {/* Back Button positioned at the top */}
+      <div className="container mx-auto px-6 py-4 flex justify-start mb-8">
+        <Button 
+          onClick={() => router.back()}  // Go back to the previous page
+          className="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg shadow-md transition duration-200"
+        >
+          ← Back to Listings
+        </Button>
+      </div>
+
       <main className="container mx-auto px-6 py-12">
-        {/* Section: Company Reviews */}
+        {/* Company Reviews Section */}
         <div className="bg-gradient-to-b from-slate-900 to-black rounded-xl shadow-lg p-8 mb-10">
           <h2 className="text-4xl font-semibold text-white mb-6">Company Reviews</h2>
           <Button 
@@ -90,8 +99,8 @@ export default function CompanyReviewPage() {
             Write a Review
           </Button>
         </div>
-  
-        {/* Section: Write a Review */}
+
+        {/* Section for writing a review */}
         {showReviewForm && (
           <div className="bg-gradient-to-br from-slate-900 to-black rounded-xl shadow-lg p-8 mb-10">
             <h3 className="text-2xl font-semibold text-white mb-4">Write a Review</h3>
@@ -101,16 +110,15 @@ export default function CompanyReviewPage() {
             />
           </div>
         )}
-  
-        {/* Section: Reviews */}
+
+        {/* Reviews Section */}
         <div className="bg-gradient-to-br from-slate-900 to-black rounded-xl shadow-lg p-8">
           <h3 className="text-2xl font-semibold text-white mb-6">Reviews</h3>
           <ReviewList reviews={reviewsData} />
         </div>
       </main>
-  
+
       <FooterSection />
     </div>
   );
-  
 }

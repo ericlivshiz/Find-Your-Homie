@@ -31,9 +31,13 @@ const WelcomeDialog = () => {
   }, [currentIndex, words]);
 
   // Close the dialog and store the state in localStorage
-  const handleJoinWaitlist = () => {
+  const handleDialogClose = () => {
     setIsDialogVisible(false);
     localStorage.setItem("dialogClosed", "true"); // Persist the state in localStorage
+  };
+
+  const handleJoinWaitlist = () => {
+    handleDialogClose();
 
     // Scroll to the bottom of the page (where the Join Waitlist section is)
     const joinWaitlistSection = document.getElementById("join-waitlist-section");
@@ -43,7 +47,7 @@ const WelcomeDialog = () => {
   };
 
   return (
-    <Dialog open={isDialogVisible} onOpenChange={setIsDialogVisible}>
+    <Dialog open={isDialogVisible} onOpenChange={(open) => { setIsDialogVisible(open); if (!open) handleDialogClose(); }}>
       <DialogTrigger asChild>
         <div />
       </DialogTrigger>
@@ -68,7 +72,7 @@ const WelcomeDialog = () => {
             onClick={handleJoinWaitlist}
           >
             Join Waitlist
-          </Button>    
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
