@@ -100,8 +100,8 @@ export default function ListingsSections() {
               className="
                 relative
                 bg-gradient-to-br
-                from-gray-800
-                via-gray-900
+                from-black
+                via-slate-900
                 to-black
                 p-6
                 rounded-xl
@@ -132,8 +132,8 @@ export default function ListingsSections() {
               className="
                 relative
                 bg-gradient-to-br
-                from-gray-800
-                via-gray-900
+                from-black
+                via-slate-900
                 to-black
                 p-6
                 rounded-xl

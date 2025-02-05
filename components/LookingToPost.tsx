@@ -79,7 +79,7 @@ export default function LookingToPost() {
   return (
     <div className="relative overflow-hidden py-16 text-white">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-900 to-black animate-gradient-xy"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black to-slate-900 animate-gradient-xy"></div>
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
@@ -91,7 +91,7 @@ export default function LookingToPost() {
               {/* If user is SignedOut => show the step card that triggers the dialog */}
               <div
                 onClick={() => setIsDialogOpen(true)}
-                className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black p-6 rounded-xl shadow-md hover:shadow-2xl hover:from-gray-700 hover:via-gray-800 hover:to-gray-900 transition-all text-center cursor-pointer border border-gray-700"
+                className="relative bg-gradient-to-br from-black via-slate-900 to-black p-6 rounded-xl shadow-md hover:shadow-2xl hover:from-gray-700 hover:via-gray-800 hover:to-gray-900 transition-all text-center cursor-pointer border border-gray-700"
               >
                 <div className="text-4xl mb-4">
                   {index === 0 ? "📝🏠" : "👤🏠"}
