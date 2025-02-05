@@ -146,7 +146,7 @@ export default function HousingListingsPage() {
   });
   
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
+    <div className="flex flex-col min-h-screen bg-slate-900 text-white overflow-x-hidden">
       {/* <CtrlDialogListener housingFilters={housingFilters} setHousingFilters={setHousingFilters}/> */}
       <div className="flex flex-grow">
         {/* Sidebar visible on medium and larger screens */}
