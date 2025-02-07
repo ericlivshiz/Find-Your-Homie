@@ -27,11 +27,10 @@ import {
   Moon,
   UserMinus,
   Users,
-  BeerOff,       // For no drinking
+  BeerOff, // For no drinking
   CigaretteOff, // For no smoking
   WashingMachine,
-  Trash2
-
+  Trash2,
 } from "lucide-react";
 
 export default function SearchBar() {
@@ -52,7 +51,7 @@ export default function SearchBar() {
       sleepingHabits,
       socialSkill,
       substanceUse,
-      cleanliness
+      cleanliness,
     });
     setIsDialogOpen(false);
   };
@@ -105,7 +104,7 @@ export default function SearchBar() {
               Roommate Filters
             </DialogTitle>
             <DialogDescription className="text-sm">
-            Toggle this filter by presssing{" "}
+              Toggle this filter by pressing{" "}
               {isMac ? (
                 <Command className="inline h-5 w-5 text-gray-300" />
               ) : (
@@ -114,6 +113,7 @@ export default function SearchBar() {
                   width={20} // Set width to a fixed size like 20px
                   height={20} // Set height to match width
                   alt="Control button"
+                  className="inline" // Ensures the image is inline with the text
                 />
               )}{" "}
               anytime!
