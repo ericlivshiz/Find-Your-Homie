@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -54,7 +54,19 @@ export default function SearchBar() {
     setIsDialogOpen(false);
   };
 
-  
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Control" || e.key === "Meta") {
+        setIsDialogOpen(!isDialogOpen);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
 
   return (
     <form onSubmit={handleSearchRoommates} className="relative">
