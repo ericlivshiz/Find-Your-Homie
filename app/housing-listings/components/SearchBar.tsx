@@ -115,7 +115,7 @@ const SearchBar = ({ housingFilters, setHousingFilters }) => {
               Housing Filters
             </DialogTitle>
             <DialogDescription className="text-sm">
-            Toggle this filter by presssing{" "}
+              Toggle this filter by pressing{" "}
               {isMac ? (
                 <Command className="inline h-5 w-5 text-gray-300" />
               ) : (
@@ -124,6 +124,7 @@ const SearchBar = ({ housingFilters, setHousingFilters }) => {
                   width={20} // Set width to a fixed size like 20px
                   height={20} // Set height to match width
                   alt="Control button"
+                  className="inline" // Ensures the image is inline with the text
                 />
               )}{" "}
               anytime!
