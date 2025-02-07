@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Search, Command, Control } from "lucide-react";
+import { Search, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

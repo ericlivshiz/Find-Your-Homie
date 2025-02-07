@@ -128,7 +128,44 @@ const mockCompanies = [
         applicationStatus: 'Available 07/14/2025',
         websiteUrl: 'https://www.playalifeiv.com/listings/detail/123f1a77-7696-45f4-80c8-05ca49ad64e6',
       }
-    ]
+    ],
+  },
+  {
+    id: 4,
+    name: 'Meridian Group',
+    logo: '/assets/meridian-group-logo.png',
+    rating: 4.0,
+    website: 'https://meridiangrouprem.com/available-rentals/',
+    listings: [
+      {
+        id: 401,
+        title: '1 Bedroom / 1 Bath',
+        images: ['/assets/meridian-group-property-1.png'],
+        price: 2650,
+        location: '223 EllWood Beach Drive, 04, Goleta, CA 93117',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://meridiangrouprem.com/details/?ID=7313',
+      },
+      {
+        id: 402,
+        title: '1 Bedroom / 1 Bath',
+        images: ['/assets/meridian-group-property-2.png'],
+        price: 1995,
+        location: '165 N. 5th Street #201',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://meridiangrouprem.com/details/?ID=595',
+      },
+      {
+        id: 403,
+        title: '1 Bedroom / 1 Bath',
+        images: ['/assets/meridian-group-property-3.png'],
+        price: 2650,
+        location: '3720 Monterey Pine Street Unit D212',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://meridiangrouprem.com/details/?ID=2450',
+      }
+    ],
+    
   }
 ]
 
