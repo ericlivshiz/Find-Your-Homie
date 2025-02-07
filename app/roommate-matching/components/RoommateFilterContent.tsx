@@ -1,125 +1,77 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Command } from "lucide-react";
-import Image from "next/image";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import React from "react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+
 import {
-  Search,
-  Sparkles,
-  User,
-  Sun,
-  Moon,
-  UserMinus,
-  Users,
-  BeerOff,       // For no drinking
-  CigaretteOff, // For no smoking
-  WashingMachine,
-  Trash2
+    Search,
+    Sparkles,
+    User,
+    Sun,
+    Moon,
+    UserMinus,
+    Users,
+    BeerOff,       // For no drinking
+    CigaretteOff, // For no smoking
+    WashingMachine,
+    Trash2
+  
+  } from "lucide-react";
 
-} from "lucide-react";
+interface RoommateFilters {
+    isDialogOpen: boolean;
+    searchTerm: string;
+    gender: string;
+    sleepingHabits: string;
+    substanceUse: string;
+    socialPreference: string;
+    cleanliness: string;
+}
 
-export default function SearchBar() {
-  // State management
-  const [gender, setGender] = useState("any");
-  const [sleepingHabits, setSleepingHabits] = useState("any");
-  const [socialSkill, setSocialSkill] = useState("any");
-  const [substanceUse, setSubstanceUse] = useState("any"); // NEW state for Substance Use
-  const [cleanliness, setCleanliness] = useState("any");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+const RoommateFilterContent = ({
+    roommateFilters,
+    setRoommateFilters,
+}: {
+    roommateFilters: RoommateFilters;
+    setRoommateFilters: React.Dispatch<React.SetStateAction<RoommateFilters>>;
+}) => {
+    const {
+        isDialogOpen,
+        searchTerm,
+        gender,
+        sleepingHabits,
+        substanceUse,
+        socialPreference,
+        cleanliness,
+    } = roommateFilters;
 
-  // Handle form submission
-  const handleSearchRoommates = (e: React.FormEvent) => {
-    // Handle search logic
-    console.log({
-      gender,
-      sleepingHabits,
-      socialSkill,
-      substanceUse,
-      cleanliness
-    });
-    setIsDialogOpen(false);
-  };
-
-  const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Control" || e.key === "Meta") {
-        setIsDialogOpen(!isDialogOpen);
-      }
+    const handleSearchTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setRoommateFilters((prev) => ({ ...prev, searchTerm: e.target.value }));
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+      const handleSearchRoommates = (e: React.FormEvent) => {
+        e.preventDefault();
+        setRoommateFilters((prev) => ({ ...prev, isDialogOpen: false }));
+        // Handle search logic
+        console.log({
+          gender,
+          sleepingHabits,
+          socialPreference,
+          substanceUse,
+          cleanliness
+        });
+      };
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  });
-
-  return (
-    <form onSubmit={handleSearchRoommates} className="relative">
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogTrigger asChild>
-          <Button
-            variant="outline"
-            className="w-full justify-start text-left font-normal bg-slate-800 bg-opacity-80 text-gray-300 rounded-lg border border-gray-300"
-          >
-            <Search className="mr-2 h-4 w-4" />
-            <span>
-              Find Roommates - Press{" "}
-              {isMac ? (
-                <Command className="inline h-5 w-5 text-gray-300" />
-              ) : (
-                <Image
-                  src="/assets/ctrl-button.png"
-                  className="inline h-5 w-5 text-gray-300"
-                  width={20} // Set width to a fixed size like 20px
-                  height={20} // Set height to match width
-                  alt="Control button"
-                />
-              )}{" "}
-              anytime!
-            </span>
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px] bg-slate-800 text-gray-300 rounded-lg border border-gray-300 p-6">
-          <DialogHeader>
-            <DialogTitle className="text-lg font-semibold">
-              Roommate Filters
-            </DialogTitle>
-            <DialogDescription className="text-sm">
-            Toggle this filter by presssing{" "}
-              {isMac ? (
-                <Command className="inline h-5 w-5 text-gray-300" />
-              ) : (
-                <Image
-                  src="/assets/ctrl-button.png"
-                  width={20} // Set width to a fixed size like 20px
-                  height={20} // Set height to match width
-                  alt="Control button"
-                />
-              )}{" "}
-              anytime!
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
+    return(
+        <div>
+            <div className="grid gap-4 py-4">
             {/* Gender Dropdown */}
             <div className="grid gap-2">
               <DropdownMenu>
@@ -138,7 +90,9 @@ export default function SearchBar() {
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup
                     value={gender}
-                    onValueChange={setGender}
+                    onValueChange={(val) =>
+                        setRoommateFilters((prev) => ({ ...prev, gender: val }))
+                    }
                   >
                     <DropdownMenuRadioItem value="any">
                       Any Gender
@@ -174,7 +128,9 @@ export default function SearchBar() {
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup
                     value={sleepingHabits}
-                    onValueChange={setSleepingHabits}
+                    onValueChange={(val) => 
+                        setRoommateFilters((prev) => ({ ...prev, sleepingHabits: val }))
+                    }
                   >
                     <DropdownMenuRadioItem value="any">
                       Any Sleeping Habits
@@ -200,18 +156,20 @@ export default function SearchBar() {
                     variant="outline"
                     className="w-full justify-start text-gray-200 hover:text-black bg-slate-800 font-bold border-gray-300"
                   >
-                    {socialSkill === "any" && "Any Social Preference"}
-                    {socialSkill === "introverted" && "Introverted"}
-                    {socialSkill === "ambivert" && "Ambivert"}
-                    {socialSkill === "extroverted" && "Extroverted"}
+                    {roommateFilters.socialPreference === "any" && "Any Social Preference"}
+                    {roommateFilters.socialPreference === "introverted" && "Introverted"}
+                    {roommateFilters.socialPreference === "ambivert" && "Ambivert"}
+                    {roommateFilters.socialPreference === "extroverted" && "Extroverted"}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                   <DropdownMenuLabel>Social Skills</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup
-                    value={socialSkill}
-                    onValueChange={setSocialSkill}
+                    value={roommateFilters.socialPreference}
+                    onValueChange={(val) =>
+                        setRoommateFilters((prev) => ({ ...prev, socialPreference: val }))
+                    }
                   >
                     <DropdownMenuRadioItem value="any">
                       Any Social Preference
@@ -252,7 +210,9 @@ export default function SearchBar() {
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup
                     value={substanceUse}
-                    onValueChange={setSubstanceUse}
+                    onValueChange={(val) =>
+                        setRoommateFilters((prev) => ({ ...prev, substanceUse: val }))
+                    }
                   >
                     <DropdownMenuRadioItem value="any">
                       Any Substance Use
@@ -293,7 +253,9 @@ export default function SearchBar() {
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup
                     value={cleanliness}
-                    onValueChange={setCleanliness}
+                    onValueChange={(val) =>
+                        setRoommateFilters((prev) => ({ ...prev, cleanliness: val }))
+                    }
                   >
                     <DropdownMenuRadioItem value="any">
                       Any Cleanliness Preference
@@ -322,7 +284,7 @@ export default function SearchBar() {
                 type="text"
                 placeholder="Search with AI"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleSearchTermChange}
                 className="w-full h-9 p-3 pl-10 pr-10 rounded-lg border border-gray-300 bg-slate-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <Sparkles className="absolute right-2 top-2.5 h-4 w-4 text-gray-400" />
@@ -340,8 +302,8 @@ export default function SearchBar() {
               Done
             </Button>
           </div>
-        </DialogContent>
-      </Dialog>
-    </form>
-  );
-}
+        </div>
+    )
+};
+
+export default RoommateFilterContent;

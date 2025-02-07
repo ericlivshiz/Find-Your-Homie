@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Search, Command, Control } from "lucide-react";
+import { Search, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -121,7 +121,6 @@ const SearchBar = ({ housingFilters, setHousingFilters }) => {
               ) : (
                 <Image
                   src="/assets/ctrl-button.png"
-                  className="inline h-5 w-5 text-gray-300"
                   width={20} // Set width to a fixed size like 20px
                   height={20} // Set height to match width
                   alt="Control button"

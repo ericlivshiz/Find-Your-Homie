@@ -165,7 +165,6 @@ const HousingFilterContent = ({
                 {housingFilters.occupancy === "three" && "Three People"}
                 {housingFilters.occupancy === "four" && "Four People"}
                 {housingFilters.occupancy === "five" && "Five People"}
-
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
@@ -381,6 +380,20 @@ const HousingFilterContent = ({
                     }))
                   }
                 />
+              </div>
+              <div className="mt-4 flex justify-end">
+                <Button
+                  onClick={() => {
+                    // Save the min and max prices, and close custom range
+                    setHousingFilters((prev) => ({
+                      ...prev,
+                      rentType: "custom", // Ensure the rent type is saved as custom
+                    }));
+                  }}
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md transition duration-200"
+                >
+                  Done
+                </Button>
               </div>
             </div>
           )}
