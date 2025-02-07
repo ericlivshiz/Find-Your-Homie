@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Command } from "lucide-react";
+import Image from "next/image";
 import {
   Dialog,
   DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import {
   DropdownMenu,
@@ -54,6 +57,8 @@ export default function SearchBar() {
     setIsDialogOpen(false);
   };
 
+  const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Control" || e.key === "Meta") {
@@ -77,7 +82,21 @@ export default function SearchBar() {
             className="w-full justify-start text-left font-normal bg-slate-800 bg-opacity-80 text-gray-300 rounded-lg border border-gray-300"
           >
             <Search className="mr-2 h-4 w-4" />
-            <span>Find Roommates</span>
+            <span>
+              Find Roommates - Press{" "}
+              {isMac ? (
+                <Command className="inline h-5 w-5 text-gray-300" />
+              ) : (
+                <Image
+                  src="/assets/ctrl-button.png"
+                  className="inline h-5 w-5 text-gray-300"
+                  width={20} // Set width to a fixed size like 20px
+                  height={20} // Set height to match width
+                  alt="Control button"
+                />
+              )}{" "}
+              anytime!
+            </span>
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-slate-800 text-gray-300 rounded-lg border border-gray-300 p-6">
@@ -85,6 +104,20 @@ export default function SearchBar() {
             <DialogTitle className="text-lg font-semibold">
               Roommate Filters
             </DialogTitle>
+            <DialogDescription className="text-sm">
+            Toggle this filter by presssing{" "}
+              {isMac ? (
+                <Command className="inline h-5 w-5 text-gray-300" />
+              ) : (
+                <Image
+                  src="/assets/ctrl-button.png"
+                  width={20} // Set width to a fixed size like 20px
+                  height={20} // Set height to match width
+                  alt="Control button"
+                />
+              )}{" "}
+              anytime!
+            </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             {/* Gender Dropdown */}
