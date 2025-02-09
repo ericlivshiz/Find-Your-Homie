@@ -25,7 +25,7 @@ const mockCompanies = [
   {
     id: 1,
     name: 'IV Properties',
-    logo: '/assets/iv-properties-logo.png',
+    logo: '/assets/svg/ivproperties-logo-name.svg',
     rating: 4.5,
     website: 'https://www.ivproperties.com/properties/isla-vista-properties/',
     listings: [
@@ -61,7 +61,7 @@ const mockCompanies = [
   {
     id: 2,
     name: 'Wolfe & Associates',
-    logo: '/assets/wolfe-logo.png',
+    logo: '/assets/wolfe-logo-2.png',
     rating: 4.2,
     website: 'https://www.rlwa.com/isla-vista-listings',
     listings: [
@@ -133,7 +133,7 @@ const mockCompanies = [
   {
     id: 4,
     name: 'Meridian Group',
-    logo: '/assets/meridian-group-logo.png',
+    logo: '/assets/MeridianIcon.png',
     rating: 4.0,
     website: 'https://meridiangrouprem.com/available-rentals/',
     listings: [
