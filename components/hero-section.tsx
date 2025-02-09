@@ -29,7 +29,7 @@ export default function HeroSection() {
 
   const navigateToDashboard = () => {
     if (!DemoMode) {
-      router.push("/dashboard/edit-posts");
+      router.push("/dashboard/onboarding");
     } else {
       setIsDialogOpen(true); // Open dialog in demo mode
     }
