@@ -121,7 +121,7 @@ export default function CompanyReviewPage() {
         {/* Company Selection Buttons */}
         <div className="bg-gradient-to-b from-slate-900 to-black rounded-xl shadow-lg p-8 mb-10 flex flex-col items-center space-y-4">
           <h2 className="text-4xl font-semibold text-white mb-4">Company Reviews</h2>
-          <div className="flex space-x-4">
+          <div className="flex flex-col items-center gap-4">
             <Button 
               onClick={goToPreviousCompany}
               className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-full shadow-md"
@@ -129,15 +129,17 @@ export default function CompanyReviewPage() {
               ←
             </Button>
 
-            {companies.map((company, index) => (
-              <Button 
-                key={company.id}
-                onClick={() => handleCompanyChange(index)}
-                className={`bg-slate-800 hover:bg-slate-900 text-white font-semibold px-6 py-3 mx-2 rounded-lg shadow-md ${index === currentCompanyIndex ? "bg-blue-600" : ""}`}
-              >
-                {company.name}
-              </Button>
-            ))}
+            <div className="flex flex-wrap justify-center gap-2">
+              {companies.map((company, index) => (
+                <Button 
+                  key={company.id}
+                  onClick={() => handleCompanyChange(index)}
+                  className={`bg-slate-800 hover:bg-slate-900 text-white font-semibold px-6 py-3 rounded-lg shadow-md ${index === currentCompanyIndex ? "bg-blue-600" : ""}`}
+                >
+                  {company.name}
+                </Button>
+              ))}
+            </div>
 
             <Button 
               onClick={goToNextCompany}
