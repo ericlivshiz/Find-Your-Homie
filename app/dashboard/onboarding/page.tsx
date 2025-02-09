@@ -23,11 +23,14 @@ export default function OnboardingPage() {
     router.push("/dashboard/edit-posts");
   };
 
+  const subheaderMessage = "Let's get you started on your journey. Please provide the following details."
+  const buttonMessage = "Let's Go!"
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black text-white flex flex-col items-center justify-center p-6">
       <h1 className="text-4xl font-extrabold mb-8 text-center">Welcome Aboard!</h1>
       <p className="mb-12 text-center text-gray-400 text-lg">
-        Let's get you started on your journey. Please provide the following details.
+        {subheaderMessage}
       </p>
       <form onSubmit={handleSubmit} className="w-full max-w-2xl bg-slate-900 p-8 rounded-lg shadow-lg space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -94,7 +97,7 @@ export default function OnboardingPage() {
             type="submit"
             className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-md font-semibold shadow-md"
           >
-            Let's Go!
+            {buttonMessage}
           </Button>
         </div>
       </form>
