@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ListingCard } from './ListingCard'
@@ -23,6 +24,21 @@ interface Listing {
 }
 
 export function CompanySection({ company }: { company: Company }) {
+  const [avgRating, setAvgRating] = useState<number | null>(null)
+
+  useEffect(() => {
+    const fetchRating = async () => {
+      const response = await fetch(`/api/avgRating?companyId=${company.id}`)
+      const data = await response.json()
+
+      if (data.averageRating) {
+        setAvgRating(data.averageRating)
+      }
+    }
+
+    fetchRating()
+  }, [company.id])
+
   return (
     <section>
       <div className="flex items-center mb-4">
@@ -31,13 +47,17 @@ export function CompanySection({ company }: { company: Company }) {
           alt={`${company.name} logo`}
           width={50}
           height={50}
-          className=" mr-4"
+          className="mr-4"
         />
         <Link href={`/company-reviews/${company.id}`} className="text-xl font-semibold hover:underline">
           {company.name}
         </Link>
         <div className="ml-4">
-          <StarRating rating={company.rating} />
+          {avgRating !== null ? (
+            <StarRating rating={avgRating} />
+          ) : (
+            <span className="text-gray-400">Loading...</span>
+          )}
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -58,4 +78,3 @@ export function CompanySection({ company }: { company: Company }) {
     </section>
   )
 }
-
