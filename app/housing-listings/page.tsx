@@ -2,14 +2,11 @@
 
 import { useState } from "react";
 import { ListingsSidebar } from "@/components/ListingsSidebar";
-import BlueHeader from "@/components/BlueHeader";
 import SearchBar from './components/SearchBar'
-import { Filters } from './components/Filters'
 import { CompanySection } from './components/CompanySection'
 import Header from "@/components/Header";
 import FooterSecion from "@/components/footer-section";
 import { MobileNavbar } from "@/components/MobileListingsNavbar";
-import CtrlDialogListener from './components/CtrlDialogListener'
 
 interface Listing {
   id: number;
