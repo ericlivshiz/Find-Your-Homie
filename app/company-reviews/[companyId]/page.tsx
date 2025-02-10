@@ -122,7 +122,7 @@ export default function CompanyReviewPage() {
         {/* Company Selection Buttons */}
         <div className="bg-gradient-to-b from-slate-900 to-black rounded-xl shadow-lg p-8 mb-10 flex flex-col items-center space-y-4">
           <h2 className="text-4xl font-semibold text-white mb-4">Company Reviews</h2>
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-4">
             <Button 
               onClick={goToPreviousCompany}
               className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-full shadow-md"
