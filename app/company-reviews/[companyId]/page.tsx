@@ -13,7 +13,8 @@ const companies = [
   { id: 1, name: "IV Properties" },
   { id: 2, name: "Wolfe & Associates" },
   { id: 3, name: "Playa Life I.V." },
-  { id: 4, name: "Meridian Group"}
+  { id: 4, name: "Meridian Group"},
+  { id: 5, name: "Capri at Isla Vista"}
   // Add more companies as needed
 ];
 
