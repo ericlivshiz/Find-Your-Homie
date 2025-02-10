@@ -2,14 +2,11 @@
 
 import { useState } from "react";
 import { ListingsSidebar } from "@/components/ListingsSidebar";
-import BlueHeader from "@/components/BlueHeader";
 import SearchBar from './components/SearchBar'
-import { Filters } from './components/Filters'
 import { CompanySection } from './components/CompanySection'
 import Header from "@/components/Header";
 import FooterSecion from "@/components/footer-section";
 import { MobileNavbar } from "@/components/MobileListingsNavbar";
-import CtrlDialogListener from './components/CtrlDialogListener'
 
 interface Listing {
   id: number;
@@ -166,6 +163,42 @@ const mockCompanies = [
       }
     ],
     
+  },
+  {
+    id: 5,
+    name: 'Capri at Isla Vista',
+    logo: '/assets/capri-at-isla-vista-logo.png',
+    rating: 4.0,
+    website: 'https://capriiv.com/',
+    listings: [
+      {
+        id: 501,
+        title: 'Seville I',
+        images: ['/assets/capri-at-isla-vista-property-1.png'],
+        price: 1659,
+        location: '6598 Seville Rd, Isla Vista, CA 93117',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://capriiv.com/floor-plans/#1seville-I',
+      },
+      {
+        id: 502,
+        title: 'Seville II',
+        images: ['/assets/capri-at-isla-vista-property-2.png'],
+        price: 1469,
+        location: '6598 Seville Rd, Isla Vista, CA 93117',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://capriiv.com/floor-plans/#1seville-I',
+      },
+      {
+        id: 503,
+        title: 'Abrego Gaucho',
+        images: ['/assets/capri-at-isla-vista-property-3.png'],
+        price: 1469,
+        location: '6778 Abrego Rd, Goleta, CA 93117',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://capriiv.com/floor-plans/#3',
+      }
+    ]
   }
 ]
 
