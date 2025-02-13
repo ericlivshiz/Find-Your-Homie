@@ -36,6 +36,8 @@ export default function HousingDetailsPage() {
   const router = useRouter();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  const dialogMessage = "What'd you like about this listing?"
+
   const settings = {
     dots: false,
     infinite: true,
@@ -105,7 +107,7 @@ export default function HousingDetailsPage() {
           </DialogTrigger>
           <DialogContent className="bg-gray-800 text-white rounded-lg p-6">
             <DialogHeader>
-              <DialogTitle className="text-lg font-bold">What'd you like about this listing?</DialogTitle>
+              <DialogTitle className="text-lg font-bold">{dialogMessage}</DialogTitle>
             </DialogHeader>
             <div className="mt-4 relative">
               <Sparkles className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
