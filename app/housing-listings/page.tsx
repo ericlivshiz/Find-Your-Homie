@@ -7,6 +7,7 @@ import { CompanySection } from './components/CompanySection'
 import Header from "@/components/Header";
 import FooterSecion from "@/components/footer-section";
 import { MobileNavbar } from "@/components/MobileListingsNavbar";
+import { useRouter } from "next/navigation";
 
 interface Listing {
   id: number;
@@ -203,6 +204,7 @@ const mockCompanies = [
 ]
 
 export default function HousingListingsPage() {
+  const router = useRouter();
   const [housingFilters, setHousingFilters] = useState({
     isDialogOpen: false,
     searchTerm: "",
@@ -215,6 +217,10 @@ export default function HousingListingsPage() {
     maxPrice: "",
   });
   
+  const handleCardClick = (housingId: number) => {
+    router.push(`/housing-details/${housingId}`);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-900 text-white overflow-x-hidden">
       {/* <CtrlDialogListener housingFilters={housingFilters} setHousingFilters={setHousingFilters}/> */}
@@ -237,7 +243,7 @@ export default function HousingListingsPage() {
             </div>
             <div className="space-y-12">
               {mockCompanies.map((company) => (
-                <CompanySection key={company.id} company={company} />
+                <CompanySection key={company.id} company={company} onCardClick={handleCardClick} />
               ))}
             </div>
           </main>

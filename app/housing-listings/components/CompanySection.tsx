@@ -23,7 +23,7 @@ interface Listing {
   websiteUrl: string
 }
 
-export function CompanySection({ company }: { company: Company }) {
+export function CompanySection({ company, onCardClick }: { company: Company; onCardClick: (housingId: number) => void; }) {
   const [avgRating, setAvgRating] = useState<number | null>(null)
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export function CompanySection({ company }: { company: Company }) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {company.listings.map((listing) => (
-          <ListingCard key={listing.id} listing={listing} />
+          <ListingCard key={listing.id} listing={listing} onCardClick={onCardClick} />
         ))}
       </div>
       <div className="mt-4 text-center">
