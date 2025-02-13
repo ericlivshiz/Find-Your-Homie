@@ -36,7 +36,7 @@ export default function HousingDetailsPage() {
   const router = useRouter();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const dialogMessage = "What'd you like about this listing?"
+  const dialogMessage = "What'd You Like About this Listing?"
 
   const settings = {
     dots: false,
@@ -105,16 +105,16 @@ export default function HousingDetailsPage() {
               <Sparkles className="w-5 h-5 mr-2" /> More Places Like This
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-gray-800 text-white rounded-lg p-6">
+          <DialogContent className="bg-gradient-to-b from-black via-slate-900 to-black animate-gradient-xy text-white rounded-lg p-6">
             <DialogHeader>
               <DialogTitle className="text-lg font-bold">{dialogMessage}</DialogTitle>
             </DialogHeader>
             <div className="mt-4 relative">
-              <Sparkles className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+              <Sparkles className="absolute left-3 top-3 w-5 h-5 text-white" />
               <input
                 type="text"
-                placeholder="Explain With A.I."
-                className="w-full pl-10 pr-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Get Similar Results With A.I"
+                className="w-full pl-10 pr-4 py-2 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="mt-6 flex justify-end">

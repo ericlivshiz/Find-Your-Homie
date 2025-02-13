@@ -33,65 +33,15 @@ export default function OnboardingPage() {
         {subheaderMessage}
       </p>
       <form onSubmit={handleSubmit} className="w-full max-w-2xl bg-slate-900 p-8 rounded-lg shadow-lg space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <div className="flex items-center mb-4">
-              <User className="text-blue-500 mr-3" />
-              <label className="block text-lg font-medium text-gray-300">Your First Name</label>
-            </div>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              className="w-full bg-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-white p-3"
-              placeholder="Enter your first name"
-              required
-            />
-          </div>
-          <div>
-            <div className="flex items-center mb-4">
-              <User className="text-blue-500 mr-3" />
-              <label className="block text-lg font-medium text-gray-300">Your Last Name</label>
-            </div>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              className="w-full bg-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-white p-3"
-              placeholder="Enter your last name"
-              required
-            />
-          </div>
-          <div>
-            <div className="flex items-center mb-4">
-              <Mail className="text-blue-500 mr-3" />
-              <label className="block text-lg font-medium text-gray-300">Preferred Email</label>
-            </div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-white p-3"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <div>
-            <div className="flex items-center mb-4">
-              <Target className="text-blue-500 mr-3" />
-              <label className="block text-lg font-medium text-gray-300">Your Goals</label>
-              <Sparkles className="text-yellow-500 ml-2" />
-            </div>
-            <textarea
-              value={goals}
-              onChange={(e) => setGoals(e.target.value)}
-              className="w-full bg-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-white p-3"
-              placeholder="What are you hoping to achieve on the site?"
-              rows={4}
-              required
-            />
-          </div>
-        </div>
+        <h2 className="text-2xl md:text-2xl font-bold text-center text-white mb-6">What Are You Hoping To Achieve on this Site?</h2>
+        <textarea
+          value={goals}
+          onChange={(e) => setGoals(e.target.value)}
+          className="w-full h-32 bg-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-white p-3 resize-y"
+          placeholder="Type your goals here..."
+          rows={3}
+          required
+        />
         <div className="flex justify-center mt-8">
           <Button
             type="submit"

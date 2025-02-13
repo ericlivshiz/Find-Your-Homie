@@ -14,7 +14,7 @@ import {
 
 export default function LookingToPost() {
   const router = useRouter();
-  const DemoMode = 1; // Set this to 1 for demo mode and 0 for regular mode
+  const DemoMode = 0; // Set this to 1 for demo mode and 0 for regular mode
   const were = "We're";
 
   // Mock steps for your UI
@@ -79,7 +79,7 @@ export default function LookingToPost() {
   return (
     <div className="relative overflow-hidden py-16 text-white">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-900 to-black Sanimate-gradient-xy"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-900 to-black animate-gradient-xy"></div>
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
