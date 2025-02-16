@@ -1,5 +1,5 @@
 import { Sidebar } from "@/components/sidebar";
-import BlueHeader from "@/components/BlueHeader";
+import Header from "@/components/Header";
 import SubleaseCard from "../../sublease-listings/components/SubleaseCard";
 import RoommateCard from "../../roommate-matching/components/RoommateCard";
 
@@ -8,7 +8,7 @@ export default function LikedPostsPage() {
     <div className="flex min-h-screen bg-gray-900">
       <Sidebar />
       <div className="flex flex-col flex-grow">
-        <BlueHeader />
+        <Header />
         <div className="flex-grow p-6 space-y-8">
           <section>
             <h2 className="text-2xl font-extrabold mb-4 text-white">Liked Housing Posts</h2>
