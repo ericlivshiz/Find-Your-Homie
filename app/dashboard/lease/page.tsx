@@ -6,6 +6,7 @@ import { ListingList } from "./components/leasing-list";
 import Header from "@/components/Header";
 import { useState } from "react";
 import Image from "next/image";
+import { MobileNavbar } from "@/components/MobileNavBar";
 
 export default function LeasePage() {
   const [accessCode, setAccessCode] = useState("");
@@ -23,11 +24,16 @@ export default function LeasePage() {
 
   return (
     <div className="flex min-h-screen bg-gray-900 overflow-x-hidden">
-      <Sidebar />
+      <div className="hidden md:block">
+        <Sidebar />
+      </div>
       <div className="flex flex-col flex-grow">
         <Header />
+        <div className="block md:hidden">
+          <MobileNavbar />
+        </div>
         {!isAccessGranted ? (
-          <div className="flex flex-col items-center justify-center flex-grow">
+          <div className="flex flex-col items-center justify-center flex-grow px-4">
             <Image
               src="/assets/logo.png" // Replace with your image path
               alt="Access Code"
@@ -35,7 +41,8 @@ export default function LeasePage() {
               height={200}
               className="mb-4"
             />
-            <h2 className="text-2xl font-semibold text-white mb-4">Enter Access Code</h2>
+            <h2 className="text-2xl font-semibold text-white mb-1">Enter Access Code</h2>
+            <p className="text-gray-300 mb-4 font-semibold">Must Have Access Code to Post Lease.</p>
             <form onSubmit={handleAccessSubmit} className="flex flex-col items-center">
               <input
                 type="text"
@@ -48,7 +55,7 @@ export default function LeasePage() {
             </form>
           </div>
         ) : (
-          <main className="flex-grow px-6 py-8">
+          <main className="flex-grow px-4 py-8">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-2xl font-semibold text-white">Your Listings</h1>
               <Button className="bg-blue-600 hover:bg-blue-700">+ Create a New Listing</Button>

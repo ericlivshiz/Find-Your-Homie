@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { User, Mail, Target, Sparkles } from "lucide-react";
@@ -12,13 +12,17 @@ export default function OnboardingPage() {
   const [email, setEmail] = useState("");
   const [goals, setGoals] = useState("");
 
+  useEffect(() => {
+    const isOnboarded = localStorage.getItem("onboarded") === "true";
+    if (isOnboarded) {
+      router.push("/dashboard/profile");
+    }
+  }, [router]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle form submission, e.g., send data to a server
-    console.log("First Name:", firstName);
-    console.log("Last Name:", lastName);
-    console.log("Email:", email);
-    console.log("Goals:", goals);
+    // Save onboarding status in local storage
+    localStorage.setItem("onboarded", "true");
     // Navigate to the next page after onboarding
     router.push("/dashboard/edit-posts");
   };
