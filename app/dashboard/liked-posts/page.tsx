@@ -6,7 +6,7 @@ import { MobileNavbar } from '@/components/MobileNavBar';
 
 export default function LikedPostsPage() {
   return (
-    <div className="flex min-h-screen bg-gray-900">
+    <div className="flex min-h-screen bg-gray-900 overflow-x-hidden">
       <div className="hidden md:block">
         <Sidebar />
       </div>
