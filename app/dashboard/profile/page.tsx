@@ -91,7 +91,7 @@ export default function ProfileDashboard() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 overflow-x-hidden">
+    <div className="flex min-h-screen bg-gradient-to-b from-black via-slate-900 to-black overflow-x-hidden">
       <div className="hidden md:block">
         <Sidebar />
       </div>
@@ -101,7 +101,7 @@ export default function ProfileDashboard() {
           <MobileNavbar />
         </div>
         <div className="flex items-center justify-center p-4">
-          <Card className="w-full max-w-2xl mx-auto bg-gray-800 text-gray-100 shadow-xl">
+          <Card className="w-full max-w-2xl mx-auto bg-slate-900 text-gray-100 shadow-xl">
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-bold text-center">Your Roommate Profile</CardTitle>
               <CardDescription className="text-center text-gray-400">
@@ -117,9 +117,9 @@ export default function ProfileDashboard() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Name</FormLabel>
+                          <FormLabel className="font-semibold">Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Your name" {...field} className="bg-gray-700 border-gray-600" />
+                            <Input placeholder="Your name" {...field} className="bg-black border-black" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -130,13 +130,13 @@ export default function ProfileDashboard() {
                       name="age"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Age</FormLabel>
+                          <FormLabel className="font-semibold">Age</FormLabel>
                           <FormControl>
                             <Input
                               type="number"
                               {...field}
                               onChange={(e) => field.onChange(Number.parseInt(e.target.value, 10))}
-                              className="bg-gray-700 border-gray-600"
+                              className="bg-black border-black"
                             />
                           </FormControl>
                           <FormMessage />
@@ -149,9 +149,9 @@ export default function ProfileDashboard() {
                     name="major"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Major</FormLabel>
+                        <FormLabel className="font-semibold">Major</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your major" {...field} className="bg-gray-700 border-gray-600" />
+                          <Input placeholder="Your major" {...field} className="bg-black border-black" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -162,12 +162,12 @@ export default function ProfileDashboard() {
                     name="bio"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Bio</FormLabel>
+                        <FormLabel className="font-semibold">Bio</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Tell us about yourself"
                             {...field}
-                            className="bg-gray-700 border-gray-600 min-h-[100px]"
+                            className="bg-black border-black min-h-[100px]"
                           />
                         </FormControl>
                         <FormDescription className="text-gray-400">
