@@ -14,7 +14,7 @@ import {
 
 export default function LookingToPost() {
   const router = useRouter();
-  const DemoMode = 0; // Set this to 1 for demo mode and 0 for regular mode
+  const DemoMode = 1; // Set this to 1 for demo mode and 0 for regular mode
   const were = "We're";
 
   // Mock steps for your UI

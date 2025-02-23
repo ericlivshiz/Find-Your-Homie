@@ -11,7 +11,7 @@ export default function HeroSection() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [typedWords, setTypedWords] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const DemoMode = 0;
+  const DemoMode = 1;
 
   const message =
     "We're working hard to bring you the best experience! Our dashboard is under construction and will be available soon. Stay tuned for updates!";
