@@ -29,7 +29,7 @@ const mockCompanies = [
     listings: [
       {
         id: 101,
-        title: '4 Bedroom + 1 study room/ 3 Bathroom',
+        title: '4 Bedroom + 1 study room - 3 Bathroom',
         images: ['/assets/iv-property-1.png'],
         price: 1250,
         location: '6850 Del Playa Dr, Isla Vista, CA',
@@ -38,7 +38,7 @@ const mockCompanies = [
       },
       {
         id: 102,
-        title: '3 Bedroom + 1 garage/ 2 Bathroom',
+        title: '3 Bedroom + 1 garage - 2 Bathroom',
         images: ['/assets/iv-property-2.png'],
         price: 1200,
         location: '6611 Pasado Road - Unit A, Isla Vista',
@@ -47,7 +47,7 @@ const mockCompanies = [
       },
       {
         id: 103,
-        title: '2 Bedrooms/ 1.5 Bathrooms',
+        title: '2 Bedrooms - 1.5 Bathrooms',
         images: ['/assets/iv-property-3.png'],
         price: 1150,
         location: '6710 Pasado Road - Unit 1, Isla Vista',
@@ -56,7 +56,7 @@ const mockCompanies = [
       },
       {
         id: 104,
-        title: '3 Bedrooms/ 2 Bathrooms',
+        title: '3 Bedrooms - 2 Bathrooms',
         images: ['/assets/iv-property-4.png'],
         price: 1200,
         location: '6522 Del Playa Drive - Unit A, Isla Vista',
@@ -65,7 +65,7 @@ const mockCompanies = [
       },
       {
         id: 105,
-        title: '2 Bedrooms/ 1 Bathroom',
+        title: '2 Bedrooms - 1 Bathroom',
         images: ['/assets/iv-property-5.png'],
         price: 1200,
         location: '6750 Del Playa Drive - Unit A, Isla Vista',
@@ -74,7 +74,7 @@ const mockCompanies = [
       },
       {
         id: 106,
-        title: '2 Bedrooms/ 1 Bathroom',
+        title: '2 Bedrooms - 1 Bathroom',
         images: ['/assets/iv-property-6.png'],
         price: 1200,
         location: '6516 El Nido Lane - Unit 1, Isla Vista',
@@ -92,7 +92,7 @@ const mockCompanies = [
     listings: [
       {
         id: 201,
-        title: '2 Bedroom/ 2 Bathroom/ 5 Occupants',
+        title: '2 Bedroom - 2 Bathroom - 5 Occupants',
         images: ['/assets/wolfe-property-1.png'],
         price: 4250,
         location: '6674 Trigo Road, #01, Goleta, CA 93117',
@@ -101,7 +101,7 @@ const mockCompanies = [
       },
       {
         id: 202,
-        title: '2 Bedroom/ 1 Bath/ 5 Occupants',
+        title: '2 Bedroom - 1 Bath - 5 Occupants',
         images: ['/assets/wolfe-property-2.png'],
         price: 3900,
         location: '6514 Sabado Tarde Road, #01, Goleta, CA 93117',
@@ -110,7 +110,7 @@ const mockCompanies = [
       },
       {
         id: 203,
-        title: '2 Bedroom/ 1 Bath/ 5 Occupants',
+        title: '2 Bedroom - 1 Bath - 5 Occupants',
         images: ['/assets/wolfe-property-3.png'],
         price: 4300,
         location: '6688 Del Playa Drive, #A, Goleta, CA 93117',
@@ -119,7 +119,7 @@ const mockCompanies = [
       },
       {
         id: 204,
-        title: '2 Beds / 2  Baths / 5 Occupants',
+        title: '2 Beds - 2  Baths - 5 Occupants',
         images: ['/assets/wolfe-property-4.png'],
         price: 4450,
         location: '6609 Sabado Tarde Road, #A, Goleta, CA 93117',
@@ -128,7 +128,7 @@ const mockCompanies = [
       },
       {
         id: 205,
-        title: '2 Beds / 2 Baths / 5 Occupants',
+        title: '2 Beds - 2 Baths - 5 Occupants',
         images: ['/assets/wolfe-property-5.png'],
         price: 4800,
         location: '6657 El Colegio Road, #44, Isla Vista, CA 93117',
@@ -137,7 +137,7 @@ const mockCompanies = [
       },
       {
         id: 206,
-        title: '4 Beds / 2 Baths / 9 Occupants',
+        title: '4 Beds - 2 Baths - 9 Occupants',
         images: ['/assets/wolfe-property-6.png'],
         price: 11000,
         location: '6745 Del Playa, #A, Goleta, CA 93117',
@@ -155,7 +155,7 @@ const mockCompanies = [
     listings: [
       {
         id: 301,
-        title: '3 Bedroom / 2 Bathroom (Gas/Water covered)',
+        title: '3 Bedroom - 2 Bathroom (Gas/Water covered)',
         images: ['/assets/playa-property-1.png'],
         price: 10250,
         location: '6653 Del PLaya,5, Goleta, CA 93117',
@@ -164,7 +164,7 @@ const mockCompanies = [
       },
       {
         id: 302,
-        title: '4 Bedroom / 2 Bathroom (2 refrigerators)',
+        title: '4 Bedroom - 2 Bathroom (2 refrigerators)',
         images: ['/assets/playa-property-2.png'],
         price: 12000,
         location: '6777 Del PLaya, 4, Goleta, CA 93117',
@@ -173,7 +173,7 @@ const mockCompanies = [
       },
       {
         id: 303,
-        title: '3 Bedroom / 2.5 Bathroom (Hot Tub)',
+        title: '3 Bedroom - 2.5 Bathroom (Hot Tub)',
         images: ['/assets/playa-property-3.png'],
         price: 14000,
         location: '6533 El Nido, Goleta, CA 93117',
@@ -182,7 +182,7 @@ const mockCompanies = [
       },
       {
         id: 304,
-        title: '6 Bedroom / 2.5 Bathroom',
+        title: '6 Bedroom - 2.5 Bathroom',
         images: ['/assets/playa-property-4.png'],
         price: 19000,
         location: '6649 Del Playa, Goleta, CA 93117',
@@ -191,7 +191,7 @@ const mockCompanies = [
       },
       {
         id: 305,
-        title: '2 Bedroom / 2 Bathroom ',
+        title: '2 Bedroom - 2 Bathroom ',
         images: ['/assets/playa-property-5.png'],
         price: 7200,
         location: '6736 Sueno, C, Goleta, CA 93117',
@@ -200,7 +200,7 @@ const mockCompanies = [
       },
       {
         id: 306,
-        title: '3 Bedroom / 2 Bathroom',
+        title: '3 Bedroom - 2 Bathroom',
         images: ['/assets/playa-property-6.png'],
         price: 10250,
         location: '6561 Del Playa, 3, Goleta, CA 93117',
@@ -218,7 +218,7 @@ const mockCompanies = [
     listings: [
       {
         id: 401,
-        title: '1 Bedroom / 1 Bath',
+        title: '1 Bedroom - 1 Bath',
         images: ['/assets/meridian-group-property-1.png'],
         price: 2650,
         location: '223 EllWood Beach Drive, 04, Goleta, CA 93117',
@@ -227,7 +227,7 @@ const mockCompanies = [
       },
       {
         id: 402,
-        title: '1 Bedroom / 1 Bath',
+        title: '1 Bedroom - 1 Bath',
         images: ['/assets/meridian-group-property-2.png'],
         price: 1995,
         location: '165 N. 5th Street #201',
@@ -236,7 +236,7 @@ const mockCompanies = [
       },
       {
         id: 403,
-        title: '1 Bedroom / 1 Bath',
+        title: '1 Bedroom - 1 Bath',
         images: ['/assets/meridian-group-property-3.png'],
         price: 2650,
         location: '3720 Monterey Pine Street Unit D212',
@@ -245,7 +245,7 @@ const mockCompanies = [
       },
       {
         id: 404,
-        title: '2 Bedroom / 2 Bath',
+        title: '2 Bedroom - 2 Bath',
         images: ['/assets/meridian-group-property-4.png'],
         price: 3025,
         location: '426 Ellwood Beach Drive 07',
@@ -254,7 +254,7 @@ const mockCompanies = [
       },
       {
         id: 405,
-        title: '1 Bedroom / 1 Bath',
+        title: '1 Bedroom - 1 Bath',
         images: ['/assets/meridian-group-property-5.png'],
         price: 2500,
         location: '1020 Cacique Street #03',
@@ -263,7 +263,7 @@ const mockCompanies = [
       },
       {
         id: 406,
-        title: '1 Bedroom / 1 Bath',
+        title: '1 Bedroom - 1 Bath',
         images: ['/assets/meridian-group-property-6.png'],
         price: 2950,
         location: '627 De La Vina Street #01',
