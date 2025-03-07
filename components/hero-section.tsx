@@ -14,7 +14,7 @@ export default function HeroSection() {
   const DemoMode = 1;
 
   const message =
-    "We’re working hard to bring you the best experience! Our dashboard is under construction and will be available soon. Stay tuned for updates!";
+    "We're working hard to bring you the best experience! Our dashboard is under construction and will be available soon. Stay tuned for updates!";
 
   const words = message.split(" ");
 
@@ -57,11 +57,11 @@ export default function HeroSection() {
             <p className="text-xl mb-6">
               Sign up to go to Your Dashboard, where you can manage your profile, create posts, and view your favorite listings.
             </p>
-            <div className="space-x-4">
+            <div className="space-x-0 flex flex-col md:flex-row md:space-x-4">
               <Button
                 variant="secondary"
                 size="lg"
-                className="text-blue-500 bg-slate-900 bg-opacity-60 border-blue-500 border-2 hover:bg-blue-700 hover:text-white"
+                className="text-blue-500 bg-slate-900 bg-opacity-60 border-blue-500 border-2 hover:bg-blue-700 hover:text-white w-full md:w-auto mb-4"
                 onClick={navigateToHousingListings}
               >
                 Browse Listings
@@ -69,7 +69,7 @@ export default function HeroSection() {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-blue-500 bg-slate-900 bg-opacity-60 border-blue-500 hover:bg-blue-700 hover:text-white"
+                className="text-blue-500 bg-slate-900 bg-opacity-60 border-blue-500 hover:bg-blue-700 hover:text-white w-full md:w-auto"
                 onClick={navigateToDashboard}
               >
                 Your Dashboard

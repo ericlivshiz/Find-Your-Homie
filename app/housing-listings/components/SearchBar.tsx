@@ -26,19 +26,6 @@ const SearchBar = ({ housingFilters, setHousingFilters }) => {
     maxPrice,
   } = housingFilters;
 
-  const handleSearchTermChange = (e) => {
-    setHousingFilters((prev) => ({ ...prev, searchTerm: e.target.value }));
-  };
-
-  const handleRentChange = (val: string) => {
-    setHousingFilters((prev) => ({
-      ...prev,
-      rentType: val,
-      minPrice: val !== "custom" ? "" : prev.minPrice, // Reset min/max if not custom
-      maxPrice: val !== "custom" ? "" : prev.maxPrice,
-    }));
-  };
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setHousingFilters((prev) => ({ ...prev, isDialogOpen: false }));

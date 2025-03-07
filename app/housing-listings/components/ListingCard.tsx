@@ -17,13 +17,17 @@ interface Listing {
   websiteUrl: string;
 }
 
-export function ListingCard({ listing }: { listing: Listing }) {
+interface ListingCardProps {
+  listing: Listing;
+  onCardClick: (housingId: number) => void;
+}
+
+export function ListingCard({ listing, onCardClick }: ListingCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const { toast } = useToast();
 
   const handleViewDetails = () => {
-    console.log("Opening URL:", listing.websiteUrl);
-    window.open(listing.websiteUrl, "_blank");
+    onCardClick(listing.id);
   };
 
   const toggleLike = (e: React.MouseEvent) => {
@@ -44,7 +48,10 @@ export function ListingCard({ listing }: { listing: Listing }) {
   const badgeTextClass = isOpenNow ? "text-white" : "text-black";
 
   return (
-    <Card className="relative rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300">
+    <Card
+      className="relative rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300"
+      onClick={handleViewDetails}
+    >
       {/* Heart (Like) Icon */}
       <div className="absolute top-2 right-2 z-10">
         <Heart
@@ -86,7 +93,10 @@ export function ListingCard({ listing }: { listing: Listing }) {
       <CardFooter className="p-6 bg-gray-900 bg-opacity-75 flex justify-center">
         <button
           className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 active:bg-blue-700 transition-colors"
-          onClick={handleViewDetails}
+          onClick={(e) => {
+            e.stopPropagation();
+            window.open(listing.websiteUrl, "_blank");
+          }}
         >
           View Details
         </button>

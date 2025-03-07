@@ -1,14 +1,20 @@
 import { Sidebar } from "@/components/sidebar";
-import BlueHeader from "@/components/BlueHeader";
+import Header from "@/components/Header";
 import SubleaseCard from "../../sublease-listings/components/SubleaseCard";
 import RoommateCard from "../../roommate-matching/components/RoommateCard";
+import { MobileNavbar } from '@/components/MobileNavBar';
 
 export default function LikedPostsPage() {
   return (
-    <div className="flex min-h-screen bg-gray-900">
-      <Sidebar />
+    <div className="flex min-h-screen bg-gray-900 overflow-x-hidden">
+      <div className="hidden md:block">
+        <Sidebar />
+      </div>
       <div className="flex flex-col flex-grow">
-        <BlueHeader />
+        <Header />
+        <div className="block md:hidden">
+          <MobileNavbar />
+        </div>
         <div className="flex-grow p-6 space-y-8">
           <section>
             <h2 className="text-2xl font-extrabold mb-4 text-white">Liked Housing Posts</h2>
