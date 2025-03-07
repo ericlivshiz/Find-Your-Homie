@@ -49,7 +49,7 @@ export function ListingCard({ listing, onCardClick }: ListingCardProps) {
 
   return (
     <Card
-      className="relative rounded-lg shadow-lg overflow-hidden cursor-pointer bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300"
+      className="relative rounded-lg shadow-lg overflow-hidden bg-gray-800 bg-opacity-90 hover:shadow-xl transition-shadow duration-300"
       onClick={handleViewDetails}
     >
       {/* Heart (Like) Icon */}

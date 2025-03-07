@@ -107,6 +107,33 @@ const mockCompanies = [
         location: '6731 Pasado Road - Unit A, Isla Vista',
         applicationStatus: 'Leased through June 2026',
         websiteUrl: 'https://www.ivproperties.com/properties/isla-vista-properties/6731-pasado-road-isla-vista-ca/unit-a/',
+      },
+      {
+        id: 110,
+        title: '2 Bedrooms - 1 Bathroom',
+        images: ['/assets/iv-property-10.png'],
+        price: 1200,
+        location: '6731 Pasado Road - Unit A, Isla Vista',
+        applicationStatus: 'Leased through June 2026',
+        websiteUrl: 'https://www.ivproperties.com/properties/isla-vista-properties/6731-pasado-road-isla-vista-ca/unit-a/',
+      },
+      {
+        id: 111,
+        title: '3 Bedrooms - 1.5 Bathroom',
+        images: ['/assets/iv-property-11.png'],
+        price: 1200,
+        location: '6756 Pasado Road, Isla Vista, CA',
+        applicationStatus: 'Leased through June 2026',
+        websiteUrl: 'https://www.ivproperties.com/properties/isla-vista-properties/6756-pasado-road-isla-vista-ca/',
+      },
+      {
+        id: 112,
+        title: '5 Bedrooms - 3 Bathrooms',
+        images: ['/assets/iv-property-12.png'],
+        price: 1200,
+        location: '6807 Pasado Road, Isla Vista, CA',
+        applicationStatus: 'Leased through June 2026',
+        websiteUrl: 'https://www.ivproperties.com/properties/isla-vista-properties/6807-pasado-road-isla-vista-ca/',
       }
     ],
   },
@@ -171,33 +198,33 @@ const mockCompanies = [
         applicationStatus: 'Available 06/25/2025',
         websiteUrl: 'https://www.rlwa.com/listings/detail/1627ba76-311b-426f-afc0-c4d622e01be2',
       },
-      {
-        id: 207,
-        title: '3 Beds - 1.5 Baths - 7 Occupants',
-        images: ['/assets/wolfe-property-7.png'],
-        price: 5500,
-        location: '6698 Sabado Tarde, #A, Goleta, CA 93117',
-        applicationStatus: 'Available 06/25/2025',
-        websiteUrl: 'https://www.rlwa.com/listings/detail/fd496784-d0b1-4e9a-be82-b8c6b515b3ea',
-      },
-      {
-        id: 208,
-        title: '1 Bed - 1 Bath - 3 Occupants',
-        images: ['/assets/wolfe-property-8.png'],
-        price: 2750,
-        location: '6657 El Colegio Road, #06, Isla Vista, CA 93117',
-        applicationStatus: 'Available 06/25/2025',
-        websiteUrl: 'https://www.rlwa.com/listings/detail/6761b6ef-4ee5-4eaf-9ec8-ccacc1afc026',
-      },
-      {
-        id: 209,
-        title: '1 Bed - 1 Bath - 3 Occupants',
-        images: ['/assets/wolfe-property-8.png'],
-        price: 2750,
-        location: '6657 El Colegio Road, #25, Isla Vista, CA 93117',
-        applicationStatus: 'Available 06/25/2025',
-        websiteUrl: 'https://www.rlwa.com/listings/detail/608f292b-fea0-4b81-b286-cf0bd68701ff',
-      }
+      // {
+      //   id: 207,
+      //   title: '3 Beds - 1.5 Baths - 7 Occupants',
+      //   images: ['/assets/wolfe-property-7.png'],
+      //   price: 5500,
+      //   location: '6698 Sabado Tarde, #A, Goleta, CA 93117',
+      //   applicationStatus: 'Available 06/25/2025',
+      //   websiteUrl: 'https://www.rlwa.com/listings/detail/fd496784-d0b1-4e9a-be82-b8c6b515b3ea',
+      // },
+      // {
+      //   id: 208,
+      //   title: '1 Bed - 1 Bath - 3 Occupants',
+      //   images: ['/assets/wolfe-property-8.png'],
+      //   price: 2750,
+      //   location: '6657 El Colegio Road, #06, Isla Vista, CA 93117',
+      //   applicationStatus: 'Available 06/25/2025',
+      //   websiteUrl: 'https://www.rlwa.com/listings/detail/6761b6ef-4ee5-4eaf-9ec8-ccacc1afc026',
+      // },
+      // {
+      //   id: 209,
+      //   title: '1 Bed - 1 Bath - 3 Occupants',
+      //   images: ['/assets/wolfe-property-8.png'],
+      //   price: 2750,
+      //   location: '6657 El Colegio Road, #25, Isla Vista, CA 93117',
+      //   applicationStatus: 'Available 06/25/2025',
+      //   websiteUrl: 'https://www.rlwa.com/listings/detail/608f292b-fea0-4b81-b286-cf0bd68701ff',
+      // }
     ],
   },
   {
@@ -282,11 +309,38 @@ const mockCompanies = [
       {
         id: 309,
         title: '3 Bedroom - 3 Bathroom',
-        images: ['/assets/playa-property-2.png'],
+        images: ['/assets/playa-property-9.png'],
         price: 14000,
         location: '6564 Del Playa, A, Goleta, CA 93117',
         applicationStatus: 'Available 06/29/2025',
         websiteUrl: 'https://www.playalifeiv.com/listings/detail/4ec377e9-d017-4cc1-8ede-7ab889f7386a',
+      },
+      {
+        id: 310,
+        title: '4 Bedroom - 2.5 Bathroom',
+        images: ['/assets/playa-property-6.png'],
+        price: 10250,
+        location: '6561 Del Playa, 6, Goleta, CA 93117',
+        applicationStatus: 'Available 07/03/2025',
+        websiteUrl: 'https://www.playalifeiv.com/listings/detail/a7344348-254e-4451-97e2-7e3d6032c4de',
+      },
+      {
+        id: 311,
+        title: '2 Bedroom - 1.5 Bathroom',
+        images: ['/assets/playa-property-11.png'],
+        price: 8000,
+        location: '6707 Del Playa, Goleta, CA 93117',
+        applicationStatus: 'Available 07/05/2025',
+        websiteUrl: 'https://www.playalifeiv.com/listings/detail/278e75af-2063-4751-98ac-59a877789744',
+      },
+      {
+        id: 312,
+        title: '2 Bedroom - 2 Bathroom',
+        images: ['/assets/playa-property-12.png'],
+        price: 7500,
+        location: '6561 Del Playa, 1, Goleta, CA 93117',
+        applicationStatus: 'Available 07/03/2025',
+        websiteUrl: 'https://www.playalifeiv.com/listings/detail/ab55c2ab-cd18-429e-b26e-9f35efe75a68',
       }
     ],
   },
@@ -377,6 +431,33 @@ const mockCompanies = [
         location: '2519 De La Vina Street #05',
         applicationStatus: 'Open Now',
         websiteUrl: 'https://meridiangrouprem.com/details/?ID=1070',
+      },
+      {
+        id: 410,
+        title: '3 Bedroom - 2 Bath',
+        images: ['/assets/meridian-group-property-10.png'],
+        price: 4695,
+        location: '56 San Fermo Drive',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://meridiangrouprem.com/details/?ID=1561',
+      },
+      {
+        id: 411,
+        title: '1 Bedroom - 2 Bath',
+        images: ['/assets/meridian-group-property-12.png'],
+        price: 3600,
+        location: '1 El Vedado Lane #31',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://meridiangrouprem.com/details/?ID=753',
+      },
+      {
+        id: 412,
+        title: '1 Bedroom - 1 Bath',
+        images: ['/assets/meridian-group-property-11.png'],
+        price: 2750,
+        location: '1812 Bath Street #F',
+        applicationStatus: 'Open Now',
+        websiteUrl: 'https://meridiangrouprem.com/details/?ID=680',
       }
     ],
     
@@ -461,7 +542,7 @@ export default function HousingListingsPage() {
   });
   
   const handleCardClick = (housingId: number) => {
-    router.push(`/housing-details/${housingId}`);
+    // router.push(`/housing-details/${housingId}`);
   };
 
   return (
